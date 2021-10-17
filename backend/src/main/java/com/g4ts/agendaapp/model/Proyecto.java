@@ -20,6 +20,7 @@ public class Proyecto {
     private LocalDate fechaInicio;
     private LocalDate fechaPrevistaFin;
     private String ubicacion;
+    private Short visibilidad;
 
     @OneToOne
     @JoinColumn(name = "idUsuario")

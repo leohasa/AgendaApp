@@ -2,7 +2,9 @@ package com.g4ts.agendaapp.model;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
@@ -13,7 +15,7 @@ import java.time.LocalDate;
 public class Usuario {
 
     @Id
-    private Integer username;
+    private String username;
     private String password;
     private String nombre;
     private LocalDate fechaNacimiento;

@@ -1,4 +1,7 @@
 package com.g4ts.agendaapp.repository;
 
-public interface UsuarioRepository {
+import com.g4ts.agendaapp.model.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 }
