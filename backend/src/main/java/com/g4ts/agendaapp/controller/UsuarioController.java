@@ -27,7 +27,7 @@ public class UsuarioController {
         usuarioService.save(usuario);
     }
 
-    @GetMapping("/getUser/{username}")
+    @GetMapping("/get/{username}")
     public Usuario getUsaer(@PathVariable String username) {
         return usuarioService.findByUsername(username);
     }

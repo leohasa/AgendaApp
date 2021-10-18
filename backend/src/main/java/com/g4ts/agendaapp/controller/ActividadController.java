@@ -27,7 +27,7 @@ public class ActividadController {
         actividadService.save(actividad);
     }
 
-    @GetMapping("/getActividad/{id}")
+    @GetMapping("/get/{id}")
     public Actividad getActividad(@PathVariable Integer id) {
         return actividadService.findById(id);
     }

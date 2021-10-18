@@ -27,7 +27,7 @@ public class ProyectoController {
         proyectoService.save(proyecto);
     }
 
-    @GetMapping("/getProyecto/{id}")
+    @GetMapping("/get/{id}")
     public Proyecto getProyecto(@PathVariable Integer id) {
         return proyectoService.findById(id);
     }

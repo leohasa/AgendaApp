@@ -1,1 +1,49 @@
-<p>list-usuario works!</p>
+<div class="container-fluid py-2 bg-secondary">
+    <div class="row">
+        <div class="col-3">
+            <a class="btn btn-primary btn-block" (click)="addUser()">
+                <i class="fas fa-user-plus"></i> Agregar usuario
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-10">
+            <div class="card my-4">
+                <div class="card-header">
+                    <h4>Listado de usuarios</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-sm" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Nombre</th>
+                                <th>Fecha de nacimiento</th>
+                                <th>Nacionalidad</th>
+                                <th>Ocupacion</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let u of usuarios">
+                                <td>{{u.username}}</td>
+                                <td>{{u.nombre}}</td>
+                                <td>{{u.fechaNacimiento}}</td>
+                                <td>{{u.nacionalidad}}</td>
+                                <td>{{u.ocupacion}}</td>
+                                <td>
+                                    <button (click)="editar(u)" class="btn btn-warning">
+                                        <i class="fas fa-user-edit"></i> Editar
+                                    </button>&nbsp;
+                                    <button (click)="delete(u)" class="btn btn-danger">
+                                        <i class="fas fa-user-minus"></i> Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

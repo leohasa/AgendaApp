@@ -15,10 +15,16 @@ import { ListActividadComponent } from './actividad/list-actividad/list-activida
 import { AddProyectoComponent } from './proyecto/add-proyecto/add-proyecto.component';
 import { EditProyectoComponent } from './proyecto/edit-proyecto/edit-proyecto.component';
 import { ListProyectoComponent } from './proyecto/list-proyecto/list-proyecto.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { UsuarioService } from './service/usuario.service';
+import { CategoriaService } from './service/categoria.service';
+import { ProyectoService } from './service/proyecto.service';
+import { ActividadService } from './service/actividad.service';
 
 @NgModule({
     declarations: [
-
+        AppComponent,
         AddUsuarioComponent,
         EditUsuarioComponent,
         ListUsuarioComponent,
@@ -34,9 +40,17 @@ import { ListProyectoComponent } from './proyecto/list-proyecto/list-proyecto.co
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule
     ],
-    providers: [],
+    providers:
+    [
+        UsuarioService,
+        CategoriaService,
+        ProyectoService,
+        ActividadService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

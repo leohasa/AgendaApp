@@ -27,7 +27,7 @@ public class CategoriaController {
         categoriaService.save(categoria);
     }
 
-    @GetMapping("/getCategoria/{id}")
+    @GetMapping("/get/{id}")
     public Categoria getCategoria(@PathVariable Integer id) {
         return categoriaService.findById(id);
     }

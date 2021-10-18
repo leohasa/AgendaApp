@@ -1,1 +1,65 @@
-<p>edit-usuario works!</p>
+<div class="container-fluid py-2 bg-secondary">
+    <div class="row">
+        <div class="col-3">
+            <a class="btn btn-primary btn-block" (click)="backList()">
+                <i class="fas fa-long-arrow-left"></i> Regresar al listado
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container col-md-6">
+    <div class="row">
+        <div class="col">
+            <div class="card my-4">
+                <div class="card-header">
+                    <h3>Editar usuario</h3>
+                </div>
+                <div class="card-body">
+                    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input [(ngModel)]="usuario.username" type="text" class="form-control" name="username"
+                                readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input [(ngModel)]="usuario.password" type="password" class="form-control" name="password"
+                                required #password="ngModel">
+                            <div [hidden]="!password.pristine" class="invalid-feedback">El password es requerido</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Nombre:</label>
+                            <input [(ngModel)]="usuario.nombre" type="text" class="form-control" name="name" required
+                                #nombre="ngModel">
+                            <div [hidden]="!nombre.pristine" class="invalid-feedback">El nombre es requerido</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha">Fecha Nacimiento:</label>
+                            <input [(ngModel)]="usuario.fechaNacimiento" type="text" class="form-control" name="fecha"
+                                id="fecha" required #fechaNacimiento="ngModel">
+                            <div [hidden]="!fechaNacimiento.pristine" class="invalid-feedback">La fecha de nacimiento es
+                                requerida</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nac">Nacionalidad:</label>
+                            <input [(ngModel)]="usuario.nacionalidad" type="text" class="form-control" name="nac">
+                        </div>
+                        <div class="form-group">
+                            <label for="ocupacion">Ocupacion:</label>
+                            <input [(ngModel)]="usuario.ocupacion" type="text" class="form-control" name="ocupacion">
+                        </div>
+                        <div class="form-group">
+                            <label for="desc">Descripcion:</label>
+                            <textarea [(ngModel)]="usuario.descripcion" class="form-control"
+                                name="descripcion"></textarea>
+                        </div>
+                        <div class="text-center mt-2">
+                            <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Actualizar
+                                usuario</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

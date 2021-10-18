@@ -3,9 +3,9 @@
 :root {
     --header-height: 3rem;
     --nav-width: 68px;
-    --first-color: #4723D9;
-    --first-color-light: #AFA5D9;
-    --white-color: #F7F6FB;
+    --first-color: #06a857;
+    --first-color-light: #3a393f;
+    --white-color: #ffffff;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
     --z-fixed: 100
@@ -70,7 +70,7 @@ a {
     left: -30%;
     width: var(--nav-width);
     height: 100vh;
-    background-color: #4a2fb6;
+    background-color: var(--first-color);
     padding: .5rem 1rem 0 0;
     transition: .5s;
     z-index: var(--z-fixed)
