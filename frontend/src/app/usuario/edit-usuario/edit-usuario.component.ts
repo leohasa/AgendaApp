@@ -32,7 +32,7 @@ export class EditUsuarioComponent implements OnInit {
         this.service.updateUsuario(this.usuario)
         .subscribe(data => {
             alert('Usuario actualizado correctamente!');
-            this.router.navigate(['listUser']);
+            this.backList();
         });
     }
 

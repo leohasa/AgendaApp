@@ -23,7 +23,7 @@ export class AddUsuarioComponent implements OnInit {
         this.service.createUser(this.usuario)
         .subscribe(data => {
             alert('Agregado con exito');
-            this.router.navigate(['listUser']);
+            this.backList();
         });
     }
 

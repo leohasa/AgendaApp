@@ -1,6 +1,7 @@
 package com.g4ts.agendaapp.service.db;
 
 import com.g4ts.agendaapp.model.Categoria;
+import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.repository.CategoriaRepository;
 import com.g4ts.agendaapp.service.ICategoriaService;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,10 @@ public class CategoriaServiceJpa implements ICategoriaService {
     @Override
     public void deleteById(Integer id) {
         categoriaRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Categoria> findAllByUser(Usuario usuario) {
+        return categoriaRepository.findAllByUsuario(usuario);
     }
 }

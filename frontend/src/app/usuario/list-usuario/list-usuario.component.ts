@@ -23,7 +23,7 @@ export class ListUsuarioComponent implements OnInit {
             });
     }
 
-    addUser() {
+    add() {
         this.router.navigate(['addUser']);
     }
 

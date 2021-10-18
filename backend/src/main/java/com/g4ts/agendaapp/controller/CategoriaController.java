@@ -1,6 +1,7 @@
 package com.g4ts.agendaapp.controller;
 
 import com.g4ts.agendaapp.model.Categoria;
+import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.service.ICategoriaService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,10 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
 
-    @GetMapping("/list")
-    public List<Categoria> list() {
-        return categoriaService.findAll();
+    @GetMapping("/list/{username}")
+    public List<Categoria> list(@PathVariable String username) {
+        Usuario usuario = Usuario.builder().username(username).build();
+        return categoriaService.findAllByUser(usuario);
     }
 
     @PostMapping("/add")
