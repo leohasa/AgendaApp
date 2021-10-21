@@ -21,6 +21,7 @@ import { UsuarioService } from './service/usuario.service';
 import { CategoriaService } from './service/categoria.service';
 import { ProyectoService } from './service/proyecto.service';
 import { ActividadService } from './service/actividad.service';
+import { LoginComponent } from './usuario/login/login.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { ActividadService } from './service/actividad.service';
         ListActividadComponent,
         AddProyectoComponent,
         EditProyectoComponent,
-        ListProyectoComponent
+        ListProyectoComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule,

@@ -5,6 +5,7 @@ import com.g4ts.agendaapp.service.IUsuarioService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
@@ -40,5 +41,18 @@ public class UsuarioController {
     @DeleteMapping("/delete/{username}")
     public void delete(@PathVariable String username) {
         usuarioService.deleteById(username);
+    }
+
+    @PostMapping("signIn")
+    public Usuario signIn(@RequestBody Usuario usuario) {
+        Usuario usuarioDb = usuarioService.findByUsername(usuario.getUsername());
+
+        if (!Objects.isNull(usuarioDb)) {
+            if (usuario.getPassword().equals(usuarioDb.getPassword())) {
+                return usuarioDb;
+            }
+        }
+
+        return null;
     }
 }

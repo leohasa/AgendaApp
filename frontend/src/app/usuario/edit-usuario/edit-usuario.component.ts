@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import flatpickr from 'flatpickr';
+import { Spanish } from 'flatpickr/dist/l10n/es';
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
@@ -21,6 +23,9 @@ export class EditUsuarioComponent implements OnInit {
     }
 
     getUser() {
+        flatpickr('#fecha', {
+            locale: Spanish
+        });
         let username = localStorage.getItem('username');
         this.service.getUsuarioById(''+username)
         .subscribe(data => {

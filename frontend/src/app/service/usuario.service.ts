@@ -30,4 +30,8 @@ export class UsuarioService {
     delete(username: String) {
         return this.http.delete<Usuario>(`${this.url}/delete/${username}`);
     }
+
+    signIn(usuario: Usuario) {
+        return this.http.post<Usuario>(`${this.url}/signIn`, usuario);
+    }
 }

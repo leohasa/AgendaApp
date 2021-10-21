@@ -12,6 +12,7 @@ import { ListProyectoComponent } from './proyecto/list-proyecto/list-proyecto.co
 import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
 import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
+import { LoginComponent } from './usuario/login/login.component';
 
 const routes: Routes = [
     {path: 'addUser', component: AddUsuarioComponent},
@@ -25,7 +26,8 @@ const routes: Routes = [
     {path: 'listProyecto', component: ListProyectoComponent},
     {path: 'addActividad', component: AddActividadComponent},
     {path: 'editActividad', component: EditActividadComponent},
-    {path: 'listActividad', component: ListActividadComponent}
+    {path: 'listActividad', component: ListActividadComponent},
+    {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
