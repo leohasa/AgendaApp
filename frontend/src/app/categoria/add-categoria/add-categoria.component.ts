@@ -31,7 +31,7 @@ export class AddCategoriaComponent implements OnInit {
     }
 
     backList() {
-        this.router.navigate(['listCategoria']);
+        this.router.navigate(['categoria/list']);
     }
 
 }

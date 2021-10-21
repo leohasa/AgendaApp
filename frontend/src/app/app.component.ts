@@ -20,6 +20,11 @@ export class AppComponent implements OnInit{
 
     editar(username: String) {
         localStorage.setItem('username', username.toString());
-        this.router.navigate(['editUser']);
+        this.router.navigate(['user/edit']);
+    }
+
+    logOut() {
+        this.sessionStorage.removeItem('user');
+        this.router.navigate(['login']);
     }
 }

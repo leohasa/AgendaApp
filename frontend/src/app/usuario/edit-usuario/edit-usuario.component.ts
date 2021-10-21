@@ -42,7 +42,7 @@ export class EditUsuarioComponent implements OnInit {
     }
 
     backList() {
-        this.router.navigate(['listUser']);
+        this.router.navigate(['user/list']);
     }
 
 }

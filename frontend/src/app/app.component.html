@@ -1,22 +1,22 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <a routerLink="localhost:4200" class="navbar-brand">
+        <a href="" class="navbar-brand">
             <i class="bx bxs-calendar"></i>
             AgendaApp
         </a>
         <div *ngIf="sessionStorage.getItem('user')" class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="listProyecto">Proyectos</a>
+                    <a class="nav-link" routerLink="proyecto/list">Proyectos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="listActividad">Actividades</a>
+                    <a class="nav-link" routerLink="actividad/list">Actividades</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="listCategoria">Categorias</a>
+                    <a class="nav-link" routerLink="categoria/list">Categorias</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="listPlugin">Plugins</a>
+                    <a class="nav-link" routerLink="plugin/list">Plugins</a>
                 </li>
             </ul>
             <form class="d-flex me-4">
@@ -24,14 +24,14 @@
                 <button class="btn btn-primary" type="button">Buscar</button>
             </form>
             <ul class="navbar-nav">
-                <div class="dropdown">
+                <div class="dropdown dropstart">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            @username
+                            {{'@'+sessionStorage.getItem('user')}}
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" routerLink (click)="editar(sessionStorage.getItem('user')??'')">Mi perfil</a></li>
-                            <li><a class="dropdown-item" routerLink >Cerrar sesion</a></li>
+                            <li><a class="dropdown-item" routerLink  (click)="logOut()">Cerrar sesion</a></li>
                         </ul>
                     </li>
                 </div>

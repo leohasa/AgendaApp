@@ -32,8 +32,4 @@ export class AddUsuarioComponent implements OnInit {
         });
     }
 
-    backList() {
-        this.router.navigate(['listUser']);
-    }
-
 }

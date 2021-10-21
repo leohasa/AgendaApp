@@ -22,6 +22,11 @@ import { CategoriaService } from './service/categoria.service';
 import { ProyectoService } from './service/proyecto.service';
 import { ActividadService } from './service/actividad.service';
 import { LoginComponent } from './usuario/login/login.component';
+import { AccessGuard } from './usuario/AccessGuard';
+import { ManagerUserRoutesComponent } from './usuario/manager-user-routes/manager-user-routes.component';
+import { ManagerProjectRoutesComponent } from './proyecto/manager-project-routes/manager-project-routes.component';
+import { ManagerCategoryRoutesComponent } from './categoria/manager-category-routes/manager-category-routes.component';
+import { ManagerActividadRoutesComponent } from './actividad/manager-actividad-routes/manager-actividad-routes.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +43,11 @@ import { LoginComponent } from './usuario/login/login.component';
         AddProyectoComponent,
         EditProyectoComponent,
         ListProyectoComponent,
-        LoginComponent
+        LoginComponent,
+        ManagerUserRoutesComponent,
+        ManagerProjectRoutesComponent,
+        ManagerCategoryRoutesComponent,
+        ManagerActividadRoutesComponent
     ],
     imports: [
         BrowserModule,
@@ -51,7 +60,8 @@ import { LoginComponent } from './usuario/login/login.component';
         UsuarioService,
         CategoriaService,
         ProyectoService,
-        ActividadService
+        ActividadService,
+        AccessGuard
     ],
     bootstrap: [AppComponent]
 })

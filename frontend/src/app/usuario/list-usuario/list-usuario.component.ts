@@ -23,13 +23,9 @@ export class ListUsuarioComponent implements OnInit {
             });
     }
 
-    add() {
-        this.router.navigate(['addUser']);
-    }
-
     editar(usuario: Usuario) {
         localStorage.setItem('username', usuario.username.toString());
-        this.router.navigate(['editUser']);
+        this.router.navigate(['user/edit']);
     }
 
     delete(usuario: Usuario) {
