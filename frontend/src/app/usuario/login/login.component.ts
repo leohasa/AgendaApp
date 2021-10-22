@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         .subscribe(user => {
             if (user) {
                 sessionStorage.setItem('user', user.username.toString());
-                this.router.navigate(['']);
+                this.router.navigate(['calendar-dia']);
             } else {
                 alert('Credenciales incorrectas!');
             }

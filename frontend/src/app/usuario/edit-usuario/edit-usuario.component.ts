@@ -42,7 +42,7 @@ export class EditUsuarioComponent implements OnInit {
     }
 
     backList() {
-        this.router.navigate(['user/list']);
+        this.router.navigate(['calendar-dia']);
     }
 
 }

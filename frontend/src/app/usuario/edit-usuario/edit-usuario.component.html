@@ -1,18 +1,9 @@
-<div class="container-fluid py-2 bg-secondary">
-    <div class="row">
-        <div class="col-3">
-            <a class="btn btn-primary btn-block" (click)="backList()">
-                <i class="fas fa-long-arrow-left"></i> Regresar al listado
-            </a>
-        </div>
-    </div>
-</div>
 <div class="container col-md-6">
     <div class="row">
         <div class="col">
             <div class="card my-4">
                 <div class="card-header">
-                    <h3>Editar usuario</h3>
+                    <h3>Editar informacion</h3>
                 </div>
                 <div class="card-body">
                     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
@@ -54,8 +45,9 @@
                                 name="descripcion"></textarea>
                         </div>
                         <div class="text-center mt-2">
+                            <button type="button" class="btn btn-danger me-4" (click)="backList()">Regresar</button>
                             <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Actualizar
-                                usuario</button>
+                                informacion</button>
                         </div>
                     </form>
                 </div>

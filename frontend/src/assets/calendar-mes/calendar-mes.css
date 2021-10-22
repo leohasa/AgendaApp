@@ -1,0 +1,64 @@
+#ex3{
+    max-width: 700px;
+    margin:20px auto;
+    background-color: #333333;
+    padding: 1%;
+    color:white;
+    box-sizing: border-box;
+    font-family:sans-serif;
+    }
+    #isToDay{
+    box-shadow:inset 0 0 0 1px darkgray;
+    }
+    .day_box,.name_day,.titleCalendar,.buttonCalendar{
+    width: calc(100% / 7);
+    display:inline-block;
+    vertical-align: top;
+    }
+    .titleCalendar{
+    width: calc(100% / 7 * 5);
+    font-size: 24px;
+    text-align: center;
+    }
+    .buttonCalendar{
+    background-color: black;
+    text-align: center;
+    color:white;
+    border:none;
+    font-size: 18px;
+    padding:0;
+    cursor:pointer;
+    }
+    .name_day{
+    overflow: hidden;
+    font-size: 14px;
+    padding: 1px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    text-align: center;
+    }
+    .day_box{
+    text-align: left!important;
+    font-size: 14px;
+    background-image: linear-gradient(black, #222222);
+    background-size: 97% 97%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    }
+
+    .day_box>div{
+    margin:1px;
+    padding:5%;
+    background-repeat: no-repeat;
+    background-size: 25%;
+    background-position: 95% 95%;
+    }
+    .day_box>div>span{
+    position:absolute;
+    color:white;
+    font-size: 1em;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+    .day_box>div>div{
+    padding:5% 15%;
+    }
