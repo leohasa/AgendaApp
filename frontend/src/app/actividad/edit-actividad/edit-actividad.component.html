@@ -1,1 +1,68 @@
-<p>edit-actividad works!</p>
+<div class="container-fluid py-2 bg-secondary">
+    <div class="row">
+        <div class="col-3">
+            <a class="btn btn-primary btn-block" (click)="backList()">
+                <i class="fas fa-long-arrow-left"></i> Regresar al listado
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container mt-2 col-md-6">
+    <div class="row">
+        <div class="col">
+            <div class="card my-4">
+                <div class="card-header">
+                    <h3>Editar actividad</h3>
+                </div>
+                <div class="card-body">
+                    <form (ngSubmit)="onSubmit()" #actividadForm="ngForm">
+                        <div class="row py-2">
+                            <div class="form-group col-5">
+                                <label for="nameProyecto">Proyecto:</label>
+                                <input type="text" class="form-control" name="nameProyecto" #nombreProyecto
+                                    value="{{actividad.proyecto.nombre}}" readonly>
+                            </div>
+                            <div class="form-gruop col-5">
+                                <label for="title">*Titulo:</label>
+                                <input [(ngModel)]="actividad.titulo" type="text" class="form-control" name="title"
+                                    required #title="ngModel">
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="form-grup col-4">
+                                <label for="fechaInicio">*Fecha inicio:</label>
+                                <input [(ngModel)]="actividad.fechaInicio" type="text" class="form-control" required
+                                    name="fechaInicio" id="fechaInicio" #fechaInicio="ngModel">
+                            </div>
+                            <div class="form-grup col-4">
+                                <label for="fechaFin">*Fecha fin:</label>
+                                <input [(ngModel)]="actividad.fechaFin" type="text" class="form-control" name="fechaFin"
+                                    id="fechaFin" #fechaFin="ngModel">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="categoria">*Categoria:</label>
+                                <select [(ngModel)]="actividad.categoria.id" name="categoria" id="categoria"
+                                    class="form-select" #categoria="ngModel" required>
+                                    <option *ngFor="let c of categorias" value="{{c.id}}">{{c.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="desc">Descripcion:</label>
+                                    <textarea [(ngModel)]="actividad.descripcion" class="form-control"
+                                        name="descripcion" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success mt-2"
+                                [disabled]="!actividadForm.form.valid">Guardad actividad</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

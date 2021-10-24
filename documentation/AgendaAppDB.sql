@@ -97,7 +97,7 @@ CREATE TABLE Actividad (
   titulo VARCHAR(45) NOT NULL,
   descripcion TEXT NULL,
   estado TINYINT NOT NULL,
-  idCateoria INT NOT NULL,
+  idCategoria INT NOT NULL,
   INDEX fk_RegistroActividad_Proyecto1_idx (idProyecto ASC) VISIBLE,
   PRIMARY KEY (id),
   INDEX fk_Actividad_Categoria1_idx (idCateoria ASC) VISIBLE,
