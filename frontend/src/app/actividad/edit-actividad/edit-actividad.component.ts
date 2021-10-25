@@ -25,12 +25,7 @@ export class EditActividadComponent implements OnInit {
         private categoriaService: CategoriaService,
         private proyectoService: ProyectoService) {
 
-
-        let proyecto: Proyecto = new Proyecto();
-        let categoria: Categoria = new Categoria();
         this.actividad = new Actividad();
-        this.actividad.proyecto = proyecto;
-        this.actividad.categoria = categoria;
         this.categorias = new Array();
     }
 
@@ -71,7 +66,7 @@ export class EditActividadComponent implements OnInit {
     }
 
     backList() {
-        this.router.navigate(['actividad/list']);
+        this.router.navigate(['/actividad/list']);
     }
 
     setFechaFin(fecha: Event) {

@@ -25,12 +25,12 @@ export class ListActividadComponent implements OnInit {
     }
 
     add() {
-        this.router.navigate(['actividad/add']);
+        this.router.navigate(['/actividad/add']);
     }
 
     editar(actividad: Actividad) {
         localStorage.setItem('idActividad', actividad.id.toString());
-        this.router.navigate(['actividad/edit']);
+        this.router.navigate(['/actividad/edit']);
     }
 
     delete(actividad: Actividad) {

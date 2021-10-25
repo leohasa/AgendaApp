@@ -11,4 +11,8 @@ export class Proyecto {
     visibilidad: String;
     usuario: Usuario;
 
+    constructor() {
+        this.usuario = new Usuario();
+    }
+
 }

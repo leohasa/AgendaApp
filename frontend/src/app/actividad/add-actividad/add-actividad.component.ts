@@ -25,11 +25,7 @@ export class AddActividadComponent implements OnInit {
         private categoriaService: CategoriaService,
         private proyectoService: ProyectoService) {
 
-        let proyecto: Proyecto = new Proyecto();
-        let categoria: Categoria = new Categoria();
         this.actividad = new Actividad();
-        this.actividad.proyecto = proyecto;
-        this.actividad.categoria = categoria;
         this.categorias = new Array();
     }
 
@@ -66,9 +62,5 @@ export class AddActividadComponent implements OnInit {
             plugins: [rangePlugin({ input: "#fechaFin" })],
             locale: Spanish
         });
-    }
-
-    private initActividad() {
-
     }
 }

@@ -25,12 +25,12 @@ export class ListCategoriaComponent implements OnInit {
     }
 
     add() {
-        this.router.navigate(['categoria/add']);
+        this.router.navigate(['/categoria/add']);
     }
 
     editar(categoria: Categoria) {
         localStorage.setItem('idCat', categoria.id.toString());
-        this.router.navigate(['categoria/edit']);
+        this.router.navigate(['/categoria/edit']);
     }
 
     delete(categoria: Categoria) {

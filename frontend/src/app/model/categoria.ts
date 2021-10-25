@@ -6,4 +6,8 @@ export class Categoria {
     nombre: String;
     usuario: Usuario;
 
+    constructor() {
+        this.usuario = new Usuario();
+    }
+
 }

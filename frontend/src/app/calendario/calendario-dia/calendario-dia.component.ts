@@ -15,7 +15,7 @@ export class CalendarioDiaComponent implements OnInit {
 
     ngOnInit(): void {
         if (!sessionStorage.getItem('user')) {
-            this.router.navigate(['login']);
+            this.router.navigate(['/login']);
         }
         let elemento = this._document.getElementById('body');
         let script = this._renderer2.createElement('script');

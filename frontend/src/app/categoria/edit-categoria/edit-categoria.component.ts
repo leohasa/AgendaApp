@@ -21,8 +21,8 @@ export class EditCategoriaComponent implements OnInit {
     }
 
     getCategoria() {
-        let idC = localStorage.getItem('idCat');
-        this.service.getCategoriaById(''+idC)
+        let idC = localStorage.getItem('idCat') ?? '';
+        this.service.getCategoriaById(idC)
         .subscribe(data => {
             this.categoria = data;
         });
@@ -37,7 +37,7 @@ export class EditCategoriaComponent implements OnInit {
     }
 
     backList() {
-        this.router.navigate(['categoria/list']);
+        this.router.navigate(['/categoria/list']);
     }
 
 }

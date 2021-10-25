@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     }
 
     registrar(): void {
-        this.router.navigate(['register']);
+        this.router.navigate(['/register']);
     }
 
     onSubmit(): void {
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         .subscribe(user => {
             if (user) {
                 sessionStorage.setItem('user', user.username.toString());
-                this.router.navigate(['calendar-dia']);
+                this.router.navigate(['/calendar-dia']);
             } else {
                 alert('Credenciales incorrectas!');
             }

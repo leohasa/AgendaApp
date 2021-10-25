@@ -12,4 +12,9 @@ export class Actividad {
     descripcion: String;
     estado: String;
 
+    constructor() {
+        this.proyecto = new Proyecto();
+        this.categoria = new Categoria();
+    }
+
 }
