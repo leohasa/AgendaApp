@@ -11,6 +11,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class LoginComponent implements OnInit {
 
     usuario: Usuario;
+    textInfo: string = "";
 
     constructor(private router: Router, private service: UsuarioService) {
         this.usuario = new Usuario();
@@ -30,9 +31,14 @@ export class LoginComponent implements OnInit {
                 sessionStorage.setItem('user', user.username.toString());
                 this.router.navigate(['/calendar-dia']);
             } else {
-                alert('Credenciales incorrectas!');
+                this.mostrarInfo('Credenciales incorrectas!');
             }
         });
+    }
+
+    private mostrarInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
     }
 
 }
