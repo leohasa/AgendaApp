@@ -29,6 +29,7 @@ import { ManagerCategoryRoutesComponent } from './categoria/manager-category-rou
 import { ManagerActividadRoutesComponent } from './actividad/manager-actividad-routes/manager-actividad-routes.component';
 import { CalendarioMesComponent } from './calendario/calendario-mes/calendario-mes.component';
 import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-dia.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
     declarations: [
@@ -51,7 +52,8 @@ import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-d
         ManagerCategoryRoutesComponent,
         ManagerActividadRoutesComponent,
         CalendarioMesComponent,
-        CalendarioDiaComponent
+        CalendarioDiaComponent,
+        ModalComponent
     ],
     imports: [
         BrowserModule,
