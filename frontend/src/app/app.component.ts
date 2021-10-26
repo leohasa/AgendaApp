@@ -14,17 +14,17 @@ export class AppComponent implements OnInit{
 
     ngOnInit(): void {
         if (!sessionStorage.getItem('user')) {
-            this.router.navigate(['login']);
+            this.router.navigate(['/login']);
         }
     }
 
     editar(username: String) {
         localStorage.setItem('username', username.toString());
-        this.router.navigate(['user/edit']);
+        this.router.navigate(['/user/edit']);
     }
 
     logOut() {
         this.sessionStorage.removeItem('user');
-        this.router.navigate(['login']);
+        this.router.navigate(['/login']);
     }
 }

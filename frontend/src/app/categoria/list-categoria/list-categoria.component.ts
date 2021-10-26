@@ -17,19 +17,20 @@ export class ListCategoriaComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.service.getCategorias('newUser')
+        let user: String = sessionStorage.getItem('user') ?? '';
+        this.service.getCategorias(user)
             .subscribe(data => {
                 this.categorias = data;
             });
     }
 
     add() {
-        this.router.navigate(['categoria/add']);
+        this.router.navigate(['/categoria/add']);
     }
 
     editar(categoria: Categoria) {
         localStorage.setItem('idCat', categoria.id.toString());
-        this.router.navigate(['categoria/edit']);
+        this.router.navigate(['/categoria/edit']);
     }
 
     delete(categoria: Categoria) {

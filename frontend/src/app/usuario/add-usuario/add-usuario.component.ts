@@ -28,7 +28,7 @@ export class AddUsuarioComponent implements OnInit {
         .subscribe(data => {
             alert('Agregado con exito');
             sessionStorage.setItem('user', this.usuario.username.toString());
-            this.router.navigate(['calendar-dia']);
+            this.router.navigate(['/calendar-dia']);
         });
     }
 

@@ -26,8 +26,8 @@ export class EditUsuarioComponent implements OnInit {
         flatpickr('#fecha', {
             locale: Spanish
         });
-        let username = localStorage.getItem('username');
-        this.service.getUsuarioById(''+username)
+        let username = localStorage.getItem('username') ?? '';
+        this.service.getUsuarioById(username)
         .subscribe(data => {
             this.usuario = data;
         });
@@ -42,7 +42,7 @@ export class EditUsuarioComponent implements OnInit {
     }
 
     backList() {
-        this.router.navigate(['calendar-dia']);
+        this.router.navigate(['/calendar-dia']);
     }
 
 }

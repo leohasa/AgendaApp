@@ -1,1 +1,53 @@
-<p>list-actividad works!</p>
+<div class="container-fluid py-2 bg-secondary">
+    <div class="row">
+        <div class="col-3">
+            <a class="btn btn-primary btn-block" (click)="add()">
+                <i class="fas fa-plus"></i> Agregar actividad
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid col-md-8">
+    <div class="row">
+        <div class="col">
+            <div class="card my-4">
+                <div class="card-header">
+                    <h4>Listado de actividades</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-sm" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Proyecto</th>
+                                <th>Titulo</th>
+                                <th>Categoria</th>
+                                <th>Fecha inicio</th>
+                                <th>Fecha final</th>
+                                <th>Estado</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let a of actividades; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>Test</td>
+                                <td>{{a.titulo}}</td>
+                                <td>{{a.categoria.nombre}}</td>
+                                <td>{{a.fechaInicio}}</td>
+                                <td>{{a.fechaFin}}</td>
+                                <td>{{a.estado}}</td>
+                                <td>
+                                    <button (click)="editar(a)" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>&nbsp;
+                                    <button (click)="delete(a)" class="btn btn-danger">
+                                        <i class="fas fa-trash-alt"></i> Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

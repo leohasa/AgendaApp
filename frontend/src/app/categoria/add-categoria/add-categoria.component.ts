@@ -21,8 +21,7 @@ export class AddCategoriaComponent implements OnInit {
     }
 
     onSubmit() {
-        this.categoria.usuario = new Usuario();
-        this.categoria.usuario.username = 'newUser';
+        this.categoria.usuario.username = sessionStorage.getItem('user') ?? '';
         this.service.createCategoria(this.categoria)
         .subscribe(data => {
             alert('Categoria agregada con exito');
@@ -31,7 +30,7 @@ export class AddCategoriaComponent implements OnInit {
     }
 
     backList() {
-        this.router.navigate(['categoria/list']);
+        this.router.navigate(['/categoria/list']);
     }
 
 }

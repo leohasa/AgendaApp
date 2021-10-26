@@ -12,7 +12,7 @@ export class AccessGuard implements CanActivate {
         if (requiresLogin) {
             if (!sessionStorage.getItem('user')) {
                 alert('Debe iniciar sesion primero');
-                this.router.navigate(['login']);
+                this.router.navigate(['/login']);
             }
         }
         return true;
