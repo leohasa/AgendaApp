@@ -1,6 +1,6 @@
 DROP DATABASE AgendaApp;
-CREATE SCHEMA AgendaDB;
-USE AgendaDB;
+CREATE SCHEMA AgendaApp;
+USE AgendaApp;
 
 -- -----------------------------------------------------
 -- Table Usuario
