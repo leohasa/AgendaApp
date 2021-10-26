@@ -100,14 +100,14 @@ CREATE TABLE Actividad (
   idCategoria INT NOT NULL,
   INDEX fk_RegistroActividad_Proyecto1_idx (idProyecto ASC) VISIBLE,
   PRIMARY KEY (id),
-  INDEX fk_Actividad_Categoria1_idx (idCateoria ASC) VISIBLE,
+  INDEX fk_Actividad_Categoria1_idx (idCategoria ASC) VISIBLE,
   CONSTRAINT fk_RegistroActividad_Proyecto1
     FOREIGN KEY (idProyecto)
     REFERENCES Proyecto (id)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT,
   CONSTRAINT fk_Actividad_Categoria1
-    FOREIGN KEY (idCateoria)
+    FOREIGN KEY (idCategoria)
     REFERENCES Categoria (id)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT);

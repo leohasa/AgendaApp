@@ -19,6 +19,7 @@ export class AddCategoriaComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.eventModal();
     }
 
     onSubmit() {
@@ -26,6 +27,11 @@ export class AddCategoriaComponent implements OnInit {
         this.service.createCategoria(this.categoria)
         .subscribe(data => {
             this.showInfo('Categoria agregada con exito');
+        });
+    }
+
+    private eventModal(){
+        document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', ()=> {
             this.backList();
         });
     }
