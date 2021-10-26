@@ -30,15 +30,17 @@ export class AddActividadComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        let user: String = sessionStorage.getItem('user') ?? '';
+        let user: String = localStorage.getItem('user') ?? '';
         this.categoriaService.getCategorias(user)
             .subscribe(data => {
                 this.categorias = data;
             });
 
-        //TODO: Cambia por id de proyecto dinamicamente
-        // this.actividad.proyecto = this.proyectoService.
-        this.actividad.proyecto.id = '1';
+        let idP: String = localStorage.getItem('idProyecto') ?? '';
+        this.proyectoService.getById(idP)
+            .subscribe(data => {
+                this.actividad.proyecto = data;
+            });
         this.actividad.estado = '1';
 
         this.setFlatPickr();

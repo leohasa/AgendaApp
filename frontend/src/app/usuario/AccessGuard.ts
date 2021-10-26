@@ -10,7 +10,7 @@ export class AccessGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         const requiresLogin = route.data.requiresLogin || false;
         if (requiresLogin) {
-            if (!sessionStorage.getItem('user')) {
+            if (!localStorage.getItem('user')) {
                 alert('Debe iniciar sesion primero');
                 this.router.navigate(['/login']);
             }

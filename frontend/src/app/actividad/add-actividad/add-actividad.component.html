@@ -20,7 +20,7 @@
                             <div class="form-group col-5">
                                 <label for="nameProyecto">Proyecto:</label>
                                 <input type="text" class="form-control" name="nameProyecto" #nombreProyecto
-                                    value="{{actividad.proyecto.nombre}}" readonly>
+                                    [(ngModel)]="actividad.proyecto.nombre" value="{{actividad.proyecto.nombre}}" readonly>
                             </div>
                             <div class="form-gruop col-5">
                                 <label for="title">*Titulo:</label>

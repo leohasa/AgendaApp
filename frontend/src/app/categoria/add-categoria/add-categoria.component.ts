@@ -21,7 +21,7 @@ export class AddCategoriaComponent implements OnInit {
     }
 
     onSubmit() {
-        this.categoria.usuario.username = sessionStorage.getItem('user') ?? '';
+        this.categoria.usuario.username = localStorage.getItem('user') ?? '';
         this.service.createCategoria(this.categoria)
         .subscribe(data => {
             alert('Categoria agregada con exito');

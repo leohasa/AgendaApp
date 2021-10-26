@@ -1,1 +1,52 @@
-<p>list-proyecto works!</p>
+<div class="container-fluid  py-2 bg-secondary">
+    <div class="row">
+        <div class="col-3">
+            <a class="btn btn-primary btn-block" (click)="add()">
+                <i class="fas fa-plus"></i> Agregar proyecto
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid col-md-8">
+    <div class="row">
+        <div class="col">
+            <div class="card my-4">
+                <div class="card-header">
+                    <h4>Listado de proyectos</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-sm" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Fecha inicio</th>
+                                <th>Fecha final</th>
+                                <th>Ubicacion</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of proyectos; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{p.nombre}}</td>
+                                <td>{{p.fechaInicio}}</td>
+                                <td>{{p.fechaPrevistaFin}}</td>
+                                <td>{{p.ubicacion}}</td>
+                                <td>
+                                    <button (click)="editar(p)" class="btn btn-warning">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>&nbsp;
+                                    <button (click)="delete(p)" class="btn btn-danger">
+                                        <i class="fas fa-trash-alt"></i> Eliminar
+                                    </button>&nbsp;
+                                    <button (click)="verActividades(p)" class="btn btn-secondary">
+                                        <i class="fas fa-eye"></i> Ver actividades
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
 
-    sessionStorage = sessionStorage;
+    localStorage = localStorage;
 
     constructor(private router: Router) {}
 
     ngOnInit(): void {
-        if (!sessionStorage.getItem('user')) {
+        if (!localStorage.getItem('user')) {
             this.router.navigate(['/login']);
         }
     }
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
     }
 
     logOut() {
-        this.sessionStorage.removeItem('user');
+        this.localStorage.removeItem('user');
         this.router.navigate(['/login']);
     }
 }

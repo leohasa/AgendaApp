@@ -17,7 +17,7 @@ export class ListActividadComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        let idProyecto = '1';
+        let idProyecto = localStorage.getItem('idProyecto') ?? '';
         this.service.get(idProyecto)
         .subscribe(data => {
             this.actividades = data;
@@ -39,6 +39,10 @@ export class ListActividadComponent implements OnInit {
             this.actividades = this.actividades.filter(a => a != actividad);
             alert('Actividad eliminada');
         });
+    }
+
+    back() {
+        this.router.navigate(['/proyecto/list']);
     }
 
 }

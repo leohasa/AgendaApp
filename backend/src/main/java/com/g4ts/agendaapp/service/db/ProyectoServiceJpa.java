@@ -1,6 +1,7 @@
 package com.g4ts.agendaapp.service.db;
 
 import com.g4ts.agendaapp.model.Proyecto;
+import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.repository.ProyectoRepository;
 import com.g4ts.agendaapp.service.IProyectoService;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,10 @@ public class ProyectoServiceJpa implements IProyectoService {
     @Override
     public void deleteById(Integer id) {
         proyectoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Proyecto> findAllByUsuario(Usuario usuario) {
+        return proyectoRepository.findAllByUsuario(usuario);
     }
 }
