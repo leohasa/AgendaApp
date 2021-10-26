@@ -4,13 +4,10 @@
             <i class="bx bxs-calendar"></i>
             AgendaApp
         </a>
-        <div *ngIf="sessionStorage.getItem('user')" class="collapse navbar-collapse" id="mynavbar">
+        <div *ngIf="localStorage.getItem('user')" class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="proyecto/list">Proyectos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="actividad/list">Actividades</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="categoria/list">Categorias</a>
@@ -27,10 +24,10 @@
                 <div class="dropdown dropstart">
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            {{'@'+sessionStorage.getItem('user')}}
+                            {{'@'+localStorage.getItem('user')}}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" routerLink (click)="editar(sessionStorage.getItem('user')??'')">Mi perfil</a></li>
+                            <li><a class="dropdown-item" routerLink (click)="editar(localStorage.getItem('user')??'')">Mi perfil</a></li>
                             <li><a class="dropdown-item" routerLink  (click)="logOut()">Cerrar sesion</a></li>
                         </ul>
                     </li>

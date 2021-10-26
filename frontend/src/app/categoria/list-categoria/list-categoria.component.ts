@@ -18,7 +18,7 @@ export class ListCategoriaComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        let user: String = sessionStorage.getItem('user') ?? '';
+        let user: String = localStorage.getItem('user') ?? '';
         this.service.getCategorias(user)
             .subscribe(data => {
                 this.categorias = data;

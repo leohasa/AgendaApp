@@ -31,7 +31,7 @@ export class EditActividadComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        let user: String = sessionStorage.getItem('user') ?? '';
+        let user: String = localStorage.getItem('user') ?? '';
         this.categoriaService.getCategorias(user)
             .subscribe(data => {
                 this.categorias = data;
@@ -69,7 +69,7 @@ export class EditActividadComponent implements OnInit {
     backList() {
         this.router.navigate(['/actividad/list']);
     }
-
+    
     setFechaFin(fecha: Event) {
         console.log(fecha);
     }

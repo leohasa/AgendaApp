@@ -14,7 +14,7 @@ export class CalendarioDiaComponent implements OnInit {
         private router: Router) { }
 
     ngOnInit(): void {
-        if (!sessionStorage.getItem('user')) {
+        if (!localStorage.getItem('user')) {
             this.router.navigate(['/login']);
         }
         let elemento = this._document.getElementById('body');

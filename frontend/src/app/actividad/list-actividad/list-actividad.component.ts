@@ -18,7 +18,7 @@ export class ListActividadComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        let idProyecto = '1';
+        let idProyecto = localStorage.getItem('idProyecto') ?? '';
         this.service.get(idProyecto)
         .subscribe(data => {
             this.actividades = data;
@@ -45,6 +45,10 @@ export class ListActividadComponent implements OnInit {
     private showInfo(info:string){
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();
+    }
+
+    back() {
+        this.router.navigate(['/proyecto/list']);
     }
 
 }

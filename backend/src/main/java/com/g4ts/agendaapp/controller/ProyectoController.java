@@ -1,6 +1,7 @@
 package com.g4ts.agendaapp.controller;
 
 import com.g4ts.agendaapp.model.Proyecto;
+import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.service.IProyectoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,10 @@ public class ProyectoController {
         this.proyectoService = proyectoService;
     }
 
-    @GetMapping("/list")
-    public List<Proyecto> list() {
-        return proyectoService.findAll();
+    @GetMapping("/list/{username}")
+    public List<Proyecto> list(@PathVariable String username) {
+        Usuario usuario = Usuario.builder().username(username).build();
+        return proyectoService.findAllByUsuario(usuario);
     }
 
     @PostMapping("/add")
