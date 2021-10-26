@@ -19,6 +19,7 @@ export class AddActividadComponent implements OnInit {
 
     actividad: Actividad;
     categorias: Categoria[];
+    textInfo:string = "";
 
     constructor(private router: Router,
         private actividadService: ActividadService,
@@ -49,7 +50,7 @@ export class AddActividadComponent implements OnInit {
         this.actividad.fechaFin = fechaFin.value;
         this.actividadService.create(this.actividad)
             .subscribe(data => {
-                alert('Actividad agregada');
+                this.showInfo('Actividad agregada');
                 this.backList();
             });
     }
@@ -62,5 +63,10 @@ export class AddActividadComponent implements OnInit {
             plugins: [rangePlugin({ input: "#fechaFin" })],
             locale: Spanish
         });
+    }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
     }
 }

@@ -11,6 +11,7 @@ import { CategoriaService } from 'src/app/service/categoria.service';
 export class EditCategoriaComponent implements OnInit {
 
     categoria: Categoria;
+    textInfo:string = "";
 
     constructor(private router: Router, private service: CategoriaService) {
         this.categoria = new Categoria();
@@ -31,7 +32,7 @@ export class EditCategoriaComponent implements OnInit {
     onSubmit() {
         this.service.updateUsuario(this.categoria)
         .subscribe(data => {
-            alert('Categoria actualizada correctamente!');
+            this.showInfo('Categoria actualizada correctamente!');
             this.backList();
         });
     }
@@ -39,5 +40,11 @@ export class EditCategoriaComponent implements OnInit {
     backList() {
         this.router.navigate(['/categoria/list']);
     }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
+    }
+
 
 }

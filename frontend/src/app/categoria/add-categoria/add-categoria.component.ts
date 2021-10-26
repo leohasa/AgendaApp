@@ -12,6 +12,7 @@ import { CategoriaService } from 'src/app/service/categoria.service';
 export class AddCategoriaComponent implements OnInit {
 
     categoria: Categoria;
+    textInfo:string = "";
 
     constructor(private router: Router, private service: CategoriaService) {
         this.categoria = new Categoria();
@@ -24,13 +25,18 @@ export class AddCategoriaComponent implements OnInit {
         this.categoria.usuario.username = sessionStorage.getItem('user') ?? '';
         this.service.createCategoria(this.categoria)
         .subscribe(data => {
-            alert('Categoria agregada con exito');
+            this.showInfo('Categoria agregada con exito');
             this.backList();
         });
     }
 
     backList() {
         this.router.navigate(['/categoria/list']);
+    }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
     }
 
 }

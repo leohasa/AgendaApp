@@ -12,6 +12,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class AddUsuarioComponent implements OnInit {
 
     usuario: Usuario;
+    textInfo:string = "";
 
     constructor(private router:Router, private service: UsuarioService) {
         this.usuario = new Usuario();
@@ -26,10 +27,15 @@ export class AddUsuarioComponent implements OnInit {
     onSubmit() {
         this.service.createUser(this.usuario)
         .subscribe(data => {
-            alert('Agregado con exito');
+            this.showInfo('Agregado con exito');
             sessionStorage.setItem('user', this.usuario.username.toString());
             this.router.navigate(['/calendar-dia']);
         });
+    }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
     }
 
 }

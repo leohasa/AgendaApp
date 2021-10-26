@@ -19,6 +19,7 @@ export class EditActividadComponent implements OnInit {
 
     actividad: Actividad;
     categorias: Categoria[];
+    textInfo:string = "";
 
     constructor(private router: Router,
         private actividadService: ActividadService,
@@ -60,7 +61,7 @@ export class EditActividadComponent implements OnInit {
         this.actividad.fechaFin = fechaFin.value;
         this.actividadService.update(this.actividad)
             .subscribe(data => {
-                alert('Actividad actuzalizada correctamente');
+                this.showInfo('Actividad actualizada correctamente');
                 this.backList();
             });
     }
@@ -71,5 +72,10 @@ export class EditActividadComponent implements OnInit {
 
     setFechaFin(fecha: Event) {
         console.log(fecha);
+    }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
     }
 }

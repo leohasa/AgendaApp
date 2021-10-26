@@ -11,6 +11,7 @@ import { ActividadService } from 'src/app/service/actividad.service';
 export class ListActividadComponent implements OnInit {
 
     actividades: Actividad[];
+    textInfo:string = "";
 
     constructor(private router: Router, private service: ActividadService) {
         this.actividades = new Array();
@@ -37,8 +38,13 @@ export class ListActividadComponent implements OnInit {
         this.service.delete(actividad.id)
         .subscribe(data => {
             this.actividades = this.actividades.filter(a => a != actividad);
-            alert('Actividad eliminada');
+            this.showInfo('Actividad eliminada');
         });
+    }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
     }
 
 }

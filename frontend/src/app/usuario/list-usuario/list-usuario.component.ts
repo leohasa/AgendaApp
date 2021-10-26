@@ -11,6 +11,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class ListUsuarioComponent implements OnInit {
 
     usuarios: Usuario[];
+    textInfo:string = "";
 
     constructor(private service: UsuarioService, private router: Router) {
         this.usuarios = [];
@@ -32,8 +33,13 @@ export class ListUsuarioComponent implements OnInit {
         this.service.delete(usuario.username)
             .subscribe(data => {
                 this.usuarios = this.usuarios.filter(u => u != usuario);
-                alert('Usuario eliminado');
+                this.showInfo('Usuario eliminado');
             });
+    }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
     }
 
 }

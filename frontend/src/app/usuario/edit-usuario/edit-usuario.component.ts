@@ -13,6 +13,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class EditUsuarioComponent implements OnInit {
 
     usuario: Usuario;
+    textInfo:string = "";
 
     constructor(private router: Router, private service: UsuarioService) {
         this.usuario = new Usuario();
@@ -36,13 +37,18 @@ export class EditUsuarioComponent implements OnInit {
     onSubmit() {
         this.service.updateUsuario(this.usuario)
         .subscribe(data => {
-            alert('Usuario actualizado correctamente!');
+            this.showInfo('Usuario actualizado correctamente!');
             this.backList();
         });
     }
 
     backList() {
         this.router.navigate(['/calendar-dia']);
+    }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
     }
 
 }

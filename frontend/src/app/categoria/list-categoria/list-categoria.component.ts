@@ -11,6 +11,7 @@ import { CategoriaService } from 'src/app/service/categoria.service';
 export class ListCategoriaComponent implements OnInit {
 
     categorias: Categoria[];
+    textInfo:string = "";
 
     constructor(private service: CategoriaService, private router: Router) {
         this.categorias = new Array();
@@ -37,8 +38,13 @@ export class ListCategoriaComponent implements OnInit {
         this.service.delete(categoria.id.toString())
             .subscribe(data => {
                 this.categorias = this.categorias.filter(c => c != categoria);
-                alert('Categoria eliminada');
+                this.showInfo('Categoria eliminada');
             });
+    }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
     }
 
 }

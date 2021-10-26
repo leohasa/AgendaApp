@@ -25,18 +25,21 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(): void {
+        /*sessionStorage.setItem('user', "Willy");
+        this.router.navigate(['/calendar-dia']);
+        */
         this.service.signIn(this.usuario)
         .subscribe(user => {
             if (user) {
                 sessionStorage.setItem('user', user.username.toString());
                 this.router.navigate(['/calendar-dia']);
             } else {
-                this.mostrarInfo('Credenciales incorrectas!');
+                this.showInfo('Credenciales incorrectas!');
             }
         });
     }
 
-    private mostrarInfo(info:string){
+    private showInfo(info:string){
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();
     }
