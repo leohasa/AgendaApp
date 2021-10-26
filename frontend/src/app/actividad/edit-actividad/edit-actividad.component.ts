@@ -39,6 +39,8 @@ export class EditActividadComponent implements OnInit {
 
         this.getActividad();
         this.setFlatPickr();
+
+        this.eventModal();
     }
 
     private getActividad() {
@@ -62,7 +64,6 @@ export class EditActividadComponent implements OnInit {
         this.actividadService.update(this.actividad)
             .subscribe(data => {
                 this.showInfo('Actividad actualizada correctamente');
-                this.backList();
             });
     }
 
@@ -77,5 +78,11 @@ export class EditActividadComponent implements OnInit {
     private showInfo(info:string){
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();
+    }
+
+    private eventModal(){
+        document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', ()=> {
+            this.backList();
+        });
     }
 }

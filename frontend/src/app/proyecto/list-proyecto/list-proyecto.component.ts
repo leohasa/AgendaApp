@@ -11,6 +11,7 @@ import { ProyectoService } from 'src/app/service/proyecto.service';
 export class ListProyectoComponent implements OnInit {
 
     proyectos: Proyecto[];
+    textInfo:string = "";
 
     constructor(private router: Router, private service: ProyectoService) {
         this.proyectos = new Array();
@@ -37,13 +38,18 @@ export class ListProyectoComponent implements OnInit {
         this.service.delete(proyecto.id)
         .subscribe(data => {
             this.proyectos = this.proyectos.filter(p => p != proyecto);
-            alert('Proyecto eliminado');
+            this.showInfo('Proyecto eliminado');
         });
     }
 
     verActividades(proyecto: Proyecto) {
         localStorage.setItem('idProyecto', proyecto.id.toString());
         this.router.navigate(['/actividad/list']);
+    }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
     }
 
 }

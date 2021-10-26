@@ -14,6 +14,7 @@ import { ProyectoService } from 'src/app/service/proyecto.service';
 export class EditProyectoComponent implements OnInit {
 
     proyecto: Proyecto;
+    textInfo:string = "";
 
     constructor(private router: Router, private service: ProyectoService) {
         this.proyecto = new Proyecto();
@@ -22,6 +23,7 @@ export class EditProyectoComponent implements OnInit {
     ngOnInit(): void {
         this.setFlatPickr();
         this.getProyecto();
+        this.eventModal();
     }
 
     getProyecto(): void {
@@ -45,13 +47,23 @@ export class EditProyectoComponent implements OnInit {
         this.proyecto.fechaPrevistaFin = fechaFin.value;
         this.service.update(this.proyecto)
         .subscribe(data => {
-            alert('Proyecto actualizado');
-            this.backList();
+            this.showInfo('Proyecto actualizado');
         });
     }
 
     backList(): void {
         this.router.navigate(['/proyecto/list']);
+    }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
+    }
+    
+    private eventModal(){
+        document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', ()=> {
+            this.backList();
+        });
     }
 
 }

@@ -14,6 +14,7 @@ import { ProyectoService } from 'src/app/service/proyecto.service';
 export class AddProyectoComponent implements OnInit {
 
     proyecto: Proyecto;
+    textInfo:string = "";
 
     constructor(private router: Router, private service: ProyectoService) {
         this.proyecto = new Proyecto();
@@ -21,6 +22,7 @@ export class AddProyectoComponent implements OnInit {
 
     ngOnInit(): void {
         this.setFlatPickr();
+        this.eventModal();
     }
 
     onSubmit(): void {
@@ -29,8 +31,7 @@ export class AddProyectoComponent implements OnInit {
         this.proyecto.fechaPrevistaFin = fechaFin.value;
         this.service.create(this.proyecto)
         .subscribe(data => {
-            alert('Proyecto registrado');
-            this.backList();
+            this.showInfo('Proyecto registrado');
         });
     }
 
@@ -42,6 +43,17 @@ export class AddProyectoComponent implements OnInit {
         flatpickr('#fechaInicio', {
             plugins: [rangePlugin({ input: "#fechaFin" })],
             locale: Spanish
+        });
+    }
+
+    private showInfo(info:string){
+        this.textInfo = info;
+        document.getElementById("btnModalInfo")?.click();
+    }
+    
+    private eventModal(){
+        document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', ()=> {
+            this.backList();
         });
     }
 

@@ -19,6 +19,7 @@ export class EditCategoriaComponent implements OnInit {
 
     ngOnInit(): void {
         this.getCategoria();
+        this.eventModal();
     }
 
     getCategoria() {
@@ -33,7 +34,6 @@ export class EditCategoriaComponent implements OnInit {
         this.service.updateUsuario(this.categoria)
         .subscribe(data => {
             this.showInfo('Categoria actualizada correctamente!');
-            this.backList();
         });
     }
 
@@ -44,6 +44,12 @@ export class EditCategoriaComponent implements OnInit {
     private showInfo(info:string){
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();
+    }
+
+    private eventModal(){
+        document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', ()=> {
+            this.backList();
+        });
     }
 
 

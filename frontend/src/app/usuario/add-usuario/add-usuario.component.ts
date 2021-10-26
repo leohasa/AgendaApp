@@ -22,20 +22,26 @@ export class AddUsuarioComponent implements OnInit {
         flatpickr('#fecha', {
             locale: Spanish
         });
+        this.eventModal();
     }
 
     onSubmit() {
         this.service.createUser(this.usuario)
         .subscribe(data => {
-            this.showInfo('Agregado con exito');
             localStorage.setItem('user', this.usuario.username.toString());
-            this.router.navigate(['/calendar-dia']);
+            this.showInfo('Agregado con exito');
         });
     }
 
     private showInfo(info:string){
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();
+    }
+
+    private eventModal(){
+        document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', ()=> {
+            this.router.navigate(['/calendar-dia']);
+        });
     }
 
 }

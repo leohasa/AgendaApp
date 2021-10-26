@@ -21,6 +21,7 @@ export class EditUsuarioComponent implements OnInit {
 
     ngOnInit(): void {
         this.getUser();
+        this.eventModal();
     }
 
     getUser() {
@@ -38,7 +39,6 @@ export class EditUsuarioComponent implements OnInit {
         this.service.updateUsuario(this.usuario)
         .subscribe(data => {
             this.showInfo('Usuario actualizado correctamente!');
-            this.backList();
         });
     }
 
@@ -49,6 +49,12 @@ export class EditUsuarioComponent implements OnInit {
     private showInfo(info:string){
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();
+    }
+
+    private eventModal(){
+        document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', ()=> {
+            this.backList();
+        });
     }
 
 }

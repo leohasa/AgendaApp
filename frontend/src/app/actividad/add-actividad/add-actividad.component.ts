@@ -45,6 +45,8 @@ export class AddActividadComponent implements OnInit {
         this.actividad.estado = '1';
 
         this.setFlatPickr();
+
+        this.eventModal();
     }
 
     onSubmit(): void {
@@ -53,7 +55,6 @@ export class AddActividadComponent implements OnInit {
         this.actividadService.create(this.actividad)
             .subscribe(data => {
                 this.showInfo('Actividad agregada');
-                this.backList();
             });
     }
 
@@ -71,4 +72,10 @@ export class AddActividadComponent implements OnInit {
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();
     }
+
+    private eventModal(){
+        document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', ()=> {
+            this.backList();
+        });
+     }
 }
