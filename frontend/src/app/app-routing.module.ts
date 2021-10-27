@@ -23,7 +23,7 @@ import { ManagerUserRoutesComponent } from './usuario/manager-user-routes/manage
 
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
-        data: {requiresLogin: true},
+        data: {requiresLogin: true, requiredRol: 'USUARIO'},
         canActivate: [AccessGuard],
         children: [
             {path: 'edit', component: EditUsuarioComponent},
@@ -31,7 +31,7 @@ const routes: Routes = [
         ]
     },
     {path: 'proyecto', component:ManagerProjectRoutesComponent,
-        data: {requiresLogin: true},
+        data: {requiresLogin: true, requiredRol: 'USUARIO'},
         canActivate: [AccessGuard],
         children: [
             {path: 'add', component: AddProyectoComponent},
@@ -40,7 +40,7 @@ const routes: Routes = [
         ]
     },
     {path: 'actividad', component: ManagerActividadRoutesComponent,
-        data: {requiresLogin: true},
+        data: {requiresLogin: true, requiredRol: 'USUARIO'},
         canActivate: [AccessGuard],
         children: [
             {path: 'add', component: AddActividadComponent},
@@ -49,7 +49,7 @@ const routes: Routes = [
         ]
     },
     {path: 'categoria', component: ManagerCategoryRoutesComponent,
-        data: {requiresLogin: true},
+        data: {requiresLogin: true, requiredRol: 'USUARIO'},
         canActivate: [AccessGuard],
         children: [
             {path: 'add', component: AddCategoriaComponent},
