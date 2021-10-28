@@ -1,0 +1,61 @@
+<div class="container my-4">
+
+	<!-- calendario -->
+	<div class="calendar">
+		<div class="header my-4">
+			<div class="row d-flex justify-content-center align-items-center">
+				<div class="col-1">
+					<img src="../../assets/img/arrow-left.png" alt="left" (click)="switchMonth(false, undefined, undefined)">
+				</div>
+				<div class="col-6">
+					<h1 class="text-center text-primary" id="label">{{label}}</h1>
+				</div>
+				<div class="col-1">
+					<img src="../../assets/img/arrow-right.png" alt="right" (click)="switchMonth(true, undefined, undefined)">
+				</div>
+				<div class="col-1 text-center">
+					<div class="ex1" id="ex1">
+						<!-- moon here :v -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="days">
+			<div class="row">
+				<div class="col">
+					<table class="table text-center mb-0">
+						<thead>
+							<tr>
+								<th scope="col">domingo</th>
+								<th scope="col">lunes</th>
+								<th scope="col">martes</th>
+								<th scope="col">miercoles</th>
+								<th scope="col">jueves</th>
+								<th scope="col">viernes</th>
+								<th scope="col">sabado</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="cal-frame">
+			<div class="row">
+				<div class="col">
+					<table class="table table-bordered text-center align-middle" id="table">
+						<tbody id="body-days">
+							<tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+							<tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+							<tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+							<tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+							<tr><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td><td></td></tr>
+							<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

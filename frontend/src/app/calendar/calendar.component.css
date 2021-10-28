@@ -1,0 +1,25 @@
+.calendar .cal-frame td.today {
+	background:#DC7633;
+}
+
+.calendar .days th {
+	background: #85C1E9;
+}
+
+td {
+	height: 80px;
+}
+
+#ex1{
+	display: table;
+	margin:20px auto;
+	text-align: center;
+	color:black;
+	/* border: 1px solid black; */
+	padding: 5px 30px;
+}
+
+#ex1 [shadow]{
+	filter:drop-shadow(0 0 25px rgb(0,50,50));
+	padding:15px 0;
+}
