@@ -43,7 +43,7 @@ export class EditUsuarioComponent implements OnInit {
     }
 
     backList() {
-        this.router.navigate(['/calendar-dia']);
+        this.router.navigate(['/calendar-mes']);
     }
 
     private showInfo(info:string){

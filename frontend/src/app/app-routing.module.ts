@@ -4,6 +4,7 @@ import { AddActividadComponent } from './actividad/add-actividad/add-actividad.c
 import { EditActividadComponent } from './actividad/edit-actividad/edit-actividad.component';
 import { ListActividadComponent } from './actividad/list-actividad/list-actividad.component';
 import { ManagerActividadRoutesComponent } from './actividad/manager-actividad-routes/manager-actividad-routes.component';
+import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-dia.component';
 import { CalendarioMesComponent } from './calendario/calendario-mes/calendario-mes.component';
 import { AddCategoriaComponent } from './categoria/add-categoria/add-categoria.component';
@@ -57,8 +58,7 @@ const routes: Routes = [
             {path: 'list', component: ListCategoriaComponent},
         ]
     },
-    {path: 'calendar-mes', component: CalendarioMesComponent},
-    {path: 'calendar-dia', component: CalendarioDiaComponent},
+    {path: 'calendar-mes', component: CalendarComponent},
     {path: 'register', component: AddUsuarioComponent},
     {path: 'login', component: LoginComponent}
 ];

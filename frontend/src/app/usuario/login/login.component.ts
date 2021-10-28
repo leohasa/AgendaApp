@@ -25,14 +25,11 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(): void {
-        /*sessionStorage.setItem('user', "Willy");
-        this.router.navigate(['/calendar-dia']);
-        */
         this.service.signIn(this.usuario)
         .subscribe(user => {
             if (user) {
                 localStorage.setItem('user', user.username.toString());
-                this.router.navigate(['/calendar-dia']);
+                this.router.navigate(['/calendar-mes']);
             } else {
                 this.showInfo('Credenciales incorrectas!');
             }

@@ -40,7 +40,7 @@ export class AddUsuarioComponent implements OnInit {
 
     private eventModal(){
         document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', ()=> {
-            this.router.navigate(['/calendar-dia']);
+            this.router.navigate(['/calendar-mes']);
         });
     }
 
