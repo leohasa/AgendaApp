@@ -30,7 +30,7 @@ public class UsuarioController {
     @PostMapping("/add")
     public void save(@RequestBody Usuario usuario) {
         usuarioService.save(usuario);
-        rolService.save(Rol.builder().tipo("USUARIO").build());
+        rolService.save(Rol.builder().tipo("USUARIO").usuario(usuario).build());
     }
 
     @GetMapping("/get/{username}")

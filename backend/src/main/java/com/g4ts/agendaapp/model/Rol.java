@@ -11,7 +11,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Rol {
 
+    //comentario
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String tipo;
 
