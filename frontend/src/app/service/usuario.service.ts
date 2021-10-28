@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Rol } from '../model/rol';
 import { Usuario } from '../model/usuario';
 
 @Injectable({
@@ -33,5 +34,9 @@ export class UsuarioService {
 
     signIn(usuario: Usuario) {
         return this.http.post<Usuario>(`${this.url}/signIn`, usuario);
+    }
+
+    getRols(username: String) {
+        return this.http.get<Rol[]>(`${this.url}/roles/${username}`);
     }
 }

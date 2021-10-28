@@ -1,4 +1,4 @@
-DROP DATABASE AgendaApp;
+DROP DATABASE IF EXIST AgendaApp;
 CREATE SCHEMA AgendaApp;
 USE AgendaApp;
 
@@ -249,3 +249,8 @@ CREATE TABLE Comentario (
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT);
+
+    
+    INSERT INTO `Usuario` VALUES ,('asael','123','Leonidas','1998-09-04','Otro','Student',NULL);
+    
+    INSERT INTO `Rol` VALUES (1,'USUARIO','asael');

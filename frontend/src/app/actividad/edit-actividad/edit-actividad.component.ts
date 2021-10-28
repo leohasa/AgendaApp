@@ -70,10 +70,6 @@ export class EditActividadComponent implements OnInit {
     backList() {
         this.router.navigate(['/actividad/list']);
     }
-    
-    setFechaFin(fecha: Event) {
-        console.log(fecha);
-    }
 
     private showInfo(info:string){
         this.textInfo = info;

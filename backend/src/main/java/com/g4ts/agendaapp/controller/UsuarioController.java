@@ -1,6 +1,8 @@
 package com.g4ts.agendaapp.controller;
 
+import com.g4ts.agendaapp.model.Rol;
 import com.g4ts.agendaapp.model.Usuario;
+import com.g4ts.agendaapp.service.IRolService;
 import com.g4ts.agendaapp.service.IUsuarioService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +15,11 @@ import java.util.Objects;
 public class UsuarioController {
 
     private IUsuarioService usuarioService;
+    private IRolService rolService;
 
-    public UsuarioController(IUsuarioService usuarioService) {
+    public UsuarioController(IUsuarioService usuarioService, IRolService rolService) {
         this.usuarioService = usuarioService;
+        this.rolService = rolService;
     }
 
     @GetMapping("/list")
@@ -26,6 +30,7 @@ public class UsuarioController {
     @PostMapping("/add")
     public void save(@RequestBody Usuario usuario) {
         usuarioService.save(usuario);
+        rolService.save(Rol.builder().tipo("USUARIO").build());
     }
 
     @GetMapping("/get/{username}")
@@ -43,16 +48,18 @@ public class UsuarioController {
         usuarioService.deleteById(username);
     }
 
-    @PostMapping("signIn")
+    @PostMapping("/signIn")
     public Usuario signIn(@RequestBody Usuario usuario) {
         Usuario usuarioDb = usuarioService.findByUsername(usuario.getUsername());
-
-        if (!Objects.isNull(usuarioDb)) {
-            if (usuario.getPassword().equals(usuarioDb.getPassword())) {
+        if (!Objects.isNull(usuarioDb) && usuario.getPassword().equals(usuarioDb.getPassword())) {
                 return usuarioDb;
-            }
         }
-
         return null;
+    }
+
+    @GetMapping("/roles/{username}")
+    public List<Rol> getRoles(@PathVariable String username) {
+        Usuario usuario = Usuario.builder().username(username).build();
+        return rolService.findAllByuser(usuario);
     }
 }
