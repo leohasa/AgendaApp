@@ -31,6 +31,7 @@ import { CalendarioMesComponent } from './calendario/calendario-mes/calendario-m
 import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-dia.component';
 import { ModalComponent } from './modal/modal.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.component';
 
 @NgModule({
     declarations: [
@@ -55,7 +56,8 @@ import { CalendarComponent } from './calendar/calendar.component';
         CalendarioMesComponent,
         CalendarioDiaComponent,
         ModalComponent,
-        CalendarComponent
+        CalendarComponent,
+        ModalCalendarioComponent
     ],
     imports: [
         BrowserModule,
