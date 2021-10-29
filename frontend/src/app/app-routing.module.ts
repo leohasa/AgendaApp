@@ -21,6 +21,7 @@ import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.compon
 import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
 import { LoginComponent } from './usuario/login/login.component';
 import { ManagerUserRoutesComponent } from './usuario/manager-user-routes/manager-user-routes.component';
+import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
 
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
@@ -29,6 +30,7 @@ const routes: Routes = [
         children: [
             {path: 'edit', component: EditUsuarioComponent},
             {path: 'userlist', component: ListUsuarioComponent},
+            {path: 'solicitud', component: SolicitudEditorComponent}
         ]
     },
     {path: 'proyecto', component:ManagerProjectRoutesComponent,

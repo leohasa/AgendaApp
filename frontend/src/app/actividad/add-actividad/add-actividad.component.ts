@@ -19,7 +19,7 @@ export class AddActividadComponent implements OnInit {
 
     actividad: Actividad;
     categorias: Categoria[];
-    textInfo:string = "";
+    textInfo: string = "";
 
     constructor(private router: Router,
         private actividadService: ActividadService,
@@ -68,14 +68,14 @@ export class AddActividadComponent implements OnInit {
         });
     }
 
-    private showInfo(info:string){
+    private showInfo(info: string) {
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();
     }
 
-    private eventModal(){
-        document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', ()=> {
+    private eventModal() {
+        document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', () => {
             this.backList();
         });
-     }
+    }
 }

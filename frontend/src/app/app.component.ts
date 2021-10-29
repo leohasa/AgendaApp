@@ -23,6 +23,10 @@ export class AppComponent implements OnInit{
         this.router.navigate(['/user/edit']);
     }
 
+    solicitar() {
+        this.router.navigate(['user/solicitud']);
+    }
+
     logOut() {
         this.localStorage.removeItem('user');
         this.router.navigate(['/login']);
