@@ -23,6 +23,10 @@ import { LoginComponent } from './usuario/login/login.component';
 import { ManagerUserRoutesComponent } from './usuario/manager-user-routes/manager-user-routes.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
 
+
+
+import { TxtEditComponent } from './txt-edit/txt-edit.component';
+
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
         data: {requiresLogin: true, requiredRol: 'USUARIO'},
