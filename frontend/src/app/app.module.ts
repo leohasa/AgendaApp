@@ -30,6 +30,8 @@ import { ManagerActividadRoutesComponent } from './actividad/manager-actividad-r
 import { CalendarioMesComponent } from './calendario/calendario-mes/calendario-mes.component';
 import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-dia.component';
 import { ModalComponent } from './modal/modal.component';
+import { TxtEditComponent } from './txt-edit/txt-edit.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
     declarations: [
@@ -53,13 +55,15 @@ import { ModalComponent } from './modal/modal.component';
         ManagerActividadRoutesComponent,
         CalendarioMesComponent,
         CalendarioDiaComponent,
-        ModalComponent
+        ModalComponent,
+        TxtEditComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        NgxEditorModule
     ],
     providers:
     [

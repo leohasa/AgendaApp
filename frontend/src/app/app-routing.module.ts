@@ -20,7 +20,8 @@ import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.compon
 import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
 import { LoginComponent } from './usuario/login/login.component';
 import { ManagerUserRoutesComponent } from './usuario/manager-user-routes/manager-user-routes.component';
-
+//import { TxtEditComponent }
+import { TxtEditComponent } from './txt-edit/txt-edit.component';
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
         data: {requiresLogin: true},
