@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS AgendaApp;
-CREATE SCHEMA AgendaApp;
-USE AgendaApp;
+CREATE DATABASE AgendaApp;
+USE AgendaApp ;
 
 -- -----------------------------------------------------
 -- Table Usuario
@@ -120,12 +120,12 @@ CREATE TABLE Recordatorio (
   id INT NOT NULL,
   titulo VARCHAR(45) NOT NULL,
   descripcion VARCHAR(200) NOT NULL,
-  estado TINYINT NOT NULL,\
-  fecha TIMESTAMP NULL,
-  idUsuario VARCHAR(45),
+  estado TINYINT NOT NULL,
+  fecha TIMESTAMP NOT NULL,
+  idUsuario VARCHAR(45) NOT NULL,
   PRIMARY KEY (id),
-  INDEX fk_Recordatorio_Usuario_idx (idUsuario ASC) VISIBLE,
-  CONSTRAINT fk_Recordatorio_Usuario
+  INDEX fk_Recordatorio_Usuario1_idx (idUsuario ASC) VISIBLE,
+  CONSTRAINT fk_Recordatorio_Usuario1
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
@@ -244,6 +244,22 @@ CREATE TABLE Comentario (
     ON UPDATE RESTRICT);
 
 
-    INSERT INTO `Usuario` VALUES ('asael','123','Leonidas','1998-09-04','Otro','Student',NULL);
+-- -----------------------------------------------------
+-- Table SolicitudRolEditor
+-- -----------------------------------------------------
+CREATE TABLE SolicitudRolEditor (
+  id INT NOT NULL AUTO_INCREMENT,
+  idUsuario VARCHAR(45) NOT NULL,
+  contenido TEXT NOT NULL,
+  PRIMARY KEY (id),
+  INDEX fk_SolicitudRolEditor_Usuario1_idx (idUsuario ASC) VISIBLE,
+  CONSTRAINT fk_SolicitudRolEditor_Usuario1
+    FOREIGN KEY (idUsuario)
+    REFERENCES Usuario (username)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT);
 
-    INSERT INTO `Rol` VALUES (1,'USUARIO','asael');
+    
+    INSERT INTO `Usuario` VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
+
+    INSERT INTO `Rol` VALUES (1,'USUARIO','admin');

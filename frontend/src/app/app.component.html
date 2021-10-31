@@ -27,9 +27,9 @@
                             {{'@'+localStorage.getItem('user')}}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" routerLink (click)="editar(localStorage.getItem('user')??'')">Mi perfil</a></li>
-                            <li><a routerLink (click)="solicitar()">Solicitar ser editor</a></li>
-                            <li><a class="dropdown-item" routerLink  (click)="logOut()">Cerrar sesion</a></li>
+                            <li><a class="dropdown-item" routerLink (click)="editar()">Mi perfil</a></li>
+                            <li *ngIf="isNotEditor" ><a class="dropdown-item" routerLink (click)="solicitar()">Solicitar ser editor</a></li>
+                            <li><a class="dropdown-item" routerLink (click)="logOut()">Cerrar sesion</a></li>
                         </ul>
                     </li>
                 </div>
