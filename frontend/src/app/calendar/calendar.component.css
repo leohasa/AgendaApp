@@ -3,11 +3,17 @@
 }
 
 .calendar .days th {
-	background: #85C1E9;
+	background: #198754;
+	color: #FBFCFC;
 }
 
 td {
 	height: 80px;
+	width: 144px;
+}
+
+#moon {
+	height: 280px;
 }
 
 #ex1{

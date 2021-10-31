@@ -6,8 +6,8 @@ export class Actividad {
     id: String;
     proyecto: Proyecto;
     categoria: Categoria;
-    fechaInicio: String;
-    fechaFin: String;
+    fechaInicio: string;
+    fechaFin: string;
     titulo: String;
     descripcion: String;
     estado: String;

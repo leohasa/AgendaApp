@@ -30,4 +30,8 @@ export class ActividadService {
     delete(id: String) {
         return this.http.delete<Actividad>(`${this.url}/delete/${id}`);
     }
+
+	getAll() {
+		return this.http.get<Actividad[]>(`${this.url}/`);
+	}
 }

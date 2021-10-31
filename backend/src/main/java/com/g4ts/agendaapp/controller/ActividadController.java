@@ -43,4 +43,9 @@ public class ActividadController {
     public void delete(@PathVariable Integer id) {
         actividadService.deleteById(id);
     }
+
+    @GetMapping("/")
+    public List<Actividad> getAll() {
+        return actividadService.findAll();
+    }
 }
