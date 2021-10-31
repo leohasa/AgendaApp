@@ -1,4 +1,4 @@
-DROP DATABASE IF EXIST AgendaApp;
+DROP DATABASE IF EXISTS AgendaApp;
 CREATE SCHEMA AgendaApp;
 USE AgendaApp;
 
@@ -91,7 +91,7 @@ CREATE TABLE Categoria (
 -- -----------------------------------------------------
 CREATE TABLE Actividad (
   id INT NOT NULL AUTO_INCREMENT,
-  idProyecto INT NOT NULL,
+  idProyecto INT NULL,
   fechaInicio TIMESTAMP NOT NULL,
   fechaFin TIMESTAMP NOT NULL,
   titulo VARCHAR(45) NOT NULL,
@@ -118,23 +118,16 @@ CREATE TABLE Actividad (
 -- -----------------------------------------------------
 CREATE TABLE Recordatorio (
   id INT NOT NULL,
-  idProyecto INT NOT NULL,
   titulo VARCHAR(45) NOT NULL,
   descripcion VARCHAR(200) NOT NULL,
-  estado TINYINT NOT NULL,
+  estado TINYINT NOT NULL,\
   fecha TIMESTAMP NULL,
-  idActividad INT NOT NULL,
+  idUsuario VARCHAR(45),
   PRIMARY KEY (id),
-  INDEX fk_Recordatorio_Proyecto1_idx (idProyecto ASC) VISIBLE,
-  INDEX fk_Recordatorio_Actividad1_idx (idActividad ASC) VISIBLE,
-  CONSTRAINT fk_Recordatorio_Proyecto1
-    FOREIGN KEY (idProyecto)
-    REFERENCES Proyecto (id)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
-  CONSTRAINT fk_Recordatorio_Actividad1
-    FOREIGN KEY (idActividad)
-    REFERENCES Actividad (id)
+  INDEX fk_Recordatorio_Usuario_idx (idUsuario ASC) VISIBLE,
+  CONSTRAINT fk_Recordatorio_Usuario
+    FOREIGN KEY (idUsuario)
+    REFERENCES Usuario (username)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT);
 
@@ -250,7 +243,7 @@ CREATE TABLE Comentario (
     ON DELETE RESTRICT
     ON UPDATE RESTRICT);
 
-    
-    INSERT INTO `Usuario` VALUES ,('asael','123','Leonidas','1998-09-04','Otro','Student',NULL);
-    
+
+    INSERT INTO `Usuario` VALUES ('asael','123','Leonidas','1998-09-04','Otro','Student',NULL);
+
     INSERT INTO `Rol` VALUES (1,'USUARIO','asael');

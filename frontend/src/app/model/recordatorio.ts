@@ -1,9 +1,10 @@
 export class Recordatorio {
 
-    id:string;
-    idProyecto:string;
-    titulo:string;
-    descripcion:string;
-    fecha:string; 
+    id:number;
+    titulo:string = "";
+    descripcion:string = "";
+    fecha:string = ""; 
+    estado:number = 0;
+    idUsuario:string = "";
     
 }

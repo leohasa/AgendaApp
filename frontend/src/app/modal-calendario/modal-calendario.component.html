@@ -15,34 +15,36 @@
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-evento" role="tabpanel" aria-labelledby="nav-evento-tab">Tab evento</div>
                 <div class="tab-pane fade" id="nav-recordatorio" role="tabpanel" aria-labelledby="nav-recordatorio-tab">
-                  <div class="row" style="margin-top: 15px;">
-                    <div class="col-12">
-                      <div class="mb-3">
-                        <label for="titulo" class="form-label">Agrega un t&iacute;tulo</label>
-                        <input type="text" class="form-control" id="titulo" autocomplete="off">
+                  <form (ngSubmit)="createReminder()" #actividadForm="ngForm">
+                    <div class="row" style="margin-top: 15px;">
+                      <div class="col-12">
+                        <div class="mb-3">
+                          <label for="titulo" class="form-label">Agrega un t&iacute;tulo</label>
+                          <input [(ngModel)]="recordatorio.titulo" name="titulo" type="text" class="form-control" id="titulo" autocomplete="off">
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="mb-3">
-                      <label for="descripcion" class="form-label">Descripci&oacute;n</label>
-                      <textarea class="form-control" id="descripcion" rows="3"></textarea>
-                    </div>
-                  </div>
-                  <div class="row" style="margin-top: 15px;">
-                    <div class="col-12">
+                    <div class="row">
                       <div class="mb-3">
-                        <label for="titulo" class="form-label">Fecha y hora</label>
-                        <input type="datetime-local" class="form-control" id="titulo" autocomplete="off">
+                        <label for="descripcion" class="form-label">Descripci&oacute;n</label>
+                        <textarea [(ngModel)]="recordatorio.descripcion" name="descripcion" class="form-control" id="descripcion" rows="3"></textarea>
                       </div>
                     </div>
-                  </div>
+                    <div class="row" style="margin-top: 15px;">
+                      <div class="col-12">
+                        <div class="form-grup col-5">
+                            <label for="fecha">*Fecha :</label>
+                            <input [(ngModel)]="recordatorio.fecha" type="text" class="form-control" required name="fecha" id="fecha" #fecha>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top: 15px;">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                    </div>
+                  </form>
                 </div>
             </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Guardar</button>
         </div>
       </div>
     </div>
