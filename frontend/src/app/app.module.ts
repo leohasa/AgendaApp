@@ -33,6 +33,7 @@ import { ModalComponent } from './modal/modal.component';
 
 import { CalendarComponent } from './calendar/calendar.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
+import { ListSolicitudesComponent } from './usuario/list-solicitudes/list-solicitudes.component';
 
 import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { NgxEditorModule } from 'ngx-editor';
@@ -66,8 +67,8 @@ import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publi
         CalendarComponent,
         SolicitudEditorComponent,
         TxtEditComponent,
-        ListPublicacionComponent
-
+        ListPublicacionComponent,
+        ListSolicitudesComponent
     ],
     imports: [
         BrowserModule,
@@ -82,7 +83,7 @@ import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publi
         CategoriaService,
         ProyectoService,
         ActividadService,
-        AccessGuard, 
+        AccessGuard,
         ForoService
     ],
     bootstrap: [AppComponent]
