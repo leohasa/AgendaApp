@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Rol } from './model/rol';
 import { UsuarioService } from './service/usuario.service';
@@ -13,15 +13,17 @@ export class AppComponent implements OnInit {
     username: String;
     localStorage = localStorage;
     roles: Rol[];
-    isUserOnly: boolean;
+    isUser: boolean;
     isAdmin: boolean;
+    isEditor: boolean;
 
 
     constructor(private router: Router, private service: UsuarioService) {
         this.username = localStorage.getItem('user') ?? '';
         this.roles = new Array();
-        this.isUserOnly = true;
+        this.isUser = true;
         this.isAdmin = true;
+        this.isEditor = true;
     }
 
     ngOnInit(): void {
@@ -37,8 +39,9 @@ export class AppComponent implements OnInit {
         this.service.getRols(this.username)
             .subscribe(data => {
                 this.roles = data;
-                this.isUserOnly = !this.hasRol('EDITOR') && !this.hasRol('ADMINISTRADOR');
+                this.isUser = this.hasRol('USUARIO');
                 this.isAdmin = this.hasRol('ADMINISTRADOR');
+                this.isEditor = this.hasRol('EDITOR');
             });
     }
 

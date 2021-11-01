@@ -21,7 +21,7 @@ ENGINE = InnoDB;
 -- Table Contacto
 -- -----------------------------------------------------
 CREATE TABLE Contacto (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   idUsuario VARCHAR(45) NOT NULL,
   item VARCHAR(45) NOT NULL,
   valor VARCHAR(60) NOT NULL,
@@ -163,6 +163,7 @@ CREATE TABLE Post (
   id INT NOT NULL AUTO_INCREMENT,
   idPlugin INT NOT NULL,
   contenido LONGBLOB NOT NULL,
+  fecha TIMESTAMP NOT NULL,
   PRIMARY KEY (id),
   INDEX fk_Post_Plugin2_idx (idPlugin ASC) VISIBLE,
   CONSTRAINT fk_Post_Plugin2
@@ -281,7 +282,11 @@ CREATE TABLE SolicitudRolEditor (
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;
 
-    
-INSERT INTO `Usuario` VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
 
-INSERT INTO `Rol` VALUES (1,'USUARIO','admin');
+INSERT INTO `Usuario` VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
+INSERT INTO `Usuario` VALUES ('user','123','Admin','1998-09-04','GT','Student',NULL);
+INSERT INTO `Usuario` VALUES ('editor','123','Admin','1998-09-04','GT','Student',NULL);
+
+INSERT INTO `Rol` VALUES (1,'ADMINISTRADOR','admin');
+INSERT INTO `Rol` VALUES (1,'USUARIO','user');
+INSERT INTO `Rol` VALUES (1,'EDITOR','editor');

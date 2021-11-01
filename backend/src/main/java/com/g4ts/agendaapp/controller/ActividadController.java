@@ -2,6 +2,7 @@ package com.g4ts.agendaapp.controller;
 
 import com.g4ts.agendaapp.model.Actividad;
 import com.g4ts.agendaapp.model.Proyecto;
+import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.service.IActividadService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,12 @@ public class ActividadController {
     public List<Actividad> list(@PathVariable Integer idProyecto) {
         Proyecto proyecto = Proyecto.builder().id(idProyecto).build();
         return actividadService.findAllByProyecto(proyecto);
+    }
+
+    @GetMapping("/listByUser/{username}")
+    public List<Actividad> listByUser(@PathVariable String username) {
+        Usuario usuario = Usuario.builder().username(username).build();
+        return actividadService.findAllByUsuario(usuario);
     }
 
     @PostMapping("/add")
