@@ -12,6 +12,6 @@ export class RecordatorioService {
   constructor(private http: HttpClient) { }
 
   create(recordatorio: Recordatorio) {
-    return this.http.post<Recordatorio>(`${this.url}/add`, recordatorio);
+    return this.http.post(`${this.url}/add`, recordatorio);
   }
 }

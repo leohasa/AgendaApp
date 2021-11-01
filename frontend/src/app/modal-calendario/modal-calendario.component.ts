@@ -3,6 +3,7 @@ import flatpickr from 'flatpickr';
 import { Spanish } from 'flatpickr/dist/l10n/es';
 import { Actividad } from '../model/actividad';
 import { Recordatorio } from '../model/recordatorio';
+import { RecordatorioService } from '../service/recordatorio.service';
 
 @Component({
   selector: 'app-modal-calendario',
@@ -12,9 +13,9 @@ import { Recordatorio } from '../model/recordatorio';
 export class ModalCalendarioComponent implements OnInit {
 
   actividad:Actividad;
-  recordatorio:Recordatorio
+  recordatorio:Recordatorio;
 
-  constructor() {
+  constructor(private recordatorioService:RecordatorioService) {
     this.actividad = new Actividad();
     this.recordatorio = new Recordatorio();
   }
@@ -36,7 +37,8 @@ export class ModalCalendarioComponent implements OnInit {
   }
 
   public createReminder():void{
-    console.log(this.recordatorio);
+    this.recordatorio.usuario.username = localStorage.getItem('user') ?? '';
+    this.recordatorioService.create(this.recordatorio).subscribe(data => {});
   }
    
 

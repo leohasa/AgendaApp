@@ -117,7 +117,7 @@ CREATE TABLE Actividad (
 -- Table Recordatorio
 -- -----------------------------------------------------
 CREATE TABLE Recordatorio (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   titulo VARCHAR(45) NOT NULL,
   descripcion VARCHAR(200) NOT NULL,
   estado TINYINT NOT NULL,\

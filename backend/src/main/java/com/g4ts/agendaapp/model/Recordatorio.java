@@ -1,9 +1,11 @@
 package com.g4ts.agendaapp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Recordatorio")
@@ -18,10 +20,15 @@ public class Recordatorio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer idUsuario;
     private String titulo;
     private String descripcion;
-    private LocalDate horaFecha;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:s")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:s")
+    private LocalDateTime fecha;
     private Integer estado;
+
+    @OneToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
 }

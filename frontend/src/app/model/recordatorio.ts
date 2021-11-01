@@ -1,10 +1,16 @@
+import { Usuario } from "./usuario";
+
 export class Recordatorio {
 
-    id:number;
-    titulo:string = "";
+    id:string;
+    titulo:string;
     descripcion:string = "";
     fecha:string = ""; 
     estado:number = 0;
-    idUsuario:string = "";
+    usuario:Usuario;
+
+    constructor(){
+        this.usuario = new Usuario();
+    }
     
 }

@@ -5,10 +5,12 @@ import com.g4ts.agendaapp.model.Recordatorio;
 import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.repository.RecordatorioRepository;
 import com.g4ts.agendaapp.service.IRecordatorioService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class RecordatorioServiceJpa implements IRecordatorioService {
 
     private RecordatorioRepository  recordatorioRepository;

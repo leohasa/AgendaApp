@@ -19,8 +19,8 @@
                     <div class="row" style="margin-top: 15px;">
                       <div class="col-12">
                         <div class="mb-3">
-                          <label for="titulo" class="form-label">Agrega un t&iacute;tulo</label>
-                          <input [(ngModel)]="recordatorio.titulo" name="titulo" type="text" class="form-control" id="titulo" autocomplete="off">
+                          <label for="titulo" class="form-label">*Agrega un t&iacute;tulo</label>
+                          <input [(ngModel)]="recordatorio.titulo" name="titulo" type="text" class="form-control" id="titulo" autocomplete="off" required>
                         </div>
                       </div>
                     </div>
@@ -34,13 +34,13 @@
                       <div class="col-12">
                         <div class="form-grup col-5">
                             <label for="fecha">*Fecha :</label>
-                            <input [(ngModel)]="recordatorio.fecha" type="text" class="form-control" required name="fecha" id="fecha" #fecha>
+                            <input [(ngModel)]="recordatorio.fecha" type="text" class="form-control" required name="fecha" id="fecha" #fecha >
                         </div>
                       </div>
                     </div>
                     <div class="modal-footer" style="margin-top: 15px;">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="!actividadForm.form.valid">Guardar</button>
                     </div>
                   </form>
                 </div>
