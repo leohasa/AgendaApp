@@ -1,12 +1,17 @@
+import { Usuario } from "./usuario";
 
 
 export class Publicacion {
+    
+    usuario : Usuario;  
+    constructor (){
+        this.usuario = new Usuario();
+    }
 
-    id: number;
-    idUsuario: string;
+    id: string;
     titulo: string;
     contenido: string;//verificar si hay un tipo con mas grande
-    fechaPublicacion: date;
-    puntuacion:number;    
+    fechaPublicacion: string;
+    puntuacion:string;    
 
 }

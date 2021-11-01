@@ -12,7 +12,7 @@ export class ForoService {
   url = 'http://localhost:3000/backend/foro';
   
   getPublicaciones(){
-    return this.http.get<Publicacion[]>(`${this.url}/list`);
+    return this.http.get<Publicacion[]>(`${this.url}/publicacion`);
   }
   
   createPublicacion(publicacion : Publicacion){

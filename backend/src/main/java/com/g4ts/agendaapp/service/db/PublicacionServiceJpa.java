@@ -21,7 +21,6 @@ public class PublicacionServiceJpa implements IPublicacionService {
 
     @Override
     public List<Publicacion> findAll() {
-        System.out.println("Imprimiendo comentario prueba");
         return publicacionRepository.findAll();
     }
 
@@ -32,7 +31,7 @@ public class PublicacionServiceJpa implements IPublicacionService {
 
     @Override
     public void save(Publicacion publicacion) {
-
+        publicacionRepository.save(publicacion);
     }
 
     @Override

@@ -16,16 +16,16 @@ public class Publicacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     //@OneToMany(cascade = CascadeType.ALL)//, mappedBy = "")
     @OneToOne()
    @JoinColumn(name = "idUsuario")
    private Usuario usuario;
-
+    private String contenido;
     private String titulo;
     private LocalDate fechaPublicacion;
-    private int puntuacion;
+    private Integer puntuacion;
 
 
 }

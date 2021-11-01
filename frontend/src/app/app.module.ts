@@ -36,6 +36,8 @@ import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-e
 
 import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { ForoService } from './service/foro.service';
+import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
 
 
 @NgModule({
@@ -63,7 +65,8 @@ import { NgxEditorModule } from 'ngx-editor';
         ModalComponent,
         CalendarComponent,
         SolicitudEditorComponent,
-        TxtEditComponent
+        TxtEditComponent,
+        ListPublicacionComponent
 
     ],
     imports: [
@@ -79,7 +82,8 @@ import { NgxEditorModule } from 'ngx-editor';
         CategoriaService,
         ProyectoService,
         ActividadService,
-        AccessGuard
+        AccessGuard, 
+        ForoService
     ],
     bootstrap: [AppComponent]
 })
