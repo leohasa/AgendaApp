@@ -2,7 +2,7 @@ import { Usuario } from "./usuario";
 
 export class Recordatorio {
 
-    id:string;
+    id:number;
     titulo:string;
     descripcion:string = "";
     fecha:string = ""; 

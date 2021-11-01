@@ -14,4 +14,12 @@ export class RecordatorioService {
   create(recordatorio: Recordatorio) {
     return this.http.post(`${this.url}/add`, recordatorio);
   }
+
+  getRecordatorios(idUsuario:string){
+    return this.http.post<Array<Recordatorio>>(`${this.url}/get`, idUsuario);
+  }
+
+  delete(idRecordatorio:number) {
+    return this.http.post(`${this.url}/delete`,idRecordatorio);
+  }
 }

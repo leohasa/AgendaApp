@@ -32,6 +32,8 @@ import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-d
 import { ModalComponent } from './modal/modal.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.component';
+import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
+import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +59,9 @@ import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.co
         CalendarioDiaComponent,
         ModalComponent,
         CalendarComponent,
-        ModalCalendarioComponent
+        ModalCalendarioComponent,
+        ListRecordatorioComponent,
+        ManagerRecordatorioRoutesComponent
     ],
     imports: [
         BrowserModule,
