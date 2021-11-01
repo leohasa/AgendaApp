@@ -67,6 +67,11 @@ public class UsuarioController {
         return rolService.findAllByuser(usuario);
     }
 
+    @GetMapping("/solicitudes")
+    public List<SolicitudRolEditor> getSolicitudes() {
+        return solicitudService.findAll();
+    }
+
     @PostMapping("/addSolicitud")
     public void addSolicitud(@RequestBody SolicitudRolEditor solicitud) {
         solicitudService.save(solicitud);

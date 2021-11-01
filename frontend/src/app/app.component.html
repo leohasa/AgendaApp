@@ -7,6 +7,9 @@
         <div *ngIf="localStorage.getItem('user')" class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
+                    <a *ngIf="isAdmin" class="nav-link" routerLink="user/solicitudes">Solicitudes de roles</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" routerLink="proyecto/list">Proyectos</a>
                 </li>
                 <li class="nav-item">
@@ -28,7 +31,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" routerLink (click)="editar()">Mi perfil</a></li>
-                            <li *ngIf="isNotEditor" ><a class="dropdown-item" routerLink (click)="solicitar()">Solicitar ser editor</a></li>
+                            <li *ngIf="isUserOnly" ><a class="dropdown-item" routerLink (click)="solicitar()">Solicitar ser editor</a></li>
                             <li><a class="dropdown-item" routerLink (click)="logOut()">Cerrar sesion</a></li>
                         </ul>
                     </li>

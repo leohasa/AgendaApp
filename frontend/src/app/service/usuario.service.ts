@@ -41,6 +41,10 @@ export class UsuarioService {
         return this.http.get<Rol[]>(`${this.url}/roles/${username}`);
     }
 
+    getSolicitudes() {
+        return this.http.get<Solicitud[]>(`${this.url}/solicitudes`);
+    }
+
     addSolicitud(solicitud: Solicitud) {
         return this.http.post<Solicitud>(`${this.url}/addSolicitud`, solicitud);
     }

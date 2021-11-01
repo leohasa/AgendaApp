@@ -32,6 +32,7 @@ import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-d
 import { ModalComponent } from './modal/modal.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
+import { ListSolicitudesComponent } from './usuario/list-solicitudes/list-solicitudes.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +58,8 @@ import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-e
         CalendarioDiaComponent,
         ModalComponent,
         CalendarComponent,
-        SolicitudEditorComponent
+        SolicitudEditorComponent,
+        ListSolicitudesComponent
     ],
     imports: [
         BrowserModule,

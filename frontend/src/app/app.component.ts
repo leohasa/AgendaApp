@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Rol } from './model/rol';
 import { UsuarioService } from './service/usuario.service';
@@ -12,12 +12,16 @@ export class AppComponent implements OnInit {
 
     username: String;
     localStorage = localStorage;
-    isNotEditor: boolean;
+    roles: Rol[];
+    isUserOnly: boolean;
+    isAdmin: boolean;
 
 
     constructor(private router: Router, private service: UsuarioService) {
         this.username = localStorage.getItem('user') ?? '';
-        this.isNotEditor = true;
+        this.roles = new Array();
+        this.isUserOnly = true;
+        this.isAdmin = true;
     }
 
     ngOnInit(): void {
@@ -26,7 +30,16 @@ export class AppComponent implements OnInit {
         } else {
             this.router.navigate(['calendar-mes']);
         }
-        this.isNotEditor = !this.isEditor();
+        this.cargarRoles();
+    }
+
+    private cargarRoles(): void {
+        this.service.getRols(this.username)
+            .subscribe(data => {
+                this.roles = data;
+                this.isUserOnly = !this.hasRol('EDITOR') && !this.hasRol('ADMINISTRADOR');
+                this.isAdmin = this.hasRol('ADMINISTRADOR');
+            });
     }
 
     editar() {
@@ -43,19 +56,14 @@ export class AppComponent implements OnInit {
         this.router.navigate(['/login']);
     }
 
-    isEditor(): boolean {
-        let roles: Rol[];
+    hasRol(rol: String): boolean {
         let flag: boolean = false;
 
-        this.service.getRols(this.username)
-            .subscribe(data => {
-                roles = data;
-                roles.forEach(r => {
-                    if (r.tipo == 'EDITOR') {
-                        flag = true;
-                    }
-                });
-            });
+        this.roles.forEach(r => {
+            if (r.tipo == rol) {
+                flag = true;
+            }
+        });
 
         return flag;
     }

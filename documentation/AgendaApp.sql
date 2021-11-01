@@ -13,7 +13,8 @@ CREATE TABLE Usuario (
   nacionalidad VARCHAR(45) NULL,
   ocupacion VARCHAR(45) NULL,
   descripcion VARCHAR(150) NULL,
-  PRIMARY KEY (username));
+  PRIMARY KEY (username))
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -30,7 +31,8 @@ CREATE TABLE Contacto (
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -46,7 +48,8 @@ CREATE TABLE Rol (
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -67,7 +70,8 @@ CREATE TABLE Proyecto (
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -83,7 +87,8 @@ CREATE TABLE Categoria (
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -98,9 +103,11 @@ CREATE TABLE Actividad (
   descripcion TEXT NULL,
   estado TINYINT NOT NULL,
   idCategoria INT NOT NULL,
+  idUsuario VARCHAR(45) NOT NULL,
   INDEX fk_RegistroActividad_Proyecto1_idx (idProyecto ASC) VISIBLE,
   PRIMARY KEY (id),
   INDEX fk_Actividad_Categoria1_idx (idCategoria ASC) VISIBLE,
+  INDEX fk_Actividad_Usuario1_idx (idUsuario ASC) VISIBLE,
   CONSTRAINT fk_RegistroActividad_Proyecto1
     FOREIGN KEY (idProyecto)
     REFERENCES Proyecto (id)
@@ -110,7 +117,13 @@ CREATE TABLE Actividad (
     FOREIGN KEY (idCategoria)
     REFERENCES Categoria (id)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT,
+  CONSTRAINT fk_Actividad_Usuario1
+    FOREIGN KEY (idUsuario)
+    REFERENCES Usuario (username)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -129,7 +142,8 @@ CREATE TABLE Recordatorio (
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -138,7 +152,8 @@ CREATE TABLE Recordatorio (
 CREATE TABLE Plugin (
   id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(45) NOT NULL,
-  PRIMARY KEY (id));
+  PRIMARY KEY (id))
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -147,14 +162,15 @@ CREATE TABLE Plugin (
 CREATE TABLE Post (
   id INT NOT NULL AUTO_INCREMENT,
   idPlugin INT NOT NULL,
-  contenido TEXT NOT NULL,
+  contenido LONGBLOB NOT NULL,
   PRIMARY KEY (id),
   INDEX fk_Post_Plugin2_idx (idPlugin ASC) VISIBLE,
   CONSTRAINT fk_Post_Plugin2
     FOREIGN KEY (idPlugin)
     REFERENCES Plugin (id)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -176,7 +192,8 @@ CREATE TABLE PluginsUsuario (
     FOREIGN KEY (idPlugin)
     REFERENCES Plugin (id)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -186,7 +203,7 @@ CREATE TABLE Publicacion (
   id INT NOT NULL AUTO_INCREMENT,
   idUsuario VARCHAR(45) NOT NULL,
   titulo VARCHAR(45) NOT NULL,
-  contenido TEXT NOT NULL,
+  contenido LONGBLOB NOT NULL,
   fechaPublicacion TIMESTAMP NOT NULL,
   puntuacion INT NULL DEFAULT 0,
   PRIMARY KEY (id),
@@ -195,7 +212,8 @@ CREATE TABLE Publicacion (
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -217,7 +235,8 @@ CREATE TABLE Seguidores (
     FOREIGN KEY (idSeguidor)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -241,7 +260,8 @@ CREATE TABLE Comentario (
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -251,15 +271,17 @@ CREATE TABLE SolicitudRolEditor (
   id INT NOT NULL AUTO_INCREMENT,
   idUsuario VARCHAR(45) NOT NULL,
   contenido TEXT NOT NULL,
+  fecha TIMESTAMP NOT NULL,
   PRIMARY KEY (id),
   INDEX fk_SolicitudRolEditor_Usuario1_idx (idUsuario ASC) VISIBLE,
   CONSTRAINT fk_SolicitudRolEditor_Usuario1
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
     
-    INSERT INTO `Usuario` VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
+INSERT INTO `Usuario` VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
 
-    INSERT INTO `Rol` VALUES (1,'USUARIO','admin');
+INSERT INTO `Rol` VALUES (1,'USUARIO','admin');
