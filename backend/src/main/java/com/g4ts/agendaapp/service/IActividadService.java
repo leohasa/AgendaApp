@@ -2,6 +2,7 @@ package com.g4ts.agendaapp.service;
 
 import com.g4ts.agendaapp.model.Actividad;
 import com.g4ts.agendaapp.model.Proyecto;
+import com.g4ts.agendaapp.model.Usuario;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface IActividadService {
     void deleteById(Integer id);
 
     List<Actividad> findAllByProyecto(Proyecto proyecto);
+    List<Actividad> findAllByUsuario(Usuario usuario);
 }

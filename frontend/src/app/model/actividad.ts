@@ -1,5 +1,6 @@
 import { Categoria } from "./categoria";
 import { Proyecto } from "./proyecto";
+import { Usuario } from "./usuario";
 
 export class Actividad {
 
@@ -8,6 +9,9 @@ export class Actividad {
     categoria: Categoria;
     fechaInicio: string;
     fechaFin: string;
+    usuario: Usuario;
+    // fechaInicio: String;
+    // fechaFin: String;
     titulo: String;
     descripcion: String;
     estado: String;
@@ -15,6 +19,7 @@ export class Actividad {
     constructor() {
         this.proyecto = new Proyecto();
         this.categoria = new Categoria();
+        this.usuario = new Usuario();
     }
 
 }

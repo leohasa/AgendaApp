@@ -1,8 +1,10 @@
 package com.g4ts.agendaapp.controller;
 
 import com.g4ts.agendaapp.model.Rol;
+import com.g4ts.agendaapp.model.SolicitudRolEditor;
 import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.service.IRolService;
+import com.g4ts.agendaapp.service.ISolicitudRolEditorService;
 import com.g4ts.agendaapp.service.IUsuarioService;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +16,14 @@ import java.util.Objects;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-    private IUsuarioService usuarioService;
-    private IRolService rolService;
+    private final IUsuarioService usuarioService;
+    private final IRolService rolService;
+    private final ISolicitudRolEditorService solicitudService;
 
-    public UsuarioController(IUsuarioService usuarioService, IRolService rolService) {
+    public UsuarioController(IUsuarioService usuarioService, IRolService rolService, ISolicitudRolEditorService solicitudService) {
         this.usuarioService = usuarioService;
         this.rolService = rolService;
+        this.solicitudService = solicitudService;
     }
 
     @GetMapping("/list")
@@ -61,5 +65,22 @@ public class UsuarioController {
     public List<Rol> getRoles(@PathVariable String username) {
         Usuario usuario = Usuario.builder().username(username).build();
         return rolService.findAllByuser(usuario);
+    }
+
+    @GetMapping("/solicitudes")
+    public List<SolicitudRolEditor> getSolicitudes() {
+        return solicitudService.findAll();
+    }
+
+    @PostMapping("/addSolicitud")
+    public void addSolicitud(@RequestBody SolicitudRolEditor solicitud) {
+        solicitudService.save(solicitud);
+    }
+
+    @GetMapping("/newEditor/{id}")
+    public void aceptarSolicitudRol(@PathVariable Integer id) {
+        SolicitudRolEditor solicitud = solicitudService.findById(id);
+        rolService.save(Rol.builder().tipo("EDITOR").usuario(solicitud.getUsuario()).build());
+        solicitudService.deleteById(id);
     }
 }

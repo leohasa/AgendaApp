@@ -28,4 +28,8 @@ public class Actividad {
     @OneToOne
     @JoinColumn(name = "idCategoria")
     private Categoria categoria;
+
+    @OneToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 }

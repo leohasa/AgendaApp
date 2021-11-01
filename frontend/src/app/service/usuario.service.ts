@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+    import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Rol } from '../model/rol';
+import { Solicitud } from '../model/solicitud';
 import { Usuario } from '../model/usuario';
 
 @Injectable({
@@ -38,5 +39,17 @@ export class UsuarioService {
 
     getRols(username: String) {
         return this.http.get<Rol[]>(`${this.url}/roles/${username}`);
+    }
+
+    getSolicitudes() {
+        return this.http.get<Solicitud[]>(`${this.url}/solicitudes`);
+    }
+
+    addSolicitud(solicitud: Solicitud) {
+        return this.http.post<Solicitud>(`${this.url}/addSolicitud`, solicitud);
+    }
+
+    newEditor(id: String) {
+        return this.http.get<Solicitud>(`${this.url}/newEditor/${id}`);
     }
 }

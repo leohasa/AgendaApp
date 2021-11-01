@@ -34,4 +34,7 @@ export class ActividadService {
 	getAll() {
 		return this.http.get<Actividad[]>(`${this.url}/`);
 	}
+    getByUser(username: String) {
+        return this.http.get<Actividad[]>(`${this.url}/listByUser/${username}`);
+    }
 }

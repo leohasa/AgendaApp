@@ -29,7 +29,7 @@ export class AddUsuarioComponent implements OnInit {
         this.service.createUser(this.usuario)
         .subscribe(data => {
             localStorage.setItem('user', this.usuario.username.toString());
-            this.showInfo('Agregado con exito');
+            this.showInfo('Se ha registrado con exito');
         });
     }
 

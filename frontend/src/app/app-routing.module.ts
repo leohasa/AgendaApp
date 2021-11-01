@@ -18,10 +18,15 @@ import { ManagerProjectRoutesComponent } from './proyecto/manager-project-routes
 import { AccessGuard } from './usuario/AccessGuard';
 import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
+import { ListSolicitudesComponent } from './usuario/list-solicitudes/list-solicitudes.component';
 import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
 import { LoginComponent } from './usuario/login/login.component';
 import { ManagerUserRoutesComponent } from './usuario/manager-user-routes/manager-user-routes.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
+
+
+
+import { TxtEditComponent } from './txt-edit/txt-edit.component';
 
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
@@ -30,7 +35,8 @@ const routes: Routes = [
         children: [
             {path: 'edit', component: EditUsuarioComponent},
             {path: 'userlist', component: ListUsuarioComponent},
-            {path: 'solicitud', component: SolicitudEditorComponent}
+            {path: 'solicitud', component: SolicitudEditorComponent},
+            {path: 'solicitudes', component: ListSolicitudesComponent}
         ]
     },
     {path: 'proyecto', component:ManagerProjectRoutesComponent,
