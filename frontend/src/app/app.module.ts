@@ -30,7 +30,6 @@ import { ManagerActividadRoutesComponent } from './actividad/manager-actividad-r
 import { CalendarioMesComponent } from './calendario/calendario-mes/calendario-mes.component';
 import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-dia.component';
 import { ModalComponent } from './modal/modal.component';
-
 import { CalendarComponent } from './calendar/calendar.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
 import { ListSolicitudesComponent } from './usuario/list-solicitudes/list-solicitudes.component';
@@ -41,6 +40,7 @@ import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publi
 import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.component';
 import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
 import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
+import { DataService } from './service/data.service';
 
 @NgModule({
     declarations: [
@@ -88,7 +88,8 @@ import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recor
         ProyectoService,
         ActividadService,
         AccessGuard,
-        ForoService
+        ForoService,
+        DataService
     ],
     bootstrap: [AppComponent]
 })

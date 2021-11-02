@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Rol } from './model/rol';
+import { DataService } from './service/data.service';
 import { UsuarioService } from './service/usuario.service';
 
 @Component({
@@ -16,14 +17,16 @@ export class AppComponent implements OnInit {
     isUser: boolean;
     isAdmin: boolean;
     isEditor: boolean;
+    thereRequest: boolean;
 
 
-    constructor(private router: Router, private service: UsuarioService) {
+    constructor(private router: Router, private service: UsuarioService, private dataService: DataService) {
         this.username = localStorage.getItem('user') ?? '';
         this.roles = new Array();
         this.isUser = true;
         this.isAdmin = true;
         this.isEditor = true;
+        this.thereRequest = false;
     }
 
     ngOnInit(): void {
@@ -31,8 +34,13 @@ export class AppComponent implements OnInit {
             this.router.navigate(['/login']);
         } else {
             this.router.navigate(['calendar-mes']);
+            this.cargarRoles();
+
+            this.dataService.getData()
+                .subscribe(data => {
+                    this.thereRequest = data;
+                });
         }
-        this.cargarRoles();
     }
 
     private cargarRoles(): void {
