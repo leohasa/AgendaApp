@@ -1,0 +1,106 @@
+<div class="modal fade" id="modalActividad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Nuevo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-actividad-tab" data-bs-toggle="tab" data-bs-target="#nav-actividad" type="button" role="tab" aria-controls="nav-actividad" aria-selected="true">Actividad</button>
+                    <button class="nav-link" id="nav-recordatorio-tab" data-bs-toggle="tab" data-bs-target="#nav-recordatorio" type="button" role="tab" aria-controls="nav-recordatorio" aria-selected="false">Recordatorio</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-actividad" role="tabpanel" aria-labelledby="nav-actividad-tab">
+                  <form (ngSubmit)="createActivity()" #actividadForm="ngForm">
+                    <div class="row" style="margin-top: 15px;">
+                      <div class="col-12">
+                        <div class="mb-3">
+                          <label for="titulo" class="form-label">*Agrega un t&iacute;tulo</label>
+                          <input [(ngModel)]="actividad.titulo" name="titulo" type="text" class="form-control" id="titulo" autocomplete="off" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripci&oacute;n</label>
+                        <textarea [(ngModel)]="actividad.descripcion" name="descripcion" class="form-control" id="descripcion" rows="3" required></textarea>
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                      <div class="col-6">
+                        <div class="form-grup col-12">
+                          <label for="fechaInicioActividad">*Fecha inicio:</label>
+                          <input [(ngModel)]="actividad.fechaInicio" type="text" class="form-control" required
+                              name="fechaInicioActividad" id="fechaInicioActividad" #fechaInicioActividad="ngModel">
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-grup col-12">
+                          <label for="fechaFinActividad">*Fecha fin:</label>
+                          <input [(ngModel)]="actividad.fechaFin" type="text" class="form-control" name="fechaFinActividad"
+                              id="fechaFinActividad" #fechaFinActividad="ngModel" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                      <div class="form-group col-12">
+                        <label for="categoria">*Categoria:</label>
+                        <select [(ngModel)]="actividad.categoria.id" name="categoria" id="categoria"
+                            class="form-select" #categoria="ngModel" required>
+                            <option *ngFor="let c of categorias" value="{{c.id}}">{{c.nombre}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                      <div class="form-group col-12">
+                          <label for="proyecto">*Proyecto:</label>
+                          <select [(ngModel)]="actividad.proyecto.id" name="proyecto" id="proyecto" required
+                              class="form-select" #categoria="ngModel">
+                              <option *ngFor="let p of proyectos" value="{{p.id}}">{{p.nombre}}</option>
+                          </select>
+                      </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top: 15px;">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="!actividadForm.form.valid">Guardar</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="tab-pane fade" id="nav-recordatorio" role="tabpanel" aria-labelledby="nav-recordatorio-tab">
+                  <form (ngSubmit)="createReminder()" #recordatorioForm="ngForm">
+                    <div class="row" style="margin-top: 15px;">
+                      <div class="col-12">
+                        <div class="mb-3">
+                          <label for="titulo" class="form-label">*Agrega un t&iacute;tulo</label>
+                          <input [(ngModel)]="recordatorio.titulo" name="titulo" type="text" class="form-control" id="titulo" autocomplete="off" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripci&oacute;n</label>
+                        <textarea [(ngModel)]="recordatorio.descripcion" name="descripcion" class="form-control" id="descripcion" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                      <div class="col-12">
+                        <div class="form-grup col-5">
+                            <label for="fechahorarec">*Fecha :</label>
+                            <input [(ngModel)]="recordatorio.fecha" type="text" class="form-control" required name="fechahorarec" id="fechahorarec" #fechahorarec >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top: 15px;">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="!recordatorioForm.form.valid">Guardar</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

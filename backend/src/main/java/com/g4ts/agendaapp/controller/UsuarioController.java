@@ -1,13 +1,18 @@
 package com.g4ts.agendaapp.controller;
 
+import com.g4ts.agendaapp.model.Categoria;
+import com.g4ts.agendaapp.model.Proyecto;
 import com.g4ts.agendaapp.model.Rol;
 import com.g4ts.agendaapp.model.SolicitudRolEditor;
 import com.g4ts.agendaapp.model.Usuario;
+import com.g4ts.agendaapp.service.ICategoriaService;
+import com.g4ts.agendaapp.service.IProyectoService;
 import com.g4ts.agendaapp.service.IRolService;
 import com.g4ts.agendaapp.service.ISolicitudRolEditorService;
 import com.g4ts.agendaapp.service.IUsuarioService;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,13 +21,17 @@ import java.util.Objects;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-    private final IUsuarioService usuarioService;
-    private final IRolService rolService;
-    private final ISolicitudRolEditorService solicitudService;
+    private IUsuarioService usuarioService;
+    private IRolService rolService;
+    private ICategoriaService categoriaService;
+    private IProyectoService proyectoService;
+    private ISolicitudRolEditorService solicitudService;
 
-    public UsuarioController(IUsuarioService usuarioService, IRolService rolService, ISolicitudRolEditorService solicitudService) {
+    public UsuarioController(IUsuarioService usuarioService, IRolService rolService, ICategoriaService categoriaService, IProyectoService proyectoService, ISolicitudRolEditorService solicitudService) {
         this.usuarioService = usuarioService;
         this.rolService = rolService;
+        this.categoriaService = categoriaService;
+        this.proyectoService = proyectoService;
         this.solicitudService = solicitudService;
     }
 
@@ -35,7 +44,11 @@ public class UsuarioController {
     public void save(@RequestBody Usuario usuario) {
         usuarioService.save(usuario);
         rolService.save(Rol.builder().tipo("USUARIO").usuario(usuario).build());
+        categoriaService.save(Categoria.builder().usuario(usuario).nombre("Sin categoría").build());
+        Proyecto proyecto = Proyecto.builder().nombre("Sin proyecto").usuario(usuario).descripcion("").fechaInicio(LocalDate.now()).fechaPrevistaFin(LocalDate.now()).ubicacion("").visibilidad(Short.parseShort("0")).build();
+        proyectoService.save(proyecto);
     }
+
 
     @GetMapping("/get/{username}")
     public Usuario getUsaer(@PathVariable String username) {

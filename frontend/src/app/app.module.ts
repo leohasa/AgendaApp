@@ -34,12 +34,13 @@ import { ModalComponent } from './modal/modal.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
 import { ListSolicitudesComponent } from './usuario/list-solicitudes/list-solicitudes.component';
-
 import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { ForoService } from './service/foro.service';
 import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
-
+import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.component';
+import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
+import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
 
 @NgModule({
     declarations: [
@@ -68,7 +69,10 @@ import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publi
         SolicitudEditorComponent,
         TxtEditComponent,
         ListPublicacionComponent,
-        ListSolicitudesComponent
+        ListSolicitudesComponent,
+        ModalCalendarioComponent,
+        ListRecordatorioComponent,
+        ManagerRecordatorioRoutesComponent
     ],
     imports: [
         BrowserModule,

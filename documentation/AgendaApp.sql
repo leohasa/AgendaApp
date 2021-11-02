@@ -130,15 +130,15 @@ ENGINE = InnoDB;
 -- Table Recordatorio
 -- -----------------------------------------------------
 CREATE TABLE Recordatorio (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   titulo VARCHAR(45) NOT NULL,
   descripcion VARCHAR(200) NOT NULL,
-  estado TINYINT NOT NULL,
-  fecha TIMESTAMP NOT NULL,
-  idUsuario VARCHAR(45) NOT NULL,
+  estado TINYINT NOT NULL,\
+  fecha TIMESTAMP NULL,
+  idUsuario VARCHAR(45),
   PRIMARY KEY (id),
-  INDEX fk_Recordatorio_Usuario1_idx (idUsuario ASC) VISIBLE,
-  CONSTRAINT fk_Recordatorio_Usuario1
+  INDEX fk_Recordatorio_Usuario_idx (idUsuario ASC) VISIBLE,
+  CONSTRAINT fk_Recordatorio_Usuario
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT

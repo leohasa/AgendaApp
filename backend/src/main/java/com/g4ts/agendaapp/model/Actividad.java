@@ -1,5 +1,6 @@
 package com.g4ts.agendaapp.model;
 
+import com.sun.istack.Nullable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,4 +33,5 @@ public class Actividad {
     @OneToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
+
 }

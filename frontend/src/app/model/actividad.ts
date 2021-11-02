@@ -14,7 +14,8 @@ export class Actividad {
     // fechaFin: String;
     titulo: String;
     descripcion: String;
-    estado: String;
+    estado: String = '1';
+    usuario:Usuario;
 
     constructor() {
         this.proyecto = new Proyecto();
