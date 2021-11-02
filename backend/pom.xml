@@ -70,7 +70,6 @@
                     <target>16</target>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
