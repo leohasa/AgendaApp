@@ -4,17 +4,14 @@ import { Usuario } from "./usuario";
 
 export class Actividad {
 
-    id: String;
+    id: string;
     proyecto: Proyecto;
     categoria: Categoria;
     fechaInicio: string;
     fechaFin: string;
-    usuario: Usuario;
-    // fechaInicio: String;
-    // fechaFin: String;
-    titulo: String;
+    titulo: string;
     descripcion: String;
-    estado: String = '1';
+    estado: string = '1';
     usuario:Usuario;
 
     constructor() {
