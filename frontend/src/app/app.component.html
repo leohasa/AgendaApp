@@ -34,7 +34,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" routerLink (click)="editar()">Mi perfil</a></li>
-                            <li *ngIf="isUser && !isEditor && !isAdmin" ><a class="dropdown-item" routerLink (click)="solicitar()">Solicitar ser editor</a></li>
+                            <li *ngIf="isUser && !isEditor && !isAdmin && !thereRequest" ><a class="dropdown-item" routerLink (click)="solicitar()">Solicitar ser editor</a></li>
                             <li><a class="dropdown-item" routerLink (click)="logOut()">Cerrar sesion</a></li>
                         </ul>
                     </li>

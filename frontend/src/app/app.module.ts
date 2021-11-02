@@ -39,6 +39,7 @@ import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { ForoService } from './service/foro.service';
 import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
+import { DataService } from './service/data.service';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publi
         ProyectoService,
         ActividadService,
         AccessGuard,
-        ForoService
+        ForoService,
+        DataService
     ],
     bootstrap: [AppComponent]
 })
