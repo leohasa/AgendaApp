@@ -98,9 +98,11 @@ CREATE TABLE Actividad (
   descripcion TEXT NULL,
   estado TINYINT NOT NULL,
   idCategoria INT NOT NULL,
+  idUsuario VARCHAR(45) NOT NULL,
   INDEX fk_RegistroActividad_Proyecto1_idx (idProyecto ASC) VISIBLE,
   PRIMARY KEY (id),
   INDEX fk_Actividad_Categoria1_idx (idCategoria ASC) VISIBLE,
+  INDEX fk_Actividad_Usuario1_idx (idUsuario ASC) VISIBLE,
   CONSTRAINT fk_RegistroActividad_Proyecto1
     FOREIGN KEY (idProyecto)
     REFERENCES Proyecto (id)
@@ -110,7 +112,13 @@ CREATE TABLE Actividad (
     FOREIGN KEY (idCategoria)
     REFERENCES Categoria (id)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT);
+    ON UPDATE RESTRICT,
+  CONSTRAINT fk_Actividad_Usuario1
+    FOREIGN KEY (idUsuario)
+    REFERENCES Usuario (username)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
