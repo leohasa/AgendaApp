@@ -27,6 +27,8 @@ import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-e
 
 
 import { TxtEditComponent } from './txt-edit/txt-edit.component';
+import { PerfilComponent } from './usuario/perfil/perfil.component';
+import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component'; 
 
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
@@ -66,6 +68,7 @@ const routes: Routes = [
             {path: 'list', component: ListCategoriaComponent},
         ]
     },
+    {path: 'perfil', component: PerfilComponent},
     {path: 'calendar-mes', component: CalendarComponent},
     {path: 'register', component: AddUsuarioComponent},
     {path: 'login', component: LoginComponent}

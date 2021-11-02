@@ -1,11 +1,12 @@
 import { Element } from '@angular/compiler';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Editor } from 'ngx-editor';
 import { Publicacion } from '../model/publicacion';
 import { ForoService } from '../service/foro.service';
+import { SharehtmlService } from '../service/sharehtml.service';
 
 
 @Component({
@@ -15,12 +16,17 @@ import { ForoService } from '../service/foro.service';
 })
 export class TxtEditComponent implements OnInit {
 
+  
+  //@Output() enviar: EventEmitter<any> = new EventEmitter<any>();
+  @Input() entrante:Publicacion = new Publicacion();
   editor: Editor;
   html : '';
   publicacion : Publicacion;
+  titulo : string = "";
+  htmlContent : string;
   
   
-  constructor(private router:Router,private service: ForoService) { }
+  constructor(private router:Router,private service: ForoService, private serviceShare : SharehtmlService) { }
 
   ngOnInit(): void {
     this.publicacion = new Publicacion();
@@ -28,34 +34,12 @@ export class TxtEditComponent implements OnInit {
     this.html = '';
     
   }
-  onSave(): void{
+  sendData(){
+    console.log("send data");
+    this.entrante.titulo = this.titulo;
+    this.entrante.contenido = this.html;
     
-    
-    this.publicacion.titulo = "Desde Angular";
-    this.publicacion.usuario.username=localStorage.getItem("user")??"";
-    //this.publicacion.fechaPublicacion = current_date();
-    this.publicacion.contenido = this.html;
-    console.log(this.html)
-    console.log(JSON.stringify(this.publicacion.contenido));
-    
-    this.service.createPublicacion(this.publicacion)
-      .subscribe(x=>{console.log("Desde el subscribe"+this.publicacion.contenido);
-                     });
+    this.serviceShare.data.emit({ data:this.entrante });
     
   }
-  onSubmit():void{
-    
-    
-    
-    
-    
-    const el = document.createElement('div');
-    el.innerHTML = this.html
-    console.log(this.html)
-    const textContent = el.textContent
-    console.log("texto : "+ textContent);
-   
-    
-  }
-
 }

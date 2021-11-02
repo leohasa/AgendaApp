@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         .subscribe(user => {
             if (user) {
                 localStorage.setItem('user', user.username.toString());
-                this.router.navigate(['/calendar-mes']);
+                this.router.navigate(['/perfil']);
             } else {
                 this.showInfo('Credenciales incorrectas!');
             }

@@ -11,7 +11,7 @@ import { ForoService } from 'src/app/service/foro.service';
 export class ListPublicacionComponent implements OnInit {
 
   publicacion : Publicacion[];
-  prueba = "<b>Prueba</b>"
+ 
   
   constructor(private service: ForoService,private router: Router) { this.publicacion = [];}
   
@@ -22,7 +22,7 @@ export class ListPublicacionComponent implements OnInit {
         .subscribe(data => {
           this.publicacion = data;
           this.publicacion.forEach(element => {
-            console.log(element);
+            console.log("cargando publicaciones "+element);
           });
         })
   }

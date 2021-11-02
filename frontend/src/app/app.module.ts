@@ -39,6 +39,7 @@ import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { ForoService } from './service/foro.service';
 import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
+import { PerfilComponent } from './usuario/perfil/perfil.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publi
         SolicitudEditorComponent,
         TxtEditComponent,
         ListPublicacionComponent,
-        ListSolicitudesComponent
+        ListSolicitudesComponent,
+        PerfilComponent
     ],
     imports: [
         BrowserModule,

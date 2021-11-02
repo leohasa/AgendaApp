@@ -4,7 +4,7 @@
             <div class="card my-4">
                 <div class="card-header">
                 
-                <div [innerHtml]='prueba'></div>
+                
                 
                     <h4>Publicaciones</h4>
                 </div>
@@ -14,7 +14,7 @@
                         
                             <div *ngFor="let u of publicacion">
                                 {{u.titulo}}
-                                {{u.fechaPublicacion}}
+                                <div [innerHtml]='u.fechaPublicacion'></div>
                                 <div [innerHtml]='u.contenido'> otro -> {{u.contenido}}</div>
                                 {{u.puntuacion}}
                                 

@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
         if (!localStorage.getItem('user')) {
             this.router.navigate(['/login']);
         } else {
-            this.router.navigate(['calendar-mes']);
+            this.router.navigate(['perfil']);
         }
         this.cargarRoles();
     }

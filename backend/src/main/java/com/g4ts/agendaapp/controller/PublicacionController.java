@@ -18,10 +18,11 @@ public class PublicacionController {
 
     @GetMapping("/publicacion")
     public List<Publicacion> list(){
-        System.out.println("prueba2"); System.out.println("Publicacion desde sprint "); return this.publicacionService.findAll(); }
+         return this.publicacionService.findAll(); }
 
     @PostMapping("/add")
     public void save(@RequestBody Publicacion publicacion){
+        System.out.println("/add"+publicacion);
         System.out.println("Publicacion desde sprint "+ publicacion.getContenido());
 
 

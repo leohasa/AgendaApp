@@ -10,11 +10,14 @@
         <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
         <ngx-editor
           [editor]="editor"
-          [(ngModel)]="html"  
+          [(ngModel)]="html"
           [disabled]="false"
           [placeholder]="'Publicaciones...'"
         ></ngx-editor>
       </div>
+      <br>
+      
+      <button type="button" (click)="sendData()" class="btn btn-primary">Publicar</button>
       
       
       
