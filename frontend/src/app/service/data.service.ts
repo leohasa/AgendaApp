@@ -12,7 +12,7 @@ export class DataService {
         return this.data;
     }
 
-    updateData(data: boolean): void {
+    updateData(data: any): void {
         this.data.next(data);
     }
 }

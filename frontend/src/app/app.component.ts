@@ -34,13 +34,13 @@ export class AppComponent implements OnInit {
             this.router.navigate(['/login']);
         } else {
             this.router.navigate(['calendar-mes']);
-        }
-        this.cargarRoles();
+            this.cargarRoles();
 
-        this.dataService.getData()
-            .subscribe(data => {
-                this.thereRequest = data;
-            });
+            this.dataService.getData()
+                .subscribe(data => {
+                    this.thereRequest = data;
+                });
+        }
     }
 
     private cargarRoles(): void {
