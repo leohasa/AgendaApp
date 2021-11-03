@@ -290,3 +290,6 @@ INSERT INTO `Usuario` VALUES ('editor','123','Admin','1998-09-04','GT','Student'
 INSERT INTO `Rol` VALUES (1,'ADMINISTRADOR','admin');
 INSERT INTO `Rol` VALUES (2,'USUARIO','user');
 INSERT INTO `Rol` VALUES (3,'EDITOR','editor');
+
+INSERT INTO Proyecto(nombre, descripcion, fechaInicio, fechaPrevistaFin, ubicacion, visibilidad, idUsuario) VALUES('Sin Proyecto', '', '2021-02-02', '2021-02-02', '', 0, 'user');
+INSERT INTO Categoria(nombre, idUsuario) VALUES('Sin Categoria', 'user');

@@ -7,7 +7,7 @@ import { UsuarioService } from "../service/usuario.service";
 @Injectable()
 export class AccessGuard implements CanActivate {
 
-    constructor(private router: Router, private service: UsuarioService) {}
+    constructor(private router: Router, private service: UsuarioService) { }
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         const requiresLogin = route.data.requiresLogin || false;
@@ -20,13 +20,13 @@ export class AccessGuard implements CanActivate {
                 const username: String = localStorage.getItem('user') ?? '';
                 let roles: Rol[] = new Array();
                 this.service.getRols(username)
-                .subscribe(data => {
-                    roles = data;
-                    const rol = roles.find(r => r.tipo == requiredRol);
-                    if (!rol) {
-                        this.router.navigate(['']);
-                    }
-                });
+                    .subscribe(data => {
+                        roles = data;
+                        const rol = roles.find(r => r.tipo == requiredRol);
+                        if (!rol) {
+                            this.router.navigate(['']);
+                        }
+                    });
 
             }
         }

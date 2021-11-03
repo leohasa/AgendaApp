@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Rol } from './model/rol';
 import { DataService } from './service/data.service';
+import { SolicitudService } from './service/solicitud.service';
 import { UsuarioService } from './service/usuario.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { UsuarioService } from './service/usuario.service';
 })
 export class AppComponent implements OnInit {
 
-    username: String;
+    username: string;
     localStorage = localStorage;
     roles: Rol[];
     isUser: boolean;
@@ -20,9 +21,9 @@ export class AppComponent implements OnInit {
     thereRequest: boolean;
 
 
-    constructor(private router: Router, private service: UsuarioService, private dataService: DataService) {
-        this.username = localStorage.getItem('user') ?? '';
+    constructor(private router: Router, private dataService: DataService, private service: SolicitudService) {
         this.roles = new Array();
+        this.username = '';
         this.isUser = true;
         this.isAdmin = true;
         this.isEditor = true;
@@ -34,22 +35,27 @@ export class AppComponent implements OnInit {
             this.router.navigate(['/login']);
         } else {
             this.router.navigate(['calendar-mes']);
-            this.cargarRoles();
-
-            this.dataService.getData()
-                .subscribe(data => {
-                    this.thereRequest = data;
-                });
         }
+        this.suscribeDataService();
     }
 
-    private cargarRoles(): void {
-        this.service.getRols(this.username)
+    private suscribeDataService(): void {
+        this.dataService.getData()
             .subscribe(data => {
-                this.roles = data;
-                this.isUser = this.hasRol('USUARIO');
-                this.isAdmin = this.hasRol('ADMINISTRADOR');
-                this.isEditor = this.hasRol('EDITOR');
+                if (data instanceof Array) {
+                    this.roles = data;
+                    this.isUser = this.hasRol('USUARIO');
+                    this.isAdmin = this.hasRol('ADMINISTRADOR');
+                    this.isEditor = this.hasRol('EDITOR');
+                } else {
+                    this.thereRequest = data;
+                }
+
+                this.username = localStorage.getItem('user') ?? '';
+                this.service.existsByUser(this.username)
+                    .subscribe(data => {
+                        this.thereRequest = data;
+                    });
             });
     }
 

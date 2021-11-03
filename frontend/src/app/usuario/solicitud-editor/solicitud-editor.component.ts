@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Solicitud } from 'src/app/model/solicitud';
 import { DataService } from 'src/app/service/data.service';
-import { UsuarioService } from 'src/app/service/usuario.service';
+import { SolicitudService } from 'src/app/service/solicitud.service';
 
 @Component({
     selector: 'app-solicitud-editor',
@@ -14,7 +14,7 @@ export class SolicitudEditorComponent implements OnInit {
     solicitud: Solicitud;
     textInfo: String = "";
 
-    constructor(private router: Router, private service: UsuarioService, private dataService: DataService) {
+    constructor(private router: Router, private service: SolicitudService, private dataService: DataService) {
         this.solicitud = new Solicitud();
     }
 

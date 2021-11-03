@@ -1,6 +1,7 @@
 package com.g4ts.agendaapp.service.db;
 
 import com.g4ts.agendaapp.model.SolicitudRolEditor;
+import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.repository.SolicitudRolEditorRepository;
 import com.g4ts.agendaapp.service.ISolicitudRolEditorService;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,10 @@ public class SolicitudRolEditorJpa implements ISolicitudRolEditorService {
     @Override
     public void deleteById(Integer id) {
         solicitudRepository.deleteById(id);
+    }
+
+    @Override
+    public Boolean existsByUsuario(Usuario usuario) {
+        return solicitudRepository.existsByUsuario(usuario);
     }
 }

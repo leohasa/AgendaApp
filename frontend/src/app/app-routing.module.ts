@@ -5,8 +5,6 @@ import { EditActividadComponent } from './actividad/edit-actividad/edit-activida
 import { ListActividadComponent } from './actividad/list-actividad/list-actividad.component';
 import { ManagerActividadRoutesComponent } from './actividad/manager-actividad-routes/manager-actividad-routes.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-dia.component';
-import { CalendarioMesComponent } from './calendario/calendario-mes/calendario-mes.component';
 import { AddCategoriaComponent } from './categoria/add-categoria/add-categoria.component';
 import { EditCategoriaComponent } from './categoria/edit-categoria/edit-categoria.component';
 import { ListCategoriaComponent } from './categoria/list-categoria/list-categoria.component';
@@ -20,15 +18,17 @@ import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recor
 import { AccessGuard } from './usuario/AccessGuard';
 import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
+import { AddPluginComponent } from './usuario/editor/add-plugin/add-plugin.component';
+import { AddPostComponent } from './usuario/editor/add-post/add-post.component';
+import { EditPluginComponent } from './usuario/editor/edit-plugin/edit-plugin.component';
+import { EditPostComponent } from './usuario/editor/edit-post/edit-post.component';
+import { ListPluginsComponent } from './usuario/editor/list-plugins/list-plugins.component';
+import { ListPostComponent } from './usuario/editor/list-post/list-post.component';
 import { ListSolicitudesComponent } from './usuario/list-solicitudes/list-solicitudes.component';
 import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
 import { LoginComponent } from './usuario/login/login.component';
 import { ManagerUserRoutesComponent } from './usuario/manager-user-routes/manager-user-routes.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
-
-
-
-import { TxtEditComponent } from './txt-edit/txt-edit.component';
 
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
@@ -37,8 +37,26 @@ const routes: Routes = [
         children: [
             {path: 'edit', component: EditUsuarioComponent},
             {path: 'userlist', component: ListUsuarioComponent},
-            {path: 'solicitud', component: SolicitudEditorComponent},
+            {path: 'solicitud', component: SolicitudEditorComponent}
+        ]
+    },
+    {path: 'admin', component: ManagerUserRoutesComponent,
+        data: {requiresLogin: true, requiredRol: 'ADMINISTRADOR'},
+        canActivate: [AccessGuard],
+        children: [
             {path: 'solicitudes', component: ListSolicitudesComponent}
+        ]
+    },
+    {path: 'editor', component: ManagerUserRoutesComponent,
+        data: {requiresLogin: true, requiredRol: 'EDITOR'},
+        canActivate: [AccessGuard],
+        children: [
+            {path: 'pluginList', component: ListPluginsComponent},
+            {path: 'addPlugin', component: AddPluginComponent},
+            {path: 'editPlugin', component: EditPluginComponent},
+            {path: 'postList', component: ListPostComponent},
+            {path: 'addPost', component: AddPostComponent},
+            {path: 'editPost', component: EditPostComponent}
         ]
     },
     {path: 'proyecto', component:ManagerProjectRoutesComponent,
@@ -47,7 +65,7 @@ const routes: Routes = [
         children: [
             {path: 'add', component: AddProyectoComponent},
             {path: 'edit', component: EditProyectoComponent},
-            {path: 'list', component: ListProyectoComponent},
+            {path: 'list', component: ListProyectoComponent}
         ]
     },
     {path: 'actividad', component: ManagerActividadRoutesComponent,
@@ -56,7 +74,7 @@ const routes: Routes = [
         children: [
             {path: 'add', component: AddActividadComponent},
             {path: 'edit', component: EditActividadComponent},
-            {path: 'list', component: ListActividadComponent},
+            {path: 'list', component: ListActividadComponent}
         ]
     },
     {path: 'categoria', component: ManagerCategoryRoutesComponent,
@@ -65,14 +83,14 @@ const routes: Routes = [
         children: [
             {path: 'add', component: AddCategoriaComponent},
             {path: 'edit', component: EditCategoriaComponent},
-            {path: 'list', component: ListCategoriaComponent},
+            {path: 'list', component: ListCategoriaComponent}
         ]
     },
     {path: 'recordatorio', component: ManagerRecordatorioRoutesComponent,
         data: {requiresLogin: true, requiredRol: 'USUARIO'},
         canActivate: [AccessGuard],
         children: [
-            {path: 'list', component: ListRecordatorioComponent},
+            {path: 'list', component: ListRecordatorioComponent}
         ]
     },
     {path: 'calendar-mes', component: CalendarComponent},

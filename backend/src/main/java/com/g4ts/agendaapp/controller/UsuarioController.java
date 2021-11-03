@@ -25,14 +25,12 @@ public class UsuarioController {
     private IRolService rolService;
     private ICategoriaService categoriaService;
     private IProyectoService proyectoService;
-    private ISolicitudRolEditorService solicitudService;
 
     public UsuarioController(IUsuarioService usuarioService, IRolService rolService, ICategoriaService categoriaService, IProyectoService proyectoService, ISolicitudRolEditorService solicitudService) {
         this.usuarioService = usuarioService;
         this.rolService = rolService;
         this.categoriaService = categoriaService;
         this.proyectoService = proyectoService;
-        this.solicitudService = solicitudService;
     }
 
     @GetMapping("/list")
@@ -78,22 +76,5 @@ public class UsuarioController {
     public List<Rol> getRoles(@PathVariable String username) {
         Usuario usuario = Usuario.builder().username(username).build();
         return rolService.findAllByuser(usuario);
-    }
-
-    @GetMapping("/solicitudes")
-    public List<SolicitudRolEditor> getSolicitudes() {
-        return solicitudService.findAll();
-    }
-
-    @PostMapping("/addSolicitud")
-    public void addSolicitud(@RequestBody SolicitudRolEditor solicitud) {
-        solicitudService.save(solicitud);
-    }
-
-    @GetMapping("/newEditor/{id}")
-    public void aceptarSolicitudRol(@PathVariable Integer id) {
-        SolicitudRolEditor solicitud = solicitudService.findById(id);
-        rolService.save(Rol.builder().tipo("EDITOR").usuario(solicitud.getUsuario()).build());
-        solicitudService.deleteById(id);
     }
 }

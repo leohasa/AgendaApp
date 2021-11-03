@@ -41,6 +41,13 @@ import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.co
 import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
 import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
 import { DataService } from './service/data.service';
+import { ListPluginsComponent } from './usuario/editor/list-plugins/list-plugins.component';
+import { ListPostComponent } from './usuario/editor/list-post/list-post.component';
+import { AddPostComponent } from './usuario/editor/add-post/add-post.component';
+import { AddPluginComponent } from './usuario/editor/add-plugin/add-plugin.component';
+import { EditPluginComponent } from './usuario/editor/edit-plugin/edit-plugin.component';
+import { EditPostComponent } from './usuario/editor/edit-post/edit-post.component';
+import { SolicitudService } from './service/solicitud.service';
 
 @NgModule({
     declarations: [
@@ -72,7 +79,13 @@ import { DataService } from './service/data.service';
         ListSolicitudesComponent,
         ModalCalendarioComponent,
         ListRecordatorioComponent,
-        ManagerRecordatorioRoutesComponent
+        ManagerRecordatorioRoutesComponent,
+        ListPluginsComponent,
+        ListPostComponent,
+        AddPostComponent,
+        AddPluginComponent,
+        EditPluginComponent,
+        EditPostComponent
     ],
     imports: [
         BrowserModule,
@@ -89,6 +102,7 @@ import { DataService } from './service/data.service';
         ActividadService,
         AccessGuard,
         ForoService,
+        SolicitudService,
         DataService
     ],
     bootstrap: [AppComponent]

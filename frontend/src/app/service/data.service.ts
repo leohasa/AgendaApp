@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class DataService {
 
-    private data = new Subject();
+    private data = new Subject<any>();
 
     getData(): Observable<any> {
         return this.data;
