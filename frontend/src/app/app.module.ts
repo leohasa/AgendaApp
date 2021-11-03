@@ -48,6 +48,8 @@ import { AddPluginComponent } from './usuario/editor/add-plugin/add-plugin.compo
 import { EditPluginComponent } from './usuario/editor/edit-plugin/edit-plugin.component';
 import { EditPostComponent } from './usuario/editor/edit-post/edit-post.component';
 import { SolicitudService } from './service/solicitud.service';
+import { PluginService } from './service/plugin.service';
+import { PostService } from './service/post.service';
 
 @NgModule({
     declarations: [
@@ -103,6 +105,8 @@ import { SolicitudService } from './service/solicitud.service';
         AccessGuard,
         ForoService,
         SolicitudService,
+        PluginService,
+        PostService,
         DataService
     ],
     bootstrap: [AppComponent]

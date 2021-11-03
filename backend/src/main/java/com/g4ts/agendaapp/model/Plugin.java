@@ -5,15 +5,11 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Proyecto")
+@Table(name = "Plugin")
 @Getter @Setter @ToString @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Plugin {
-
-
-    //comentario
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -50,7 +50,7 @@ export class AddProyectoComponent implements OnInit {
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();
     }
-    
+
     private eventModal(){
         document.getElementById('modalInfo')?.addEventListener('hidden.bs.modal', ()=> {
             this.backList();

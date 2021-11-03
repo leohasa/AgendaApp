@@ -21,7 +21,12 @@ export class AppComponent implements OnInit {
     thereRequest: boolean;
 
 
-    constructor(private router: Router, private dataService: DataService, private service: SolicitudService) {
+    constructor(
+        private router: Router,
+        private dataService: DataService,
+        private service: SolicitudService,
+        private userService: UsuarioService
+    ) {
         this.roles = new Array();
         this.username = '';
         this.isUser = true;
@@ -34,9 +39,19 @@ export class AppComponent implements OnInit {
         if (!localStorage.getItem('user')) {
             this.router.navigate(['/login']);
         } else {
+            this.username = localStorage.getItem('user') ?? '';
+            this.cargarRoles();
             this.router.navigate(['calendar-mes']);
         }
         this.suscribeDataService();
+    }
+
+    private cargarRoles(): void {
+        this.userService.getRols(this.username)
+            .subscribe(data => {
+                this.roles = data;
+                this.verificarRoles();
+            });
     }
 
     private suscribeDataService(): void {
@@ -44,9 +59,7 @@ export class AppComponent implements OnInit {
             .subscribe(data => {
                 if (data instanceof Array) {
                     this.roles = data;
-                    this.isUser = this.hasRol('USUARIO');
-                    this.isAdmin = this.hasRol('ADMINISTRADOR');
-                    this.isEditor = this.hasRol('EDITOR');
+                    this.verificarRoles();
                 } else {
                     this.thereRequest = data;
                 }
@@ -57,6 +70,12 @@ export class AppComponent implements OnInit {
                         this.thereRequest = data;
                     });
             });
+    }
+
+    private verificarRoles(): void {
+        this.isUser = this.hasRol('USUARIO');
+        this.isAdmin = this.hasRol('ADMINISTRADOR');
+        this.isEditor = this.hasRol('EDITOR');
     }
 
     editar() {

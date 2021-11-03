@@ -47,16 +47,22 @@ const routes: Routes = [
             {path: 'solicitudes', component: ListSolicitudesComponent}
         ]
     },
-    {path: 'editor', component: ManagerUserRoutesComponent,
+    {path: 'plugin', component: ManagerUserRoutesComponent,
         data: {requiresLogin: true, requiredRol: 'EDITOR'},
         canActivate: [AccessGuard],
         children: [
-            {path: 'pluginList', component: ListPluginsComponent},
-            {path: 'addPlugin', component: AddPluginComponent},
-            {path: 'editPlugin', component: EditPluginComponent},
-            {path: 'postList', component: ListPostComponent},
-            {path: 'addPost', component: AddPostComponent},
-            {path: 'editPost', component: EditPostComponent}
+            {path: 'list', component: ListPluginsComponent},
+            {path: 'add', component: AddPluginComponent},
+            {path: 'edit', component: EditPluginComponent}
+        ]
+    },
+    {path: 'post', component: ManagerUserRoutesComponent,
+        data: {requiresLogin: true, requiredRol: 'EDITOR'},
+        canActivate: [AccessGuard],
+        children: [
+            {path: 'list', component: ListPostComponent},
+            {path: 'add', component: AddPostComponent},
+            {path: 'edit', component: EditPostComponent}
         ]
     },
     {path: 'proyecto', component:ManagerProjectRoutesComponent,
