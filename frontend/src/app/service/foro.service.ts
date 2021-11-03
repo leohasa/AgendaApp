@@ -16,6 +16,7 @@ export class ForoService {
   }
   
   createPublicacion(publicacion : Publicacion){
+    console.log("Foro Service",publicacion)
     return this.http.post<Publicacion>(`${this.url}/add`, publicacion);
   }
   

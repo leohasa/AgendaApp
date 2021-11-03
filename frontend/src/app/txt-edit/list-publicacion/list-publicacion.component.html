@@ -3,35 +3,29 @@
         <div class="col-10">
             <div class="card my-4">
                 <div class="card-header">
-                
-                
-                
                     <h4>Publicaciones</h4>
                 </div>
                 <div class="card-body">
-                    
-                        
-                        
-                            <div *ngFor="let u of publicacion">
-                                {{u.titulo}}
-                                <div [innerHtml]='u.fechaPublicacion'></div>
-                                <div [innerHtml]='u.contenido'> otro -> {{u.contenido}}</div>
-                                {{u.puntuacion}}
-                                
-                                <!--td>
-                                    <button (click)="editar(u)" class="btn btn-warning">
-                                        <i class="fas fa-user-edit"></i> Editar
-                                    </button>&nbsp;
-                                    <button (click)="delete(u)" class="btn btn-danger">
-                                        <i class="fas fa-user-minus"></i> Eliminar
-                                    </button>
-                                </td-->
-                            </div>
-                        
-                    
+                    <table class="table table-hover table-sm" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Publicacion</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let u of publicacion">
+                            <tr >
+                                <td> {{u.fechaPublicacion}}</td>
+                                <td [innerHtml]='u.titulo +"<br>"+ u.contenido'>
+                                </td>
+                            </tr>
+                            <tr>
+                                <!--Aca deben ir los comentarios-->
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

@@ -1,20 +1,23 @@
 import { Categoria } from "./categoria";
 import { Proyecto } from "./proyecto";
+import { Usuario } from "./usuario";
 
 export class Actividad {
 
-    id: String;
+    id: string;
     proyecto: Proyecto;
     categoria: Categoria;
-    fechaInicio: String;
-    fechaFin: String;
-    titulo: String;
+    fechaInicio: string;
+    fechaFin: string;
+    titulo: string;
     descripcion: String;
-    estado: String;
+    estado: string = '1';
+    usuario:Usuario;
 
     constructor() {
         this.proyecto = new Proyecto();
         this.categoria = new Categoria();
+        this.usuario = new Usuario();
     }
 
 }

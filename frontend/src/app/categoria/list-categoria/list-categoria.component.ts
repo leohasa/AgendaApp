@@ -21,6 +21,7 @@ export class ListCategoriaComponent implements OnInit {
         let user: String = localStorage.getItem('user') ?? '';
         this.service.getCategorias(user)
             .subscribe(data => {
+                data = data.filter(cat => cat.id!=1);
                 this.categorias = data;
             });
     }

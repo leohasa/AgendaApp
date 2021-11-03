@@ -10,7 +10,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/foro")
-public class PublicacionController {
+public class PublicacionController {    
 
     private IPublicacionService publicacionService;
 
@@ -22,7 +22,7 @@ public class PublicacionController {
 
     @PostMapping("/add")
     public void save(@RequestBody Publicacion publicacion){
-        System.out.println("/add"+publicacion);
+        System.out.println("/add "+publicacion);
         System.out.println("Publicacion desde sprint "+ publicacion.getContenido());
 
 

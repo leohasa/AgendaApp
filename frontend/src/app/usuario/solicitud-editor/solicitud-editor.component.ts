@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Solicitud } from 'src/app/model/solicitud';
+import { DataService } from 'src/app/service/data.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class SolicitudEditorComponent implements OnInit {
     solicitud: Solicitud;
     textInfo: String = "";
 
-    constructor(private router: Router, private service: UsuarioService) {
+    constructor(private router: Router, private service: UsuarioService, private dataService: DataService) {
         this.solicitud = new Solicitud();
     }
 
@@ -25,6 +26,7 @@ export class SolicitudEditorComponent implements OnInit {
         this.solicitud.usuario.username = localStorage.getItem('user') ?? '';
         this.service.addSolicitud(this.solicitud)
             .subscribe(x => {
+                this.dataService.updateData(true);
                 this.showInfo('Solicitud enviada al administrador');
             });
     }

@@ -2,6 +2,7 @@ package com.g4ts.agendaapp.service.db;
 
 import com.g4ts.agendaapp.model.Actividad;
 import com.g4ts.agendaapp.model.Proyecto;
+import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.repository.ActividadRepository;
 import com.g4ts.agendaapp.service.IActividadService;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,10 @@ public class ActividadServiceJpa implements IActividadService {
     @Override
     public List<Actividad> findAllByProyecto(Proyecto proyecto) {
         return actividadRepository.findAllByProyecto(proyecto);
+    }
+
+    @Override
+    public List<Actividad> findAllByUsuario(Usuario usuario) {
+        return actividadRepository.findAllByUsuario(usuario);
     }
 }

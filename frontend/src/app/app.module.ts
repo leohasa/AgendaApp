@@ -30,16 +30,21 @@ import { ManagerActividadRoutesComponent } from './actividad/manager-actividad-r
 import { CalendarioMesComponent } from './calendario/calendario-mes/calendario-mes.component';
 import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-dia.component';
 import { ModalComponent } from './modal/modal.component';
-
 import { CalendarComponent } from './calendar/calendar.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
 import { ListSolicitudesComponent } from './usuario/list-solicitudes/list-solicitudes.component';
-
 import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { ForoService } from './service/foro.service';
 import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
+
 import { PerfilComponent } from './usuario/perfil/perfil.component';
+
+
+import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.component';
+import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
+import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
+import { DataService } from './service/data.service';
 
 
 @NgModule({
@@ -70,7 +75,10 @@ import { PerfilComponent } from './usuario/perfil/perfil.component';
         TxtEditComponent,
         ListPublicacionComponent,
         ListSolicitudesComponent,
-        PerfilComponent
+        PerfilComponent,
+        ModalCalendarioComponent,
+        ListRecordatorioComponent,
+        ManagerRecordatorioRoutesComponent
     ],
     imports: [
         BrowserModule,
@@ -86,7 +94,8 @@ import { PerfilComponent } from './usuario/perfil/perfil.component';
         ProyectoService,
         ActividadService,
         AccessGuard,
-        ForoService
+        ForoService,
+        DataService
     ],
     bootstrap: [AppComponent]
 })

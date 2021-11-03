@@ -3,9 +3,6 @@ import { Router } from '@angular/router';
 import { Publicacion } from 'src/app/model/publicacion';
 import { ForoService } from 'src/app/service/foro.service';
 import { SharehtmlService } from 'src/app/service/sharehtml.service';
-//import { EventEmitter } from 'stream';
-//import { Popover } from './node_modules/bootstrap/dist/js/bootstrap.esm.min.js';
-//import { Popover } from '../../../../node_modules/bootstrap/dist/js/bootstrap.esm.min.js';
 
 
 @Component({
@@ -15,31 +12,33 @@ import { SharehtmlService } from 'src/app/service/sharehtml.service';
 })
 export class PerfilComponent implements OnInit {
 
-  //@Output() voted = new EventEmitter<boolean>();
-  //@Output() publicacionOut = new EventEmitter<Publicacion>();
-  ;
-  //@Input() titulo:string;
+  @Input() expression: string = '';
+  
+  message: string = "";
 
-
-  //constructor(private router:Router,private service: ForoService) { }
-  constructor(private router:Router, private service: ForoService,private serviceShare : SharehtmlService){}
+  constructor(private router: Router, private service: ForoService, private shareService: SharehtmlService) {  }
 
   ngOnInit(): void {
+    this.shareService.txtHead.emit("Informacion Basica");
     
-    this.serviceShare.data.subscribe(data => {console.log("Recibiendo data "+data)});
+    this.shareService.data
+      .subscribe(valueTransfer => {
+
+        this.service.createPublicacion(valueTransfer).subscribe(x => {
+          
+          this.shareService.message.subscribe((value)=>{
+            this.expression =  value;    
+            this.shareService.expression.emit(this.expression);
+            
+          });  
+          
+          this.shareService.update.emit(true);
+          this.service.getPublicaciones();
+        });
+
+      });
   }
 
-  onSave():void{
-    console.log("prueba");
-  }
-  
-  getData(mensaje: Publicacion):void{
-    
-    console.log("getData");
-    
-    this.service.createPublicacion(mensaje)
-    .subscribe(x=>{console.log("Desde el subscribe"+mensaje.contenido);
-                   });
-  }
+
 
 }

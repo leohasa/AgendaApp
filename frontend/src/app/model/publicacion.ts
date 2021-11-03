@@ -7,7 +7,8 @@ export class Publicacion {
     constructor (){
         this.usuario = new Usuario();
     }
-
+    
+    
     id: string;
     titulo: string;
     contenido: string;//verificar si hay un tipo con mas grande

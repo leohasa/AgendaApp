@@ -3,7 +3,7 @@ import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_c
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Editor } from 'ngx-editor';
+import { Editor, Toolbar } from 'ngx-editor';
 import { Publicacion } from '../model/publicacion';
 import { ForoService } from '../service/foro.service';
 import { SharehtmlService } from '../service/sharehtml.service';
@@ -17,29 +17,67 @@ import { SharehtmlService } from '../service/sharehtml.service';
 export class TxtEditComponent implements OnInit {
 
   
-  //@Output() enviar: EventEmitter<any> = new EventEmitter<any>();
+  
   @Input() entrante:Publicacion = new Publicacion();
+  @Input() message : string = "";
   editor: Editor;
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
   html : '';
-  publicacion : Publicacion;
-  titulo : string = "";
-  htmlContent : string;
+  titulo : '';
+  
   
   
   constructor(private router:Router,private service: ForoService, private serviceShare : SharehtmlService) { }
 
   ngOnInit(): void {
-    this.publicacion = new Publicacion();
+    this.entrante = new Publicacion();
     this.editor = new Editor();
     this.html = '';
+    this.titulo = '';
     
+    this.editor.commands
+      .focus()
+      .scrollIntoView()
+      .toggleBold()
+      .exec();
+  }
+  onKey(event:any):void{
+    const inputValue = event.target.value;
+    this.titulo = inputValue;
   }
   sendData(){
-    console.log("send data");
-    this.entrante.titulo = this.titulo;
+    
+    
+    this.entrante.usuario.username = localStorage.getItem("username")??"";
+    this.entrante.titulo = "<h1>"+this.titulo+"<\h1>";
     this.entrante.contenido = this.html;
     
-    this.serviceShare.data.emit({ data:this.entrante });
+    if(!(this.html === "" && this.titulo === "")){
+      
+      this.serviceShare.data.emit( this.entrante );  
+      
+      this.html = "";
+      
+      this.message = "Publicacion procesada correctamente";
+      //document.getElementById("title_")?.nodeValue;
+      
+    }else{
+      this.message = "Debe Ingresar el Titulo y contenido de la publicacion"; 
+    }
+    this.serviceShare.message.emit(this.message);
+    
+    
+    
+    
     
   }
 }

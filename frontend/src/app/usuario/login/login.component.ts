@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
             if (user) {
                 localStorage.setItem('user', user.username.toString());
                 this.router.navigate(['/perfil']);
+                window.location.reload();
             } else {
                 this.showInfo('Credenciales incorrectas!');
             }

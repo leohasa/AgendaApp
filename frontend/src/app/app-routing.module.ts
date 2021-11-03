@@ -15,6 +15,8 @@ import { AddProyectoComponent } from './proyecto/add-proyecto/add-proyecto.compo
 import { EditProyectoComponent } from './proyecto/edit-proyecto/edit-proyecto.component';
 import { ListProyectoComponent } from './proyecto/list-proyecto/list-proyecto.component';
 import { ManagerProjectRoutesComponent } from './proyecto/manager-project-routes/manager-project-routes.component';
+import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
+import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
 import { AccessGuard } from './usuario/AccessGuard';
 import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
@@ -68,10 +70,21 @@ const routes: Routes = [
             {path: 'list', component: ListCategoriaComponent},
         ]
     },
+
     {path: 'perfil', component: PerfilComponent},
+
+    {path: 'recordatorio', component: ManagerRecordatorioRoutesComponent,
+        data: {requiresLogin: true, requiredRol: 'USUARIO'},
+        canActivate: [AccessGuard],
+        children: [
+            {path: 'list', component: ListRecordatorioComponent},
+        ]
+    },
+
     {path: 'calendar-mes', component: CalendarComponent},
     {path: 'register', component: AddUsuarioComponent},
-    {path: 'login', component: LoginComponent}
+    {path: 'login', component: LoginComponent},
+    {path: 'perfil', component: PerfilComponent}
 ];
 
 @NgModule({

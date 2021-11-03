@@ -21,7 +21,7 @@ ENGINE = InnoDB;
 -- Table Contacto
 -- -----------------------------------------------------
 CREATE TABLE Contacto (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   idUsuario VARCHAR(45) NOT NULL,
   item VARCHAR(45) NOT NULL,
   valor VARCHAR(60) NOT NULL,
@@ -130,15 +130,15 @@ ENGINE = InnoDB;
 -- Table Recordatorio
 -- -----------------------------------------------------
 CREATE TABLE Recordatorio (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   titulo VARCHAR(45) NOT NULL,
   descripcion VARCHAR(200) NOT NULL,
-  estado TINYINT NOT NULL,
-  fecha TIMESTAMP NOT NULL,
-  idUsuario VARCHAR(45) NOT NULL,
+  estado TINYINT NOT NULL,\
+  fecha TIMESTAMP NULL,
+  idUsuario VARCHAR(45),
   PRIMARY KEY (id),
-  INDEX fk_Recordatorio_Usuario1_idx (idUsuario ASC) VISIBLE,
-  CONSTRAINT fk_Recordatorio_Usuario1
+  INDEX fk_Recordatorio_Usuario_idx (idUsuario ASC) VISIBLE,
+  CONSTRAINT fk_Recordatorio_Usuario
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
     ON DELETE RESTRICT
@@ -163,6 +163,7 @@ CREATE TABLE Post (
   id INT NOT NULL AUTO_INCREMENT,
   idPlugin INT NOT NULL,
   contenido LONGBLOB NOT NULL,
+  fecha TIMESTAMP NOT NULL,
   PRIMARY KEY (id),
   INDEX fk_Post_Plugin2_idx (idPlugin ASC) VISIBLE,
   CONSTRAINT fk_Post_Plugin2
@@ -281,7 +282,11 @@ CREATE TABLE SolicitudRolEditor (
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;
 
-    
-INSERT INTO `Usuario` VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
 
-INSERT INTO `Rol` VALUES (1,'USUARIO','admin');
+INSERT INTO `Usuario` VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
+INSERT INTO `Usuario` VALUES ('user','123','Admin','1998-09-04','GT','Student',NULL);
+INSERT INTO `Usuario` VALUES ('editor','123','Admin','1998-09-04','GT','Student',NULL);
+
+INSERT INTO `Rol` VALUES (1,'ADMINISTRADOR','admin');
+INSERT INTO `Rol` VALUES (2,'USUARIO','user');
+INSERT INTO `Rol` VALUES (3,'EDITOR','editor');
