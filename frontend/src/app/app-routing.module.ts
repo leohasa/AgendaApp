@@ -99,7 +99,7 @@ const routes: Routes = [
             {path: 'list', component: ListRecordatorioComponent}
         ]
     },
-    {path: 'calendar-mes', component: CalendarComponent},
+    {path: 'calendar-mes', component: CalendarComponent, data: {requiresLogin: true, requiredRol: 'USUARIO'}, canActivate: [AccessGuard]},
     {path: 'register', component: AddUsuarioComponent},
     {path: 'login', component: LoginComponent}
 ];

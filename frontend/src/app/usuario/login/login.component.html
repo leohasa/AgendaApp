@@ -1,30 +1,33 @@
 <div id="bg">
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <div class="login-form bg-light mt-5 p-4">
-                <form class="row g-3" (ngSubmit)="onSubmit()" #loginForm="ngForm">
-                    <h3><strong>Bienvenido</strong></h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 text-dark">
+                <div class="login-form bg-light mt-5 p-4">
+                    <form class="row g-3" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+                        <h3><strong>Bienvenido</strong></h3>
+                        <div class="col-12">
+                            <label>Nombre de usuario</label>
+                            <input [(ngModel)]="usuario.username" type="text" name="username" class="form-control bg-white text-black"
+                                placeholder="Username">
+                        </div>
+                        <div class="col-12">
+                            <label>Contraseña</label>
+                            <input [(ngModel)]="usuario.password" type="password" name="password" class="form-control bg-white text-black"
+                                placeholder="Password">
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-dark float-end">Iniciar sesion</button>
+                        </div>
+                    </form>
+                    <hr class="mt-4">
                     <div class="col-12">
-                        <label>Nombre de usuario</label>
-                        <input [(ngModel)]="usuario.username" type="text" name="username" class="form-control" placeholder="Username">
+                        <p class="text-center mb-0">No tienes una cuenta? <a routerLink="register"
+                                (click)="registrar()" class="text-info"><strong>Registrate!</strong></a></p>
                     </div>
-                    <div class="col-12">
-                        <label>Contraseña</label>
-                        <input [(ngModel)]="usuario.password" type="password" name="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-dark float-end">Iniciar sesion</button>
-                    </div>
-                </form>
-                <hr class="mt-4">
-                <div class="col-12">
-                    <p class="text-center mb-0">No tienes una cuenta? <a routerLink="register" (click)="registrar()">Registrate!</a></p>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <app-modal>{{textInfo}}</app-modal>

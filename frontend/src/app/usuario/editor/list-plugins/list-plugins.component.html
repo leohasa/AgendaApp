@@ -7,7 +7,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid col-md-8">
+<div class="container-fluid col-md-4">
     <div class="row">
         <div class="col">
             <div class="card my-4">
@@ -20,6 +20,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
+                                <th></th>
                         </thead>
                         <tbody>
                             <tr *ngFor="let p of plugins; let i = index">
@@ -32,7 +33,7 @@
                                     <button (click)="delete(p)" class="btn btn-danger">
                                         <i class="fas fa-trash-alt"></i> Eliminar
                                     </button>&nbsp;
-                                    <button (click)="verPosts(p)" class="btn btn-secondary">
+                                    <button (click)="verPosts(p)" class="btn btn-info">
                                         <i class="fas fa-eye"></i> Ver posts
                                     </button>
                                 </td>

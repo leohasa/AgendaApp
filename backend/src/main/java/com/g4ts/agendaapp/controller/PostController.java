@@ -1,5 +1,6 @@
 package com.g4ts.agendaapp.controller;
 
+import com.g4ts.agendaapp.model.Plugin;
 import com.g4ts.agendaapp.model.Post;
 import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.service.IPostService;
@@ -23,9 +24,12 @@ public class PostController {
         return postService.findAll();
     }
 
-    @GetMapping("/listByUser/{username}")
-    public List<Post> listByUser(@PathVariable String username) {
-        return postService.findAllByUser(Usuario.builder().username(username).build());
+    @GetMapping("/listByUserAndPlugin/{id}/{username}")
+    public List<Post> listByUser(
+           @PathVariable Integer id, @PathVariable String username) {
+        Usuario usuario = Usuario.builder().username(username).build();
+        Plugin plugin = Plugin.builder().id(id).build();
+        return postService.findAllByUserAndPlugin(usuario, plugin);
     }
 
     @PostMapping("/add")

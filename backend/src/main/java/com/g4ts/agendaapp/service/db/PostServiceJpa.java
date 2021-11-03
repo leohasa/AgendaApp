@@ -1,5 +1,6 @@
 package com.g4ts.agendaapp.service.db;
 
+import com.g4ts.agendaapp.model.Plugin;
 import com.g4ts.agendaapp.model.Post;
 import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.repository.PostRepository;
@@ -40,7 +41,7 @@ public class PostServiceJpa implements IPostService {
     }
 
     @Override
-    public List<Post> findAllByUser(Usuario usuario) {
-        return postRepository.findAllByUsuario(usuario);
+    public List<Post> findAllByUserAndPlugin(Usuario usuario, Plugin plugin) {
+        return postRepository.findAllByUsuarioAndPlugin(usuario, plugin);
     }
 }

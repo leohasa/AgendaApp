@@ -15,8 +15,8 @@ export class PostService {
         return this.http.get<Post[]>(`${this.url}/list`);
     }
 
-    getAllByuser(username: string) {
-        return this.http.get<Post[]>(`${this.url}/listByUser/${username}`);
+    getAllByUserAndPlugin(username: string, id: string) {
+        return this.http.get<Post[]>(`${this.url}/listByUserAndPlugin/${id}/${username}`);
     }
 
     create(post: Post) {

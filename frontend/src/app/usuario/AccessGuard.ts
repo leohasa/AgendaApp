@@ -14,7 +14,6 @@ export class AccessGuard implements CanActivate {
         const requiredRol = route.data.requiredRol;
         if (requiresLogin) {
             if (!localStorage.getItem('user')) {
-                alert('Debe iniciar sesion primero');
                 this.router.navigate(['/login']);
             } else {
                 const username: String = localStorage.getItem('user') ?? '';
