@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Directive, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ComentarioComponent } from 'src/app/comentario/comentario.component';
 import { Publicacion } from 'src/app/model/publicacion';
 import { ForoService } from 'src/app/service/foro.service';
 import { SharehtmlService } from 'src/app/service/sharehtml.service';
+
 
 @Component({
   selector: 'app-list-publicacion',
   templateUrl: './list-publicacion.component.html',
   styleUrls: ['./list-publicacion.component.css']
+  
 })
+
 export class ListPublicacionComponent implements OnInit {
 
   publicacion : Publicacion[];
@@ -27,12 +31,31 @@ export class ListPublicacionComponent implements OnInit {
   }
 
   getPublicaciones(){
-    this.service.getPublicaciones()
+    var user = localStorage.getItem("user")??"";
+    this.service.getPublicaciones(user)
         .subscribe(data => {
           this.publicacion = data;
-          this.publicacion.forEach(element => {
-            console.log("cargando publicaciones "+element);
-          });
         });
+  }
+  aumentar(publicacion:Publicacion){
+    this.changePuntuacion(publicacion,true);
+    
+  }
+  
+  disminuir(publicacion:Publicacion){
+    this.changePuntuacion(publicacion,false);
+  }
+  
+  changePuntuacion(publicacion:Publicacion,aumento:Boolean){
+    
+    var cadena = publicacion.puntuacion;
+    var puntuacion :number = +cadena;
+    
+    puntuacion = aumento? ++puntuacion:--puntuacion;
+    
+    
+    publicacion.puntuacion = ""+puntuacion;
+    this.shareService.aumentar.emit(publicacion);
+    
   }
 }

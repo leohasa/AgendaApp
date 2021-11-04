@@ -55,8 +55,7 @@ export class TxtEditComponent implements OnInit {
     this.titulo = inputValue;
   }
   sendData(){
-    
-    
+  
     this.entrante.usuario.username = localStorage.getItem("username")??"";
     this.entrante.titulo = "<h1>"+this.titulo+"<\h1>";
     this.entrante.contenido = this.html;
@@ -68,11 +67,13 @@ export class TxtEditComponent implements OnInit {
       this.html = "";
       
       this.message = "Publicacion procesada correctamente";
-      //document.getElementById("title_")?.nodeValue;
       
     }else{
+      
       this.message = "Debe Ingresar el Titulo y contenido de la publicacion"; 
+      
     }
+    
     this.serviceShare.message.emit(this.message);
     
     

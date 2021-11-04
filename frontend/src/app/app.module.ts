@@ -45,6 +45,7 @@ import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.co
 import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
 import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
 import { DataService } from './service/data.service';
+import { ComentarioComponent } from './comentario/comentario.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { DataService } from './service/data.service';
         PerfilComponent,
         ModalCalendarioComponent,
         ListRecordatorioComponent,
-        ManagerRecordatorioRoutesComponent
+        ManagerRecordatorioRoutesComponent,
+        ComentarioComponent
     ],
     imports: [
         BrowserModule,

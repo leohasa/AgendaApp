@@ -11,6 +11,7 @@ export class SharehtmlService {
   @Output() message : EventEmitter<string>  = new EventEmitter<string>();
   @Output() update : EventEmitter<Boolean>  = new EventEmitter<Boolean>();
   @Output() txtHead : EventEmitter<string>  = new EventEmitter<string>();
+  @Output() aumentar : EventEmitter<Publicacion>  = new EventEmitter<Publicacion>();
   constructor() { }
   
 }

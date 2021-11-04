@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Publicacion } from 'src/app/model/publicacion';
@@ -13,12 +14,22 @@ import { SharehtmlService } from 'src/app/service/sharehtml.service';
 export class PerfilComponent implements OnInit {
 
   @Input() expression: string = '';
+  @Input() aumentar: Boolean = false;
   
   message: string = "";
 
   constructor(private router: Router, private service: ForoService, private shareService: SharehtmlService) {  }
 
   ngOnInit(): void {
+    this.shareService.aumentar.subscribe(x=>{
+      console.log("Aumentar: ",x);
+      this.service.editPublicacion(x)
+          .subscribe(()=>{
+            
+                          console.log("Actualizar puntuacion en ffrontend",x)});
+      
+    })
+    
     this.shareService.txtHead.emit("Informacion Basica");
     
     this.shareService.data
@@ -33,7 +44,7 @@ export class PerfilComponent implements OnInit {
           });  
           
           this.shareService.update.emit(true);
-          this.service.getPublicaciones();
+          this.service.getPublicaciones(localStorage.getItem("user")??"");
         });
 
       });
