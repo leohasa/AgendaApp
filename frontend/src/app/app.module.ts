@@ -27,8 +27,6 @@ import { ManagerUserRoutesComponent } from './usuario/manager-user-routes/manage
 import { ManagerProjectRoutesComponent } from './proyecto/manager-project-routes/manager-project-routes.component';
 import { ManagerCategoryRoutesComponent } from './categoria/manager-category-routes/manager-category-routes.component';
 import { ManagerActividadRoutesComponent } from './actividad/manager-actividad-routes/manager-actividad-routes.component';
-import { CalendarioMesComponent } from './calendario/calendario-mes/calendario-mes.component';
-import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-dia.component';
 import { ModalComponent } from './modal/modal.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
@@ -71,8 +69,6 @@ import { PostService } from './service/post.service';
         ManagerProjectRoutesComponent,
         ManagerCategoryRoutesComponent,
         ManagerActividadRoutesComponent,
-        CalendarioMesComponent,
-        CalendarioDiaComponent,
         ModalComponent,
         CalendarComponent,
         SolicitudEditorComponent,
