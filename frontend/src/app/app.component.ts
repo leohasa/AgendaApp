@@ -41,7 +41,8 @@ export class AppComponent implements OnInit {
         } else {
             this.username = localStorage.getItem('user') ?? '';
             this.cargarRoles();
-            this.router.navigate(['calendar-mes']);
+            // this.router.navigate(['calendar-mes']);
+            this.router.navigate(['perfil']);
         }
         this.suscribeDataService();
     }

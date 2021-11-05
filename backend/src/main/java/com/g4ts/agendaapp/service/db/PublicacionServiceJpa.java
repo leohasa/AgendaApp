@@ -30,6 +30,11 @@ public class PublicacionServiceJpa implements IPublicacionService {
     }
 
     @Override
+    public List<Publicacion> findByUsuarioOrderByFechaPublicacionDesc(Usuario usuario) {
+        return  publicacionRepository.findByUsuarioOrderByFechaPublicacionDesc(usuario);
+    }
+
+    @Override
     public void save(Publicacion publicacion) {
         publicacionRepository.save(publicacion);
     }

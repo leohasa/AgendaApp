@@ -35,6 +35,10 @@ import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { ForoService } from './service/foro.service';
 import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
+
+import { PerfilComponent } from './usuario/perfil/perfil.component';
+
+
 import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.component';
 import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
 import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
@@ -48,6 +52,7 @@ import { EditPostComponent } from './usuario/editor/edit-post/edit-post.componen
 import { SolicitudService } from './service/solicitud.service';
 import { PluginService } from './service/plugin.service';
 import { PostService } from './service/post.service';
+import { ComentarioComponent } from './comentario/comentario.component';
 
 @NgModule({
     declarations: [
@@ -75,6 +80,7 @@ import { PostService } from './service/post.service';
         TxtEditComponent,
         ListPublicacionComponent,
         ListSolicitudesComponent,
+        PerfilComponent,
         ModalCalendarioComponent,
         ListRecordatorioComponent,
         ManagerRecordatorioRoutesComponent,
@@ -83,7 +89,8 @@ import { PostService } from './service/post.service';
         AddPostComponent,
         AddPluginComponent,
         EditPluginComponent,
-        EditPostComponent
+        EditPostComponent,
+        ComentarioComponent
     ],
     imports: [
         BrowserModule,

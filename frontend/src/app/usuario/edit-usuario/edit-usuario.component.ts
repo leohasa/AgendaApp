@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import flatpickr from 'flatpickr';
 import { Spanish } from 'flatpickr/dist/l10n/es';
 import { Usuario } from 'src/app/model/usuario';
+import { SharehtmlService } from 'src/app/service/sharehtml.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
@@ -14,14 +15,25 @@ export class EditUsuarioComponent implements OnInit {
 
     usuario: Usuario;
     textInfo:string = "";
+    txtHead: string = "";
 
-    constructor(private router: Router, private service: UsuarioService) {
+    constructor(private router: Router, private service: UsuarioService,private serviceShare : SharehtmlService) {
         this.usuario = new Usuario();
+        
     }
 
     ngOnInit(): void {
+        this.txtHead = "Editar informacion";
+        
+        this.serviceShare.txtHead
+            .subscribe(x => {this.txtHead = "Informacion Basica"; console.log("ENviando datos txthead",this.txtHead)});
+        
+        this.serviceShare.expression
+            .subscribe( value => {
+                this.showInfo(value);
+            });
         this.getUser();
-        this.eventModal();
+            this.eventModal();
     }
 
     getUser() {
@@ -43,7 +55,7 @@ export class EditUsuarioComponent implements OnInit {
     }
 
     backList() {
-        this.router.navigate(['/calendar-mes']);
+        this.router.navigate(['/perfil']);
     }
 
     private showInfo(info:string){

@@ -29,6 +29,9 @@ import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.compon
 import { LoginComponent } from './usuario/login/login.component';
 import { ManagerUserRoutesComponent } from './usuario/manager-user-routes/manager-user-routes.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
+import { TxtEditComponent } from './txt-edit/txt-edit.component';
+import { PerfilComponent } from './usuario/perfil/perfil.component';
+import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
 
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
@@ -92,6 +95,9 @@ const routes: Routes = [
             {path: 'list', component: ListCategoriaComponent}
         ]
     },
+
+    {path: 'perfil', component: PerfilComponent},
+
     {path: 'recordatorio', component: ManagerRecordatorioRoutesComponent,
         data: {requiresLogin: true, requiredRol: 'USUARIO'},
         canActivate: [AccessGuard],
@@ -101,7 +107,8 @@ const routes: Routes = [
     },
     {path: 'calendar-mes', component: CalendarComponent, data: {requiresLogin: true, requiredRol: 'USUARIO'}, canActivate: [AccessGuard]},
     {path: 'register', component: AddUsuarioComponent},
-    {path: 'login', component: LoginComponent}
+    {path: 'login', component: LoginComponent},
+    {path: 'perfil', component: PerfilComponent}
 ];
 
 @NgModule({

@@ -3,18 +3,22 @@
 
 <div class="input-group input-group-lg">
   <span class="input-group-text" id="inputGroup-sizing-lg">Titulo</span>
-  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+  <input type="text"  id="title_" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" (keyup)="onKey($event)">
 </div>
+
 <br>
     <div class="NgxEditor__Wrapper">
-        <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
         <ngx-editor
           [editor]="editor"
-          [(ngModel)]="html"  
+          [(ngModel)]="html"
           [disabled]="false"
           [placeholder]="'Publicaciones...'"
         ></ngx-editor>
       </div>
+      <br>
+      
+      <button type="button" (click)="sendData()" class="btn btn-primary">Publicar</button>
       
       
       

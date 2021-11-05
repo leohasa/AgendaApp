@@ -1,37 +1,23 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-10">
-            <div class="card my-4">
-                <div class="card-header">
-                
-                <div [innerHtml]='prueba'></div>
-                
-                    <h4>Publicaciones</h4>
-                </div>
-                <div class="card-body">
-                    
-                        
-                        
-                            <div *ngFor="let u of publicacion">
-                                {{u.titulo}}
-                                {{u.fechaPublicacion}}
-                                <div [innerHtml]='u.contenido'> otro -> {{u.contenido}}</div>
-                                {{u.puntuacion}}
-                                
-                                <!--td>
-                                    <button (click)="editar(u)" class="btn btn-warning">
-                                        <i class="fas fa-user-edit"></i> Editar
-                                    </button>&nbsp;
-                                    <button (click)="delete(u)" class="btn btn-danger">
-                                        <i class="fas fa-user-minus"></i> Eliminar
-                                    </button>
-                                </td-->
-                            </div>
-                        
-                    
-                </div>
-            </div>
+<div *ngFor="let u of publicacion">
+    <div class="card text-center">
+        <div class="card-header" [innerHtml]="u.fechaPublicacion">
         </div>
-    </div>
-</div>
+        <div class="card-body">
+        
+            <h5 class="card-title" [innerHtml]="u.titulo"></h5>
+            <p class="card-text" [innerHtml]="u.contenido"></p>
+        
+            <a  (click)="aumentar(u)" class="btn btn-primary"><i class="fas fa-triangle"></i></a>
+            <a  (click)="disminuir(u)" class="btn btn-light"><i class="fas fa-triangle fa-rotate-180"></i></a>
+            
+            <p>{{u.puntuacion}}</p>
+        </div>
+        <div class="card-footer text-muted">
+        
+            <app-comentario [commentarioPublicacion]="u.id" ></app-comentario>
+            
+        </div>
 
+    </div>
+    <br>
+</div>

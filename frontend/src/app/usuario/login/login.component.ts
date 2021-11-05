@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
                     this.service.getRols(user.username)
                         .subscribe(data => {
                             this.dataService.updateData(data);
-                            this.router.navigate(['/calendar-mes']);
+                            this.router.navigate(['/perfil']);
                         });
                 } else {
                     this.showInfo('Credenciales incorrectas!');
