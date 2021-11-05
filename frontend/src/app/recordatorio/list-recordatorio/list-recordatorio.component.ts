@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recordatorio } from 'src/app/model/recordatorio';
+import { NotificacionService } from 'src/app/service/notificacion.service';
 import { RecordatorioService } from 'src/app/service/recordatorio.service';
 
 @Component({
@@ -12,7 +13,10 @@ export class ListRecordatorioComponent implements OnInit {
   textInfo:string = "";
   recordatorios:Array<Recordatorio>;
 
-  constructor(private servicioRecordatorio:RecordatorioService) {
+  constructor(
+      private servicioRecordatorio:RecordatorioService,
+      private servicioNotificacion:NotificacionService
+    ) {
     this.recordatorios = new Array();
   }
 
@@ -29,6 +33,7 @@ export class ListRecordatorioComponent implements OnInit {
     .subscribe(data => {
         this.recordatorios = this.recordatorios.filter(r => r != recordatorio);
         this.showInfo('Recordatorio eliminado');
+        this.servicioNotificacion.updateNotificaciones(true);
     });
   }
 

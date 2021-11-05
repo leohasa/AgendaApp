@@ -41,6 +41,8 @@ import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.co
 import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
 import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
 import { DataService } from './service/data.service';
+import { RecordatorioService } from './service/recordatorio.service';
+import { NotificacionService } from './service/notificacion.service';
 
 @NgModule({
     declarations: [
@@ -89,7 +91,9 @@ import { DataService } from './service/data.service';
         ActividadService,
         AccessGuard,
         ForoService,
-        DataService
+        DataService,
+        RecordatorioService,
+        NotificacionService
     ],
     bootstrap: [AppComponent]
 })

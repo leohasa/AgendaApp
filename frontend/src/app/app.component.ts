@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Recordatorio } from './model/recordatorio';
 import { Rol } from './model/rol';
 import { DataService } from './service/data.service';
+import { NotificacionService } from './service/notificacion.service';
 import { RecordatorioService } from './service/recordatorio.service';
 import { UsuarioService } from './service/usuario.service';
 
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit {
         private router: Router, 
         private service: UsuarioService, 
         private dataService: DataService,
-        private recordatorioService:RecordatorioService
+        private recordatorioService:RecordatorioService,
+        private notificacionService:NotificacionService
         ) {
         this.username = localStorage.getItem('user') ?? '';
         this.roles = new Array();
@@ -50,7 +52,7 @@ export class AppComponent implements OnInit {
                     this.thereRequest = data;
                 });
         }
-        this.updateNotificaciones();
+        this.observarNotificaciones();
     }
 
     private cargarRoles(): void {
@@ -93,6 +95,13 @@ export class AppComponent implements OnInit {
         let user = localStorage.getItem('user') ?? '';
         this.recordatorioService.getRecordatoriosPorFecha(user).subscribe(data=>{
             this.recordatorios = data;
+        });
+    }
+
+    observarNotificaciones():void{
+        this.updateNotificaciones();
+        this.notificacionService.getUpdateNotificaciones().subscribe(data=>{
+            this.updateNotificaciones();
         });
     }
 }

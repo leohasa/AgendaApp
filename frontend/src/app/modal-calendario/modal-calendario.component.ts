@@ -10,6 +10,7 @@ import { CategoriaService } from '../service/categoria.service';
 import { ProyectoService } from '../service/proyecto.service';
 import { RecordatorioService } from '../service/recordatorio.service';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
+import { NotificacionService } from '../service/notificacion.service';
 
 @Component({
   selector: 'app-modal-calendario',
@@ -27,7 +28,9 @@ export class ModalCalendarioComponent implements OnInit {
     private recordatorioService:RecordatorioService,
     private actividadService:ActividadService,
     private categoriaService:CategoriaService,
-    private proyectoService:ProyectoService) {
+    private proyectoService:ProyectoService,
+    private notificacionService:NotificacionService
+    ) {
     this.actividad = new Actividad();
     this.actividad.proyecto;
     this.recordatorio = new Recordatorio();
@@ -78,7 +81,9 @@ export class ModalCalendarioComponent implements OnInit {
 
   public createReminder():void{
     this.recordatorio.usuario.username = localStorage.getItem('user') ?? '';
-    this.recordatorioService.create(this.recordatorio).subscribe(data => {});
+    this.recordatorioService.create(this.recordatorio).subscribe(data => {
+      this.notificacionService.updateNotificaciones(true);
+    });
   }
    
 
