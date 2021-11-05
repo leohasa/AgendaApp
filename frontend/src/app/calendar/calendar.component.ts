@@ -12,7 +12,8 @@ declare var bootstrap: any;
 })
 export class CalendarComponent implements OnInit {
 
-	activities: ({ date: Date, activity: Actividad })[];
+	outputDate: Date;
+	activities: ({ start: Date, end: Date, activity: Actividad })[];
 	moon: any;
 	label: string;
 	year: number;
@@ -56,18 +57,20 @@ export class CalendarComponent implements OnInit {
 		this.label = `${this.months[this.month]} ${this.year}`;
 		this.activities = [];
 		this.day_number = 1;
+		this.outputDate = new Date();
 	}
 
 	ngOnInit(): void {
 		this.moon = new Moon(document.querySelector("#ex1"));
-		this.service.getAll()
-		.subscribe(data => {
-			this.activities = data.map(a => {
-				const date = new Date(Date.parse(a.fechaInicio) + 21600000); /* 21600000 = 3600 * 6 * 1000 */
-				return { date: date, activity: a };
+		this.service.getByUser(localStorage.getItem('user') ?? '')
+			.subscribe(data => {
+				this.activities = data.map(a => {
+					const start = new Date(Date.parse(a.fechaInicio) + 21600000); /* 21600000 = 3600 * 6 * 1000 */
+					const end = new Date(Date.parse(a.fechaFin) + 108000000); /* 21600000 + 1day */
+					return { start: start, end: end, activity: a };
+				});
+				this.switchMonth(undefined, new Date().getMonth(), new Date().getFullYear());
 			});
-			this.switchMonth(undefined, new Date().getMonth(), new Date().getFullYear());
-		});
 	}
 
 	switchMonth(next:boolean | undefined, month:number | undefined, year:number | undefined) {
@@ -78,7 +81,12 @@ export class CalendarComponent implements OnInit {
 
 	createCal(year:number, month:number) {
 		/* actividades del mes */
-		const activities1 = this.activities.filter(a => a.date.getFullYear() === year && a.date.getMonth() === month);
+		const tmp = new Date();
+		tmp.setFullYear(year);
+		tmp.setMonth(month);
+		// tmp.setHours(0);
+		// tmp.setMinutes(0);
+		// tmp.setSeconds(0);
 
 		this.label = `${this.months[month]} ${year}`;
 		let day = 1;
@@ -118,11 +126,41 @@ export class CalendarComponent implements OnInit {
 					td.innerHTML = '';
 					if(i < calendar.length) {
 						if(calendar[i][j] !== undefined) {
-							td.innerHTML = `<span class="badge bg-light text-dark fs-6">${calendar[i][j]}</span>`;
-							this.renderActivities(td, calendar[i][j], activities1);
+							tmp.setDate(calendar[i][j]);
+							const activities1 = this.activities.filter(a => tmp >= a.start && tmp <= a.end);
+
 							if(year === today.getFullYear() && month === today.getMonth() && calendar[i][j] === today.getDate()) {
-								td.innerHTML = `<span class="badge bg-primary fs-6">${calendar[i][j]}</span>`;
-								this.renderActivities(td, calendar[i][j], activities1);
+								const span = document.createElement("span");
+								span.classList.add("badge");
+								span.classList.add("bg-primary");
+								span.classList.add("fs-6");
+								span.innerHTML = `${calendar[i][j]}`;
+								span.setAttribute("data-day", `${calendar[i][j]}`);
+								span.setAttribute("data-month", `${month}`);
+								span.setAttribute("data-year", `${year}`);
+								span.style.cursor = "pointer";
+
+								span.onclick = () => this.showModalActivity(span);
+
+								td.appendChild(span);
+								this.renderActivities(td, calendar[i][j], activities1, tmp);
+							} else {
+								// data-bs-toggle="modal" data-bs-target="#modalActividad"
+								const span = document.createElement("span");
+								span.classList.add("badge");
+								span.classList.add("bg-light");
+								span.classList.add("text-dark");
+								span.classList.add("fs-6");
+								span.innerHTML = `${calendar[i][j]}`;
+								span.setAttribute("data-day", `${calendar[i][j]}`);
+								span.setAttribute("data-month", `${month}`);
+								span.setAttribute("data-year", `${year}`);
+								span.style.cursor = "pointer";
+
+								span.onclick = () => this.showModalActivity(span);
+
+								td.appendChild(span);
+								this.renderActivities(td, calendar[i][j], activities1, tmp);
 							}
 						}
 					}
@@ -132,8 +170,8 @@ export class CalendarComponent implements OnInit {
 	}
 
 	/* renderizar actividades aqui */
-	renderActivities(td: HTMLTableCellElement, date: number, activities: { date: Date, activity: Actividad }[]) {
-		const tmp = activities.filter(a => a?.date.getDate() === date);
+	renderActivities(td: HTMLTableCellElement, date: number, activities: { start: Date, end: Date, activity: Actividad }[], current: Date) {
+		const tmp = activities;
 		if(tmp.length > 0) {
 			// console.log(date, tmp);
 			const div = document.createElement("div");
@@ -146,18 +184,30 @@ export class CalendarComponent implements OnInit {
 					span.classList.add("text-dark");
 					span.style.cursor = "pointer";
 					span.textContent = "Ver mas...";
-					span.onclick = () => this.showModal(tmp[0].date);
+					span.setAttribute("data-day", current.getDate().toString());
+					span.setAttribute("data-month", current.getMonth().toString());
+					span.setAttribute("data-year", current.getFullYear().toString());
+					span.onclick = () => this.showModal(span);
 					div.appendChild(span);
-
 				} else {
-					const span = `<span class="${this.getClass(i)}">${this.getTittle(`${tmp[i]?.activity.titulo}`)}</span><br>`;
-					div.innerHTML += span;
+					const span = document.createElement('span');
+					this.getClass(i).forEach(s => span.classList.add(s));
+					span.textContent = tmp[i].activity.titulo;
+					span.setAttribute("data-id", tmp[i].activity.id);
+					div.appendChild(span);
+					div.appendChild(document.createElement("br"));
+					// const span = `<span class="${this.getClass(i)}">${this.getTittle(`${tmp[i]?.activity.titulo}`)}</span><br>`;
+					// div.innerHTML += span;
 				}
 			}
 		}
 	}
 
-	showModal(date: Date) {
+	showModal(span: HTMLElement) {
+		const date = new Date();
+		date.setDate(Number(span.dataset.day));
+		date.setMonth(Number(span.dataset.month));
+		date.setFullYear(Number(span.dataset.year));
 		const modal = new bootstrap.Modal(document.querySelector("#modal-info"), { focus: true });
 		const body = document.querySelector("#modal-body");
 
@@ -165,18 +215,23 @@ export class CalendarComponent implements OnInit {
 		if(body) {
 			body.innerHTML = '';
 			this.activities.
-				filter(a => a.date.toDateString() === date.toDateString())
+				filter(a => date >= a.start && date <= a.end)
 				.forEach((a, index) => {
-					body.innerHTML += `<span class="${this.getClass(index)} fs-6 my-1">${a.activity.titulo}</span><br>`;
+					const span = document.createElement("span");
+					this.getClass(index).forEach(s => span.classList.add(s));
+					span.classList.add("fs-6");
+					span.classList.add("my-1");
+					span.textContent = a.activity.titulo;
+					span.setAttribute("data-id", a.activity.id);
+					body.appendChild(span);
+					body.appendChild(document.createElement("br"));
+					// body.innerHTML += `<span class="${this.getClass(index)} fs-6 my-1">${a.activity.titulo}</span><br>`;
 				});
 		}
 
 		this.day_number = date.getDate();
 		this.day = this.days[date.getDay()];
-
-		setTimeout(() => {
-			modal.show();
-		}, 200);
+		modal.show();
 	}
 
 	getTittle(title: string) {
@@ -187,7 +242,28 @@ export class CalendarComponent implements OnInit {
 		}
 	}
 
-	getClass(i: number): string {
-		return this.classes[i % this.classes.length];
+	getClass(i: number): string[] {
+		return this.classes[i % this.classes.length].split(" ");
+	}
+
+	showModalActivity(span: HTMLElement) {
+		this.outputDate = new Date(Number(span.dataset.year), Number(span.dataset.month), Number(span.dataset.day));
+		const modal = new bootstrap.Modal(document.querySelector('#modalActividad'), { focus: true });
+		setTimeout(() => {
+			modal.show();
+		}, 200);
+
+	}
+
+	updateCalendar(value: Boolean) {
+		this.service.getByUser(localStorage.getItem('user') ?? '')
+			.subscribe(data => {
+				this.activities = data.map(a => {
+					const start = new Date(Date.parse(a.fechaInicio) + 21600000); /* 21600000 = 3600 * 6 * 1000 */
+					const end = new Date(Date.parse(a.fechaFin) + 108000000); /* 21600000 + 1day */
+					return { start: start, end: end, activity: a };
+				});
+				this.switchMonth(undefined, this.month, this.year);
+			});
 	}
 }

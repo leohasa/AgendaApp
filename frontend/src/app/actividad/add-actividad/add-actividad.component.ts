@@ -52,6 +52,7 @@ export class AddActividadComponent implements OnInit {
     onSubmit(): void {
         let fechaFin: HTMLInputElement = document.querySelector('#fechaFin') ?? new HTMLInputElement();
         this.actividad.fechaFin = fechaFin.value;
+		this.actividad.usuario.username = localStorage.getItem("user") ?? ''; /* agregar usuario */
         this.actividadService.create(this.actividad)
             .subscribe(data => {
                 this.showInfo('Actividad agregada');
