@@ -1,12 +1,11 @@
-import { Element } from '@angular/compiler';
-import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgModel } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { Editor, Toolbar } from 'ngx-editor';
+import { Post } from '../model/post';
 import { Publicacion } from '../model/publicacion';
-import { ForoService } from '../service/foro.service';
+import { Rol } from '../model/rol';
+import { DataPostService } from '../service/data-post.service';
 import { SharehtmlService } from '../service/sharehtml.service';
+import { UsuarioService } from '../service/usuario.service';
 
 
 @Component({
@@ -31,12 +30,26 @@ export class TxtEditComponent implements OnInit {
         ['text_color', 'background_color'],
         ['align_left', 'align_center', 'align_right', 'align_justify'],
     ];
-    html: '';
-    titulo: '';
+    html: string = '';
+    titulo: string = '';
+
+    post: Post;
+    roles: Rol[];
+    isUser: boolean;
+    isEditor: boolean;
 
 
 
-    constructor(private router: Router, private service: ForoService, private serviceShare: SharehtmlService) { }
+    constructor(
+        private serviceShare: SharehtmlService,
+        private userService: UsuarioService,
+        private dataPost: DataPostService) {
+
+        this.post = new Post();
+        this.roles = new Array();
+        this.isEditor = false;
+        this.isUser = false;
+    }
 
     ngOnInit(): void {
         this.entrante = new Publicacion();
@@ -49,6 +62,8 @@ export class TxtEditComponent implements OnInit {
             .scrollIntoView()
             .toggleBold()
             .exec();
+
+        this.cargarRoles();
     }
     onKey(event: any): void {
         const inputValue = event.target.value;
@@ -61,24 +76,30 @@ export class TxtEditComponent implements OnInit {
         this.entrante.contenido = this.html;
 
         if (!(this.html === "" && this.titulo === "")) {
-
             this.serviceShare.data.emit(this.entrante);
-
             this.html = "";
-
             this.message = "Publicacion procesada correctamente";
-
         } else {
-
             this.message = "Debe Ingresar el Titulo y contenido de la publicacion";
-
         }
-
         this.serviceShare.message.emit(this.message);
+    }
 
+    addPost(): void {
+        this.post.titulo = this.titulo;
+        this.post.contenido = this.html;
+        this.post.plugin.id = localStorage.getItem('idPlugin') ??  '';
+        this.post.usuario.username = localStorage.getItem('user') ?? '';
+        this.dataPost.updateData(this.post);
+    }
 
-
-
-
+    private cargarRoles(): void {
+        let username: string = localStorage.getItem('user') ?? '';
+        this.userService.getRols(username)
+            .subscribe(data => {
+                this.roles = data;
+                this.isEditor = this.userService.hasRol('EDITOR', this.roles);
+                this.isUser = this.userService.hasRol('USUARIO', this.roles);
+            });
     }
 }

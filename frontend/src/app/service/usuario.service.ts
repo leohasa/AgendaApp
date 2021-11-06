@@ -40,4 +40,16 @@ export class UsuarioService {
     getRols(username: String) {
         return this.http.get<Rol[]>(`${this.url}/roles/${username}`);
     }
+
+    hasRol(rol: String, roles: Rol[]): boolean {
+        let flag: boolean = false;
+
+        roles.forEach(r => {
+            if (r.tipo == rol) {
+                flag = true;
+            }
+        });
+
+        return flag;
+    }
 }

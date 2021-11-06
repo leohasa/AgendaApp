@@ -19,15 +19,15 @@ export class EditUsuarioComponent implements OnInit {
 
     constructor(private router: Router, private service: UsuarioService,private serviceShare : SharehtmlService) {
         this.usuario = new Usuario();
-        
+
     }
 
     ngOnInit(): void {
         this.txtHead = "Editar informacion";
-        
+
         this.serviceShare.txtHead
             .subscribe(x => {this.txtHead = "Informacion Basica"; console.log("ENviando datos txthead",this.txtHead)});
-        
+
         this.serviceShare.expression
             .subscribe( value => {
                 this.showInfo(value);
@@ -55,7 +55,7 @@ export class EditUsuarioComponent implements OnInit {
     }
 
     backList() {
-        this.router.navigate(['/perfil']);
+        this.router.navigate(['/user/perfil']);
     }
 
     private showInfo(info:string){

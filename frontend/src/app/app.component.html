@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <a routerLink="perfil" class="navbar-brand">
+        <a routerLink="homepage" class="navbar-brand">
             <i class="bx bxs-calendar"></i>
             AgendaApp
         </a>
@@ -36,7 +36,7 @@
                             {{'@'+localStorage.getItem('user')}}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" routerLink (click)="editar()">Mi perfil</a></li>
+                            <li *ngIf="isUser"><a class="dropdown-item" routerLink (click)="editar()">Mi perfil</a></li>
                             <li *ngIf="isUser && !isEditor && !isAdmin && !thereRequest" ><a class="dropdown-item" routerLink (click)="solicitar()">Solicitar ser editor</a></li>
                             <li><a class="dropdown-item" routerLink (click)="logOut()">Cerrar sesion</a></li>
                         </ul>

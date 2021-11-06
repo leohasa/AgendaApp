@@ -6,6 +6,7 @@ import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.service.IPostService;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -25,8 +26,7 @@ public class PostController {
     }
 
     @GetMapping("/listByUserAndPlugin/{id}/{username}")
-    public List<Post> listByUser(
-           @PathVariable Integer id, @PathVariable String username) {
+    public List<Post> listByUser(@PathVariable Integer id, @PathVariable String username) {
         Usuario usuario = Usuario.builder().username(username).build();
         Plugin plugin = Plugin.builder().id(id).build();
         return postService.findAllByUserAndPlugin(usuario, plugin);
@@ -34,6 +34,7 @@ public class PostController {
 
     @PostMapping("/add")
     public void save(@RequestBody Post post) {
+        post.setFecha(LocalDate.now());
         postService.save(post);
     }
 

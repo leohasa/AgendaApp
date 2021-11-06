@@ -20,10 +20,8 @@ export class ListPostComponent implements OnInit {
     ngOnInit(): void {
         let idP = localStorage.getItem('idPlugin') ?? '';
         let username = localStorage.getItem('user') ?? '';
-        console.log(username, idP);
         this.service.getAllByUserAndPlugin(username, idP)
             .subscribe(data => {
-                console.log('Posts: ',data);
                 this.posts = data;
             });
     }

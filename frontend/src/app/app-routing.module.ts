@@ -32,6 +32,7 @@ import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-e
 import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
+import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
 
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
@@ -40,7 +41,8 @@ const routes: Routes = [
         children: [
             {path: 'edit', component: EditUsuarioComponent},
             {path: 'userlist', component: ListUsuarioComponent},
-            {path: 'solicitud', component: SolicitudEditorComponent}
+            {path: 'solicitud', component: SolicitudEditorComponent},
+            {path: 'perfil', component: PerfilComponent}
         ]
     },
     {path: 'admin', component: ManagerUserRoutesComponent,
@@ -95,9 +97,6 @@ const routes: Routes = [
             {path: 'list', component: ListCategoriaComponent}
         ]
     },
-
-    {path: 'perfil', component: PerfilComponent},
-
     {path: 'recordatorio', component: ManagerRecordatorioRoutesComponent,
         data: {requiresLogin: true, requiredRol: 'USUARIO'},
         canActivate: [AccessGuard],
@@ -105,10 +104,10 @@ const routes: Routes = [
             {path: 'list', component: ListRecordatorioComponent}
         ]
     },
+    {path:'homepage', component: ManagerHomepageComponent},
     {path: 'calendar-mes', component: CalendarComponent, data: {requiresLogin: true, requiredRol: 'USUARIO'}, canActivate: [AccessGuard]},
     {path: 'register', component: AddUsuarioComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'perfil', component: PerfilComponent}
+    {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

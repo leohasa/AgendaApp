@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
     usuario: Usuario;
     textInfo: string = "";
-    constructor(private router: Router, private service: UsuarioService, private dataService: DataService) {
+    constructor(private router: Router, private service: UsuarioService) {
         this.usuario = new Usuario();
     }
 
@@ -29,11 +29,7 @@ export class LoginComponent implements OnInit {
             .subscribe(user => {
                 if (user) {
                     localStorage.setItem('user', user.username.toString());
-                    this.service.getRols(user.username)
-                        .subscribe(data => {
-                            this.dataService.updateData(data);
-                            this.router.navigate(['/perfil']);
-                        });
+                    this.router.navigate(['/homepage']);
                 } else {
                     this.showInfo('Credenciales incorrectas!');
                 }

@@ -8,6 +8,7 @@ import com.g4ts.agendaapp.service.ISolicitudRolEditorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -35,6 +36,7 @@ public class SolicitudController {
 
     @PostMapping("/addSolicitud")
     public void addSolicitud(@RequestBody SolicitudRolEditor solicitud) {
+        solicitud.setFecha(LocalDate.now());
         solicitudService.save(solicitud);
     }
 
@@ -47,8 +49,6 @@ public class SolicitudController {
 
     @GetMapping("/existsByUser/{username}")
     public boolean existsByUser(@PathVariable String username) {
-        boolean flag = solicitudService.existsByUsuario(Usuario.builder().username(username).build());
-        System.out.println(flag);
-        return flag;
+        return solicitudService.existsByUsuario(Usuario.builder().username(username).build());
     }
 }

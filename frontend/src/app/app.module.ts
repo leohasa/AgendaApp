@@ -53,6 +53,7 @@ import { SolicitudService } from './service/solicitud.service';
 import { PluginService } from './service/plugin.service';
 import { PostService } from './service/post.service';
 import { ComentarioComponent } from './comentario/comentario.component';
+import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
 
 @NgModule({
     declarations: [
@@ -90,7 +91,8 @@ import { ComentarioComponent } from './comentario/comentario.component';
         AddPluginComponent,
         EditPluginComponent,
         EditPostComponent,
-        ComentarioComponent
+        ComentarioComponent,
+        ManagerHomepageComponent
     ],
     imports: [
         BrowserModule,

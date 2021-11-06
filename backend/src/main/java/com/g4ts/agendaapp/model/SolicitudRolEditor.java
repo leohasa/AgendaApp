@@ -3,6 +3,7 @@ package com.g4ts.agendaapp.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "SolicitudRolEditor")
@@ -19,4 +20,5 @@ public class SolicitudRolEditor {
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
     private String contenido;
+    private LocalDate fecha;
 }

@@ -40,9 +40,8 @@ export class AppComponent implements OnInit {
             this.router.navigate(['/login']);
         } else {
             this.username = localStorage.getItem('user') ?? '';
-            this.cargarRoles();
-            // this.router.navigate(['calendar-mes']);
-            this.router.navigate(['perfil']);
+            // this.cargarRoles();
+            this.router.navigate(['/homepage']);
         }
         this.suscribeDataService();
     }
@@ -61,8 +60,6 @@ export class AppComponent implements OnInit {
                 if (data instanceof Array) {
                     this.roles = data;
                     this.verificarRoles();
-                } else {
-                    this.thereRequest = data;
                 }
 
                 this.username = localStorage.getItem('user') ?? '';
@@ -74,14 +71,14 @@ export class AppComponent implements OnInit {
     }
 
     private verificarRoles(): void {
-        this.isUser = this.hasRol('USUARIO');
-        this.isAdmin = this.hasRol('ADMINISTRADOR');
-        this.isEditor = this.hasRol('EDITOR');
+        this.isUser = this.userService.hasRol('USUARIO', this.roles);
+        this.isAdmin = this.userService.hasRol('ADMINISTRADOR', this.roles);
+        this.isEditor = this.userService.hasRol('EDITOR', this.roles);
     }
 
     editar() {
         localStorage.setItem('username', this.username.toString());
-        this.router.navigate(['/user/edit']);
+        this.router.navigate(['/user/perfil']);
     }
 
     solicitar() {
@@ -91,17 +88,5 @@ export class AppComponent implements OnInit {
     logOut() {
         localStorage.removeItem('user');
         this.router.navigate(['/login']);
-    }
-
-    hasRol(rol: String): boolean {
-        let flag: boolean = false;
-
-        this.roles.forEach(r => {
-            if (r.tipo == rol) {
-                flag = true;
-            }
-        });
-
-        return flag;
     }
 }

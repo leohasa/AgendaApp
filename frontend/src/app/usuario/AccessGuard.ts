@@ -23,7 +23,7 @@ export class AccessGuard implements CanActivate {
                         roles = data;
                         const rol = roles.find(r => r.tipo == requiredRol);
                         if (!rol) {
-                            this.router.navigate(['']);
+                            this.router.navigate(['/homepage']);
                         }
                     });
 
