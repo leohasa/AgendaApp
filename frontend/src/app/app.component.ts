@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Notificacion } from './model/notificacion';
 import { Recordatorio } from './model/recordatorio';
 import { Rol } from './model/rol';
 import { DataService } from './service/data.service';
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
     isAdmin: boolean;
     isEditor: boolean;
     thereRequest: boolean;
-    recordatorios: Array<Recordatorio>;
+    notificaciones: Array<Notificacion>;
 
 
     constructor(
@@ -37,7 +38,7 @@ export class AppComponent implements OnInit {
         this.isAdmin = true;
         this.isEditor = true;
         this.thereRequest = false;
-        this.recordatorios = new Array();
+        this.notificaciones = new Array();
     }
 
     ngOnInit(): void {
@@ -93,8 +94,8 @@ export class AppComponent implements OnInit {
 
     updateNotificaciones():void{
         let user = localStorage.getItem('user') ?? '';
-        this.recordatorioService.getRecordatoriosPorFecha(user).subscribe(data=>{
-            this.recordatorios = data;
+        this.notificacionService.getNotificacionesPorFecha(user).subscribe(data=>{
+            this.notificaciones = data;
         });
     }
 

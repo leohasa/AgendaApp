@@ -5,7 +5,7 @@ export class Notificacion {
     id:number;
     titulo:string;
     descripcion:string = "";
-    fecha:string = ""; 
+    fechaHora:string = ""; 
     usuario:Usuario;
 
     constructor(){

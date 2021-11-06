@@ -19,9 +19,11 @@ export class RecordatorioService {
     return this.http.post<Array<Recordatorio>>(`${this.url}/get`, idUsuario);
   }
 
+  /*
   getRecordatoriosPorFecha(idUsuario:string){
     return this.http.post<Array<Recordatorio>>(`${this.url}/getPorFecha`, idUsuario);
   }
+  */
 
   delete(idRecordatorio:number) {
     return this.http.post(`${this.url}/delete`,idRecordatorio);

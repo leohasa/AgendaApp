@@ -31,7 +31,7 @@ public class NotificacionController {
         return this.iNotificacionService.findAllByUsuario(Usuario.builder().username(idUsuario).build());
     }
 
-    @PostMapping("/getPorFecha")
+    @PostMapping("/getPorFechaHora")
     public List<Notificacion> getPorFecha(@RequestBody String idUsuario) {
         return this.iNotificacionService.findAllByUsuarioYFechaHora(Usuario.builder().username(idUsuario).build(),LocalDateTime.of(LocalDate.now(), LocalTime.MIN),LocalDateTime.of(LocalDate.now(), LocalTime.MAX));
     }
