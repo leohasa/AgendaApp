@@ -46,10 +46,11 @@ export class CalendarComponent implements OnInit {
 	];
 	daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 	classes = [
-		"badge bg-secondary",
+		"badge bg-primary",
+		"badge bg-danger",
 		"badge bg-warning text-dark",
 		"badge bg-success",
-		"badge bg-danger"
+		"badge bg-secondary"
 	];
 	day: string = "";
 	day_number: number;
@@ -145,9 +146,11 @@ export class CalendarComponent implements OnInit {
 
 							if(year === today.getFullYear() && month === today.getMonth() && calendar[i][j] === today.getDate()) {
 								const span = document.createElement("span");
+								// badge bg-warning text-dark
 								span.classList.add("badge");
-								span.classList.add("bg-primary");
-								span.classList.add("fs-6");
+								span.classList.add("bg-warning");
+								// span.classList.add("text-dark");
+								span.classList.add("fs-5");
 								span.innerHTML = `${calendar[i][j]}`;
 								span.setAttribute("data-day", `${calendar[i][j]}`);
 								span.setAttribute("data-month", `${month}`);
@@ -164,9 +167,9 @@ export class CalendarComponent implements OnInit {
 								// data-bs-toggle="modal" data-bs-target="#modalActividad"
 								const span = document.createElement("span");
 								span.classList.add("badge");
-								span.classList.add("bg-light");
-								span.classList.add("text-dark");
-								span.classList.add("fs-6");
+								// span.classList.add("bg-light");
+								// span.classList.add("text-dark");
+								span.classList.add("fs-5");
 								span.innerHTML = `${calendar[i][j]}`;
 								span.setAttribute("data-day", `${calendar[i][j]}`);
 								span.setAttribute("data-month", `${month}`);
@@ -193,6 +196,7 @@ export class CalendarComponent implements OnInit {
 		const div = document.createElement("div");
 		td.appendChild(div);
 
+		/* recordatorios */
 		for(count = 0; count < reminders.length && count < 3; count++) {
 			if(count === 2) {
 				/* renderizar ver mas y return */
@@ -212,6 +216,7 @@ export class CalendarComponent implements OnInit {
 				/* renderizar actividades aqui */
 				const span = document.createElement('span');
 				this.getClass(count).forEach(s => span.classList.add(s));
+				span.classList.add("rounded-pill");
 				span.textContent = reminders[count].reminder.titulo;
 				span.setAttribute("data-id", reminders[count].reminder.id.toString());
 				span.setAttribute("data-kind", "reminder");
@@ -220,7 +225,7 @@ export class CalendarComponent implements OnInit {
 			}
 		}
 
-		// count = count === 0 ? count : count - 1;
+		/* actividades */
 		for (let i = 0; i < activities.length && count < 3; i++) {
 			if(count === 2) {
 				const span = document.createElement("span");
@@ -236,7 +241,7 @@ export class CalendarComponent implements OnInit {
 				div.appendChild(span);
 			} else {
 				const span = document.createElement('span');
-				this.getClass(i).forEach(s => span.classList.add(s));
+				this.getClass(count).forEach(s => span.classList.add(s));
 				span.textContent = activities[i].activity.titulo;
 				span.setAttribute("data-id", activities[i].activity.id);
 				span.setAttribute("data-kind", "activity");
@@ -254,13 +259,14 @@ export class CalendarComponent implements OnInit {
 		date.setFullYear(Number(span.dataset.year));
 		const modal = new bootstrap.Modal(document.querySelector("#modal-info"), { focus: true });
 		const body = document.querySelector("#modal-body");
+		let i = 0;
 
-		/* activiidades por fecha */
 		if(body) {
 			body.innerHTML = '';
 			this.activities.
 				filter(a => date >= a.start && date <= a.end)
 				.forEach((a, index) => {
+					/* renderizar actividades */
 					const span = document.createElement("span");
 					this.getClass(index).forEach(s => span.classList.add(s));
 					span.classList.add("fs-6");
@@ -270,14 +276,18 @@ export class CalendarComponent implements OnInit {
 					span.setAttribute("data-kind", "activity");
 					body.appendChild(span);
 					body.appendChild(document.createElement("br"));
+					i = index;
 					// body.innerHTML += `<span class="${this.getClass(index)} fs-6 my-1">${a.activity.titulo}</span><br>`;
 				});
 
-			this.reminders
+				i++;
+				this.reminders
 				.filter(r => r.start.getFullYear() === date.getFullYear() && r.start.getMonth() === date.getMonth() && r.start.getDate() === date.getDate())
 				.forEach((r, index) => {
+					/* renderizar recordatorios */
 					const span = document.createElement("span");
-					this.getClass(index).forEach(s => span.classList.add(s));
+					this.getClass(index + i).forEach(s => span.classList.add(s));
+					span.classList.add("rounded-pill");
 					span.classList.add("fs-6");
 					span.classList.add("my-1");
 					span.textContent = r.reminder.titulo;

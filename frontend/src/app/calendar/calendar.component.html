@@ -7,8 +7,8 @@
 				<div class="col-1">
 					<img src="../../assets/img/arrow-left.png" alt="left" (click)="switchMonth(false, undefined, undefined)">
 				</div>
-				<div class="col-6">
-					<h1 class="text-center text-primary" id="label">{{label}}</h1>
+				<div class="col-6 text-center">
+					<h1 id="label">{{label}}</h1>
 				</div>
 				<div class="col-1">
 					<img src="../../assets/img/arrow-right.png" alt="right" (click)="switchMonth(true, undefined, undefined)">
@@ -60,7 +60,7 @@
 		<div class="modal-header">
 			<div class="ms-auto">
 				<h5 class="modal-title text-center my-0">{{day}}</h5><br>
-				<h1 class="text-center text-secondary my-0">{{day_number}}</h1>
+				<h1 class="text-center my-0" id="day-number">{{day_number}}</h1>
 			</div>
 			<button style="margin-bottom: auto;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
