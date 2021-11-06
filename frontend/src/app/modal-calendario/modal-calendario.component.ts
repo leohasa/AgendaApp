@@ -28,7 +28,7 @@ export class ModalCalendarioComponent implements OnInit {
         this.recordatorio = new Recordatorio();
 		this.actividad.fechaInicio = this.date.toISOString().substr(0, 10);
 		this.actividad.fechaFin = this.date.toISOString().substr(0, 10);
-		this.recordatorio.fecha = this.date.toISOString().substr(0, 10);
+		this.recordatorio.fecha = `${this.date.toISOString().substr(0, 10)} 00:00:0`;
 		this.ngOnInit();
 	};
 
@@ -46,7 +46,6 @@ export class ModalCalendarioComponent implements OnInit {
         this.categorias = new Array();
         this.proyectos = new Array();
         this.date = new Date();
-		console.log('here');
     }
 
     ngOnInit(): void {
@@ -103,6 +102,7 @@ export class ModalCalendarioComponent implements OnInit {
         this.recordatorioService
             .create(this.recordatorio)
             .subscribe((data) => {
+				this.sendTrue.emit(true);
 			});
     }
 }
