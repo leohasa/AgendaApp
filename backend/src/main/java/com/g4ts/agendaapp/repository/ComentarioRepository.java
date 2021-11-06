@@ -11,5 +11,6 @@ import java.util.List;
 public interface ComentarioRepository extends JpaRepository<Comentario, Integer> {
 
     List<Comentario> findComentarioByPublicacionOrderByFechaDesc ( Publicacion publicacion);
+    void deleteAllByPublicacion(Publicacion publicacion);
 
 }

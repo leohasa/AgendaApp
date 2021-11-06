@@ -11,5 +11,4 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, Intege
     Publicacion findByTitulo(String title);
     List<Publicacion> findByUsuarioOrderByFechaPublicacionDesc(Usuario usuario);
 
-
 }

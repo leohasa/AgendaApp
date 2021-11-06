@@ -23,5 +23,8 @@ export class ForoService {
     console.log("editPublicacion")
     return this.http.put<Publicacion>(`${this.url}/update`, publicacion);
   }
-  
+  delete(publicacion : Publicacion){
+    console.log("Ho")
+    return this.http.delete<Publicacion>(`${this.url}/delete/${publicacion.id}`);
+  }
 }

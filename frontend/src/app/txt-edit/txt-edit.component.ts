@@ -76,9 +76,5 @@ export class TxtEditComponent implements OnInit {
     
     this.serviceShare.message.emit(this.message);
     
-    
-    
-    
-    
   }
 }

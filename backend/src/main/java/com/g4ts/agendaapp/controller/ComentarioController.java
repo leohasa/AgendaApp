@@ -41,5 +41,12 @@ public class ComentarioController {
         comentarioService.save(comentario);
     }
 
+    @DeleteMapping("/delete/publicacion/{idPublicacion}")
+    public void deleteAllByPublicacion(@PathVariable Integer idPublicacion)  {
 
+        Publicacion publicacion = Publicacion.builder().id(idPublicacion).build();
+        System.out.println("Publicacion.comentarios a eliminar "+ idPublicacion);
+         comentarioService.deleteByPublicacion(publicacion);
+
+    }
 }

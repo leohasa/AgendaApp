@@ -1,7 +1,10 @@
 package com.g4ts.agendaapp.controller;
 
+import com.g4ts.agendaapp.model.Comentario;
 import com.g4ts.agendaapp.model.Publicacion;
 import com.g4ts.agendaapp.model.Usuario;
+import com.g4ts.agendaapp.repository.ComentarioRepository;
+import com.g4ts.agendaapp.service.IComentarioService;
 import com.g4ts.agendaapp.service.IPublicacionService;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
@@ -14,8 +17,11 @@ import java.util.List;
 public class PublicacionController {    
 
     private IPublicacionService publicacionService;
+    private IComentarioService comentarioService;
 
-    public PublicacionController(IPublicacionService publicacionService){ this.publicacionService = publicacionService;}
+    public PublicacionController(IPublicacionService publicacionService, IComentarioService comentarioService){ this.publicacionService = publicacionService;
+        this.comentarioService = comentarioService;
+            }
 
     @GetMapping("/publicacion/{username}")
     public List<Publicacion> list(@PathVariable String username){
@@ -36,4 +42,14 @@ public class PublicacionController {
         System.out.println("actualizando server publicacion");
         this.publicacionService.save(publicacion);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Integer id){
+        //Comentario comentario = Comentario.builder().(username).build();
+        Publicacion publicacion = Publicacion.builder().id(id).build();
+        this.comentarioService.deleteByPublicacion(publicacion);
+        this.publicacionService.deleteById(id);
+
+    }
+
 }

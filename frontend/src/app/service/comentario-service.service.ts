@@ -19,4 +19,7 @@ export class ComentarioServiceService {
   add(comentario:Comentario){
     return this.http.post<Comentario[]>(`${this.url}/add/`,comentario);
  }
+  deleteByIdPublicacion( id:string){
+    return this.http.delete<Comentario>(`${this.url}/delete/publicacion/${id}`);
+  }
 }

@@ -1,25 +1,38 @@
 <br>
-<div class="container my-4">
+<div class="">
     <div class="row">
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Richard_Stallman_at_Pittsburgh_University.jpg/1024px-Richard_Stallman_at_Pittsburgh_University.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Mis Datos</h5>
+        <div class="col-md-4 ">
+            <!--align-self-end
+        style="width: 24rem;"-->
+            <div class="row align-self-end">
+                <div class="col-2"></div>
+                <div class="col-10 ">
+                    <div class="card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Richard_Stallman_at_Pittsburgh_University.jpg/1024px-Richard_Stallman_at_Pittsburgh_University.jpg"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Mis Datos</h5>
+                        </div>
+                        <app-edit-usuario></app-edit-usuario>
+                    </div>
                 </div>
-                <app-edit-usuario></app-edit-usuario>
             </div>
-        </div> 
-        <div class="col-8" >
-            
+        </div>
+        <div class="col-4">
+
             <!---Hijo -->
-            <app-txt-edit ></app-txt-edit>
-            
+            <app-txt-edit></app-txt-edit>
+
             <br>
-            
+
             <!---hijo -->
             <app-list-publicacion></app-list-publicacion>
-            
+
         </div>
-     </div>    
+        <div class="col-3">
+            <app-find-contact></app-find-contact>
+            <app-contact></app-contact>
+        </div>
+        <div class="col-1"></div>
+    </div>
 </div>

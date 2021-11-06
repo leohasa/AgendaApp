@@ -4,6 +4,7 @@ import com.g4ts.agendaapp.model.Publicacion;
 import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.repository.PublicacionRepository;
 import com.g4ts.agendaapp.repository.UsuarioRepository;
+import com.g4ts.agendaapp.service.IComentarioService;
 import com.g4ts.agendaapp.service.IPublicacionService;
 import com.g4ts.agendaapp.service.IUsuarioService;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class PublicacionServiceJpa implements IPublicacionService {
     }
 
     @Override
-    public List<Publicacion> findByUsuarioOrderByFechaPublicacionDesc(Usuario usuario) {
+    public List<Publicacion> findByUsuarioOrderByFechaPublicacionDes(Usuario usuario) {
         return  publicacionRepository.findByUsuarioOrderByFechaPublicacionDesc(usuario);
     }
 
@@ -40,7 +41,9 @@ public class PublicacionServiceJpa implements IPublicacionService {
     }
 
     @Override
-    public void deleteById(String username) {
+    public void deleteById(Integer id) {
 
+        this.publicacionRepository.deleteById(id);
     }
+
 }

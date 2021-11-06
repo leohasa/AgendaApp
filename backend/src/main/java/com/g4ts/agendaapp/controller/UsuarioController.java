@@ -10,6 +10,7 @@ import com.g4ts.agendaapp.service.IProyectoService;
 import com.g4ts.agendaapp.service.IRolService;
 import com.g4ts.agendaapp.service.ISolicitudRolEditorService;
 import com.g4ts.agendaapp.service.IUsuarioService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -95,5 +96,11 @@ public class UsuarioController {
         SolicitudRolEditor solicitud = solicitudService.findById(id);
         rolService.save(Rol.builder().tipo("EDITOR").usuario(solicitud.getUsuario()).build());
         solicitudService.deleteById(id);
+    }
+    @GetMapping("/match/{username}")
+    public List<String> findUserMatch(@PathVariable String username){
+        System.out.println("userservice. Busca coincidencias de usuario query using 'like' ");
+        System.out.println("Consulta like "+username);
+        return this.usuarioService.findSearchmatch(username );
     }
 }

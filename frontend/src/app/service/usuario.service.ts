@@ -52,4 +52,9 @@ export class UsuarioService {
     newEditor(id: String) {
         return this.http.get<Solicitud>(`${this.url}/newEditor/${id}`);
     }
+    
+    getUserMatch(match : string){
+        return this.http.get<string[]>(`${this.url}/match/${match}`);
+    }
+    
 }

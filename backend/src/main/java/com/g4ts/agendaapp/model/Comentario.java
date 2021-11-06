@@ -2,6 +2,7 @@ package com.g4ts.agendaapp.model;
 
 
 import lombok.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @Getter @Setter @ToString @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Transactional
 public class Comentario {
 
     @Id

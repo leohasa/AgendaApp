@@ -1,21 +1,26 @@
 <div *ngFor="let u of publicacion">
     <div class="card text-center">
+        <div class="btn-light align-self-end">
+            <a class="btn btn-outline-dark"><i class="fa fa-pencil float-right" aria-hidden="true"></i></a>
+            <a (click)="update(u)"   class="btn btn-outline-dark"><i class="fa fa-trash float-right" aria-hidden="true"></i></a>
+        </div>
         <div class="card-header" [innerHtml]="u.fechaPublicacion">
+            
         </div>
         <div class="card-body">
-        
+
             <h5 class="card-title" [innerHtml]="u.titulo"></h5>
             <p class="card-text" [innerHtml]="u.contenido"></p>
-        
-            <a  (click)="aumentar(u)" class="btn btn-primary"><i class="fas fa-triangle"></i></a>
-            <a  (click)="disminuir(u)" class="btn btn-light"><i class="fas fa-triangle fa-rotate-180"></i></a>
+
             
-            <p>{{u.puntuacion}}</p>
         </div>
         <div class="card-footer text-muted">
-        
-            <app-comentario [commentarioPublicacion]="u.id" ></app-comentario>
-            
+            <a (click)="aumentar(u)" class=" btn "><i class="fas fa-triangle" width="1" height="1"></i></a>
+            <a (click)="disminuir(u)" class="btn btn-light"><i class="fas fa-triangle fa-rotate-180" ></i></a>
+
+            <p>{{u.puntuacion}}</p>
+            <app-comentario [commentarioPublicacion]="u.id"></app-comentario>
+
         </div>
 
     </div>

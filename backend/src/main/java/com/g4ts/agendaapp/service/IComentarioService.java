@@ -14,5 +14,5 @@ public interface IComentarioService {
     Comentario findByTitulo(String title);
     void save(Comentario comentario);
     void deleteById(String username);
-
+    void deleteByPublicacion(Publicacion publicacion);
 }

@@ -37,15 +37,19 @@ import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { ForoService } from './service/foro.service';
 import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
-
 import { PerfilComponent } from './usuario/perfil/perfil.component';
-
-
 import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.component';
 import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
 import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
 import { DataService } from './service/data.service';
 import { ComentarioComponent } from './comentario/comentario.component';
+import { ContactComponent } from './usuario/perfil/contact/contact.component';
+import { FindContactComponent } from './usuario/perfil/find-contact/find-contact.component';
+import { NgxPopperjsModule, NgxPopperjsDirective } from 'ngx-popperjs';
+import { VisitanteComponent } from './usuario/perfil/visitante/visitante.component';
+//import { NgxPopperjsDirective } from 'ngx-popperjs';
+
+
 
 
 @NgModule({
@@ -80,14 +84,20 @@ import { ComentarioComponent } from './comentario/comentario.component';
         ModalCalendarioComponent,
         ListRecordatorioComponent,
         ManagerRecordatorioRoutesComponent,
-        ComentarioComponent
+        ComentarioComponent,
+        ContactComponent,
+        FindContactComponent,
+        VisitanteComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-        NgxEditorModule
+        NgxEditorModule,
+        NgxPopperjsModule,
+        
+        
     ],
     providers:
     [

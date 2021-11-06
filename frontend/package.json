@@ -18,10 +18,12 @@
         "@angular/platform-browser": "~12.2.0",
         "@angular/platform-browser-dynamic": "~12.2.0",
         "@angular/router": "~12.2.0",
+        "@popperjs/core": "^2.10.2",
         "flatpickr": "^4.6.9",
         "font-awesome": "^4.7.0",
         "ngx-bootstrap": "^7.1.0",
         "ngx-editor": "^11.1.1",
+        "ngx-popperjs": "^12.2.1",
         "rxjs": "~6.6.0",
         "tslib": "^2.3.0",
         "zone.js": "~0.11.4"

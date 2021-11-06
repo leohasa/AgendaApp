@@ -9,4 +9,5 @@ public interface IUsuarioService {
     Usuario findByUsername(String username);
     void save(Usuario usuario);
     void deleteById(String username);
+    List<String> findSearchmatch(String match);
 }

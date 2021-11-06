@@ -2,6 +2,7 @@ import { Component, Directive, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComentarioComponent } from 'src/app/comentario/comentario.component';
 import { Publicacion } from 'src/app/model/publicacion';
+import { ComentarioServiceService } from 'src/app/service/comentario-service.service';
 import { ForoService } from 'src/app/service/foro.service';
 import { SharehtmlService } from 'src/app/service/sharehtml.service';
 
@@ -18,7 +19,7 @@ export class ListPublicacionComponent implements OnInit {
   publicacion : Publicacion[];
  
   
-  constructor(private service: ForoService,private router: Router,private shareService: SharehtmlService) { this.publicacion = [];}
+  constructor(private service: ForoService,private comentarioservice:ComentarioServiceService, private router: Router,private shareService: SharehtmlService) { this.publicacion = [];}
   
   
   
@@ -35,6 +36,7 @@ export class ListPublicacionComponent implements OnInit {
     this.service.getPublicaciones(user)
         .subscribe(data => {
           this.publicacion = data;
+          this.publicacion = this.publicacion.reverse();
         });
   }
   aumentar(publicacion:Publicacion){
@@ -56,6 +58,17 @@ export class ListPublicacionComponent implements OnInit {
     
     publicacion.puntuacion = ""+puntuacion;
     this.shareService.aumentar.emit(publicacion);
+    
+  }
+  update(publicacion:Publicacion){
+    this.comentarioservice.deleteByIdPublicacion(publicacion.id)
+    .subscribe(()=>{
+      console.log("elimando comentarios ...",publicacion.id)
+      this.service.delete(publicacion).subscribe(()=>{
+      
+        this.shareService.message.emit("Publicacion eliminada correctamente");
+      })
+    });
     
   }
 }

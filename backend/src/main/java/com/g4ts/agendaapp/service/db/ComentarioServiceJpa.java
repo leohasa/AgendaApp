@@ -44,4 +44,9 @@ public class ComentarioServiceJpa implements IComentarioService {
     public void deleteById(String username) {
 
     }
+
+    @Override
+    public void deleteByPublicacion(Publicacion publicacion) {
+        this.comentarioRepository.deleteAllByPublicacion(publicacion);
+    }
 }

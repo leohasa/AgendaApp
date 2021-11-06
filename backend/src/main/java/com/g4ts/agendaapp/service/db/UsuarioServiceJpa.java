@@ -38,4 +38,9 @@ public class UsuarioServiceJpa implements IUsuarioService {
     public void deleteById(String username) {
         usuarioRepository.deleteById(username);
     }
+
+    @Override
+    public List<String> findSearchmatch(String match) {
+       return usuarioRepository.findUsersWithPartOfName(match);
+    }
 }

@@ -9,8 +9,9 @@ public interface IPublicacionService {
 
     List<Publicacion> findAll();
     Publicacion findByTitulo(String title);
-    List<Publicacion> findByUsuarioOrderByFechaPublicacionDesc(Usuario usuario);
+    List<Publicacion> findByUsuarioOrderByFechaPublicacionDes(Usuario usuario);
     void save(Publicacion publicacion);
-    void deleteById(String username);
+    void deleteById(Integer id);
+
 
 }
