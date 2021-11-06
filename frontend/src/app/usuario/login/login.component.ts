@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/model/usuario';
+import { DataService } from 'src/app/service/data.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
@@ -12,7 +13,6 @@ export class LoginComponent implements OnInit {
 
     usuario: Usuario;
     textInfo: string = "";
-
     constructor(private router: Router, private service: UsuarioService) {
         this.usuario = new Usuario();
     }
@@ -26,18 +26,17 @@ export class LoginComponent implements OnInit {
 
     onSubmit(): void {
         this.service.signIn(this.usuario)
-        .subscribe(user => {
-            if (user) {
-                localStorage.setItem('user', user.username.toString());
-                this.router.navigate(['/perfil']);
-                window.location.reload();
-            } else {
-                this.showInfo('Credenciales incorrectas!');
-            }
-        });
+            .subscribe(user => {
+                if (user) {
+                    localStorage.setItem('user', user.username.toString());
+                    this.router.navigate(['/homepage']);
+                } else {
+                    this.showInfo('Credenciales incorrectas!');
+                }
+            });
     }
 
-    private showInfo(info:string){
+    private showInfo(info: string) {
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();
     }

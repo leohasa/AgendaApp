@@ -26,8 +26,6 @@ import { ManagerUserRoutesComponent } from './usuario/manager-user-routes/manage
 import { ManagerProjectRoutesComponent } from './proyecto/manager-project-routes/manager-project-routes.component';
 import { ManagerCategoryRoutesComponent } from './categoria/manager-category-routes/manager-category-routes.component';
 import { ManagerActividadRoutesComponent } from './actividad/manager-actividad-routes/manager-actividad-routes.component';
-import { CalendarioMesComponent } from './calendario/calendario-mes/calendario-mes.component';
-import { CalendarioDiaComponent } from './calendario/calendario-dia/calendario-dia.component';
 import { ModalComponent } from './modal/modal.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
@@ -41,9 +39,19 @@ import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.co
 import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
 import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
 import { DataService } from './service/data.service';
+import { ListPluginsComponent } from './usuario/editor/list-plugins/list-plugins.component';
+import { ListPostComponent } from './usuario/editor/list-post/list-post.component';
+import { AddPostComponent } from './usuario/editor/add-post/add-post.component';
+import { AddPluginComponent } from './usuario/editor/add-plugin/add-plugin.component';
+import { EditPluginComponent } from './usuario/editor/edit-plugin/edit-plugin.component';
+import { EditPostComponent } from './usuario/editor/edit-post/edit-post.component';
+import { SolicitudService } from './service/solicitud.service';
+import { PluginService } from './service/plugin.service';
+import { PostService } from './service/post.service';
 import { ComentarioComponent } from './comentario/comentario.component';
 import { RecordatorioService } from './service/recordatorio.service';
 import { NotificacionService } from './service/notificacion.service';
+import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
 
 @NgModule({
     declarations: [
@@ -65,8 +73,6 @@ import { NotificacionService } from './service/notificacion.service';
         ManagerProjectRoutesComponent,
         ManagerCategoryRoutesComponent,
         ManagerActividadRoutesComponent,
-        CalendarioMesComponent,
-        CalendarioDiaComponent,
         ModalComponent,
         CalendarComponent,
         SolicitudEditorComponent,
@@ -77,7 +83,14 @@ import { NotificacionService } from './service/notificacion.service';
         ModalCalendarioComponent,
         ListRecordatorioComponent,
         ManagerRecordatorioRoutesComponent,
-        ComentarioComponent
+        ListPluginsComponent,
+        ListPostComponent,
+        AddPostComponent,
+        AddPluginComponent,
+        EditPluginComponent,
+        EditPostComponent,
+        ComentarioComponent,
+        ManagerHomepageComponent
     ],
     imports: [
         BrowserModule,
@@ -96,7 +109,11 @@ import { NotificacionService } from './service/notificacion.service';
         ForoService,
         DataService,
         RecordatorioService,
-        NotificacionService
+        NotificacionService,
+        SolicitudService,
+        PluginService,
+        PostService,
+        DataService
     ],
     bootstrap: [AppComponent]
 })

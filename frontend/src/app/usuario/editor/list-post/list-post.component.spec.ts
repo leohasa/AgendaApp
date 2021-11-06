@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CalendarioDiaComponent } from './calendario-dia.component';
+import { ListPostComponent } from './list-post.component';
 
-describe('CalendarioDiaComponent', () => {
-  let component: CalendarioDiaComponent;
-  let fixture: ComponentFixture<CalendarioDiaComponent>;
+describe('ListPostComponent', () => {
+  let component: ListPostComponent;
+  let fixture: ComponentFixture<ListPostComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CalendarioDiaComponent ]
+      declarations: [ ListPostComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CalendarioDiaComponent);
+    fixture = TestBed.createComponent(ListPostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

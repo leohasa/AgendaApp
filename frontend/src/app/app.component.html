@@ -1,28 +1,28 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <a routerLink="perfil" class="navbar-brand">
+        <a routerLink="homepage" class="navbar-brand">
             <i class="bx bxs-calendar"></i>
             AgendaApp
         </a>
         <div *ngIf="localStorage.getItem('user')" class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li *ngIf="isAdmin" class="nav-item">
-                    <a class="nav-link" routerLink="user/solicitudes">Solicitudes de roles</a>
+                    <a class="nav-link" routerLink="admin/solicitudes">Solicitudes de roles</a>
                 </li>
                 <li *ngIf="isUser" class="nav-item">
                     <a class="nav-link" routerLink="proyecto/list">Proyectos</a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="isUser" class="nav-item">
                     <a class="nav-link" routerLink="recordatorio/list">Recordatorios</a>
                 </li>
                 <li *ngIf="isUser" class="nav-item">
                     <a class="nav-link" routerLink="categoria/list">Categorias</a>
                 </li>
                 <li *ngIf="isEditor" class="nav-item">
-                    <a class="nav-link" routerLink="plugin/list">Plugins</a>
+                    <a class="nav-link" routerLink="plugin/list">Gestion de plugins</a>
                 </li>
                 <li *ngIf="isUser" class="nav-item">
-                    <a class="nav-link" routerLink="pluginUser/list">Plugins</a>
+                    <a class="nav-link" routerLink="pluginUser/list">Mis plugins</a>
                 </li>
             </ul>
             <div class="dropdown" style="margin-right: 25px;">
@@ -58,7 +58,7 @@
                             {{'@'+localStorage.getItem('user')}}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" routerLink (click)="editar()">Mi perfil</a></li>
+                            <li *ngIf="isUser"><a class="dropdown-item" routerLink (click)="editar()">Mi perfil</a></li>
                             <li *ngIf="isUser && !isEditor && !isAdmin && !thereRequest" ><a class="dropdown-item" routerLink (click)="solicitar()">Solicitar ser editor</a></li>
                             <li><a class="dropdown-item" routerLink (click)="logOut()">Cerrar sesion</a></li>
                         </ul>

@@ -1,1 +1,9 @@
-@import './assets//calendar-mes//calendar-mes.css';
+input,
+textarea,
+select {
+    border-color: #8f8f8f !important;
+    --bs-bg-opacity: 1 !important;
+    background-color: rgba(70, 67, 67, 0.75) !important;
+    --bs-text-opacity: 1 !important;
+    color: rgba(255,255,255, 1) !important;
+}

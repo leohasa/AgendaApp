@@ -4,6 +4,7 @@ import { Notificacion } from 'src/app/model/notificacion';
 import { Solicitud } from 'src/app/model/solicitud';
 import { NotificacionService } from 'src/app/service/notificacion.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { SolicitudService } from 'src/app/service/solicitud.service';
 
 @Component({
     selector: 'app-list-solicitudes',
@@ -17,9 +18,8 @@ export class ListSolicitudesComponent implements OnInit {
     notificacion:Notificacion;
 
     constructor(
-            private router: Router,
-            private service: UsuarioService,
-            private notificacionServicio:NotificacionService
+            private notificacionServicio:NotificacionService,
+            private service: SolicitudService
         ) {
         this.solicitudes = new Array();
         this.notificacion = new Notificacion();
@@ -28,7 +28,7 @@ export class ListSolicitudesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.service.getSolicitudes()
+        this.service.get()
             .subscribe(data => {
                 this.solicitudes = data;
             });
@@ -42,6 +42,7 @@ export class ListSolicitudesComponent implements OnInit {
     aceptar(solicitud: Solicitud) {
         this.service.newEditor(solicitud.id)
         .subscribe(data => {
+            this.solicitudes = this.solicitudes.filter(s => s != solicitud);
             this.showInfo(`El usuario ${solicitud.usuario.username} es un editor!`);
             this.notificacion.usuario.username = solicitud.usuario.username;
             this.notificacionServicio.create(this.notificacion).subscribe(data=>{});

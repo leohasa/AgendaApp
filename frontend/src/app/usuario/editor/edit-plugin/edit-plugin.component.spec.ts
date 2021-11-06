@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CalendarioMesComponent } from './calendario-mes.component';
+import { EditPluginComponent } from './edit-plugin.component';
 
-describe('CalendarioMesComponent', () => {
-  let component: CalendarioMesComponent;
-  let fixture: ComponentFixture<CalendarioMesComponent>;
+describe('EditPluginComponent', () => {
+  let component: EditPluginComponent;
+  let fixture: ComponentFixture<EditPluginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CalendarioMesComponent ]
+      declarations: [ EditPluginComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CalendarioMesComponent);
+    fixture = TestBed.createComponent(EditPluginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

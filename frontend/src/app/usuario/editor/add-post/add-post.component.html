@@ -1,0 +1,25 @@
+<div class="container-fluid py-2 bg-secondary">
+    <div class="row">
+        <div class="col-3">
+            <a class="btn btn-primary btn-block" (click)="backList()">
+                <i class="fas fa-long-arrow-left"></i> Regresar al listado
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container mt-2 col-md-8">
+    <div class="row">
+        <div class="col">
+            <div class="card my-4">
+                <div class="card-header text-center">
+                    <h3>Agregar post</h3>
+                </div>
+                <div class="card-body">
+                    <app-txt-edit></app-txt-edit>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-modal>{{textInfo}}</app-modal>
