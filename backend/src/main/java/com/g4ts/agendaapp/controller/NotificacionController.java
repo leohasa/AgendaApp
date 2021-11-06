@@ -23,6 +23,7 @@ public class NotificacionController {
 
     @PostMapping("/add")
     public void save(@RequestBody Notificacion notificacion) {
+        notificacion.setFechaHora(LocalDateTime.now());
         this.iNotificacionService.save(notificacion);
     }
 
