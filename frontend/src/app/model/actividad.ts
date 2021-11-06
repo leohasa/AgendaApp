@@ -19,5 +19,4 @@ export class Actividad {
         this.categoria = new Categoria();
         this.usuario = new Usuario();
     }
-
 }
