@@ -16,10 +16,10 @@ import { SharehtmlService } from '../service/sharehtml.service';
 })
 export class TxtEditComponent implements OnInit {
 
-  
-  
-  @Input() entrante:Publicacion = new Publicacion();
-  @Input() message : string = "";
+
+
+  @Input() entrante: Publicacion = new Publicacion();
+  @Input() message: string = "";
   editor: Editor;
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -31,50 +31,50 @@ export class TxtEditComponent implements OnInit {
     ['text_color', 'background_color'],
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
-  html : '';
-  titulo : '';
-  
-  
-  
-  constructor(private router:Router,private service: ForoService, private serviceShare : SharehtmlService) { }
+  html: '';
+  titulo: '';
+
+
+
+  constructor(private router: Router, private service: ForoService, private serviceShare: SharehtmlService) { }
 
   ngOnInit(): void {
     this.entrante = new Publicacion();
     this.editor = new Editor();
     this.html = '';
     this.titulo = '';
-    
+
     this.editor.commands
       .focus()
       .scrollIntoView()
       .toggleBold()
       .exec();
   }
-  onKey(event:any):void{
+  onKey(event: any): void {
     const inputValue = event.target.value;
     this.titulo = inputValue;
   }
-  sendData(){
-  
-    this.entrante.usuario.username = localStorage.getItem("username")??"";
-    this.entrante.titulo = "<h1>"+this.titulo+"<\h1>";
+  sendData() {
+
+    this.entrante.usuario.username = localStorage.getItem("username") ?? "";
+    this.entrante.titulo = "<h1>" + this.titulo + "<\h1>";
     this.entrante.contenido = this.html;
-    
-    if(!(this.html === "" && this.titulo === "")){
-      
-      this.serviceShare.data.emit( this.entrante );  
-      
+
+    if (!(this.html === "" && this.titulo === "")) {
+
+      this.serviceShare.data.emit(this.entrante);
+
       this.html = "";
-      
+
       this.message = "Publicacion procesada correctamente";
-      
-    }else{
-      
-      this.message = "Debe Ingresar el Titulo y contenido de la publicacion"; 
-      
+
+    } else {
+
+      this.message = "Debe Ingresar el Titulo y contenido de la publicacion";
+
     }
-    
+
     this.serviceShare.message.emit(this.message);
-    
+
   }
 }

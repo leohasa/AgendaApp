@@ -14,7 +14,7 @@ export class FindContactComponent implements OnInit {
 
   //NgxPopperjsDirective.placement: NgxPopperjsPlacements
   lstUsuarios: string[];
-  constructor(private usrService: UsuarioService,private router : Router, private share :SharehtmlService) {
+  constructor(private usrService: UsuarioService, private router: Router, private share: SharehtmlService) {
 
 
     this.lstUsuarios = []
@@ -28,7 +28,7 @@ export class FindContactComponent implements OnInit {
     popperTrigger="click" popperPlacement="top"
     */
 
-    createPopper
+
   }
   searchMatch(event: any): void {
     const inputValue = event.target.value;
@@ -36,10 +36,12 @@ export class FindContactComponent implements OnInit {
       this.usrService.getUserMatch(inputValue).subscribe(x => {
         this.lstUsuarios = x;
       })
-    }else
-    console.log("inputvalue ",inputValue)
+    } else {
+
+    }
+
   }
-  showPerfil(u:string){
+  showPerfil(u: string) {
     this.share.username.emit(u);
     this.router.navigate(['/perfil-view']);
   }

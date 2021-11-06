@@ -8,23 +8,23 @@ import { Publicacion } from '../model/publicacion';
 export class ForoService {
 
   constructor(private http: HttpClient) { }
-  
+
   url = 'http://localhost:3000/backend/foro';
-  
-  getPublicaciones(username : string){
+
+  getPublicaciones(username: string) {
     return this.http.get<Publicacion[]>(`${this.url}/publicacion/${username}`);
   }
-  
-  createPublicacion(publicacion : Publicacion){
+
+  createPublicacion(publicacion: Publicacion) {
     return this.http.post<Publicacion>(`${this.url}/add`, publicacion);
   }
-  
-  editPublicacion(publicacion : Publicacion){
-    console.log("editPublicacion")
+
+  editPublicacion(publicacion: Publicacion) {
+
     return this.http.put<Publicacion>(`${this.url}/update`, publicacion);
   }
-  delete(publicacion : Publicacion){
-    console.log("Ho")
+  delete(publicacion: Publicacion) {
+
     return this.http.delete<Publicacion>(`${this.url}/delete/${publicacion.id}`);
   }
 }

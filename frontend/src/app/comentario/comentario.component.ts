@@ -36,7 +36,7 @@ export class ComentarioComponent implements OnInit {
     //this.comentario.publicacion = this.commentarioPublicacion;
   }
   onSave(): void {
-    console.log(" En Progreso ");
+    //console.log(" En Progreso ");
   }
   onKey(event: any): void {
     const inputValue = event.target.value;
@@ -53,7 +53,7 @@ export class ComentarioComponent implements OnInit {
     
     this.service.add(this.comentario).subscribe(()=>{
       this.shareService.expression.emit(this.expression);
-    console.log("submit comentario ",this.comentario.contenido);
+    //console.log("submit comentario ",this.comentario.contenido);
     })
     
   }

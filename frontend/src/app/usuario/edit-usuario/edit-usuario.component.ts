@@ -26,7 +26,7 @@ export class EditUsuarioComponent implements OnInit {
         this.txtHead = "Editar informacion";
         
         this.serviceShare.txtHead
-            .subscribe(x => {this.txtHead = "Informacion Basica"; console.log("ENviando datos txthead",this.txtHead)});
+            .subscribe(x => {this.txtHead = "Informacion Basica"; });
         
         this.serviceShare.expression
             .subscribe( value => {

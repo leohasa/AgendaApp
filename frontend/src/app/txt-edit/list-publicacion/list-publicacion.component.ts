@@ -11,64 +11,64 @@ import { SharehtmlService } from 'src/app/service/sharehtml.service';
   selector: 'app-list-publicacion',
   templateUrl: './list-publicacion.component.html',
   styleUrls: ['./list-publicacion.component.css']
-  
+
 })
 
 export class ListPublicacionComponent implements OnInit {
 
-  publicacion : Publicacion[];
- 
-  
-  constructor(private service: ForoService,private comentarioservice:ComentarioServiceService, private router: Router,private shareService: SharehtmlService) { this.publicacion = [];}
-  
-  
-  
+  publicacion: Publicacion[];
+
+
+  constructor(private service: ForoService, private comentarioservice: ComentarioServiceService, private router: Router, private shareService: SharehtmlService) { this.publicacion = []; }
+
+
+
   ngOnInit(): void {
     this.getPublicaciones();
-    
-    this.shareService.update.subscribe(()=>{
+
+    this.shareService.update.subscribe(() => {
       this.getPublicaciones();
     });
   }
 
-  getPublicaciones(){
-    var user = localStorage.getItem("user")??"";
+  getPublicaciones() {
+    var user = localStorage.getItem("user") ?? "";
     this.service.getPublicaciones(user)
-        .subscribe(data => {
-          this.publicacion = data;
-          this.publicacion = this.publicacion.reverse();
-        });
+      .subscribe(data => {
+        this.publicacion = data;
+        this.publicacion = this.publicacion.reverse();
+      });
   }
-  aumentar(publicacion:Publicacion){
-    this.changePuntuacion(publicacion,true);
-    
+  aumentar(publicacion: Publicacion) {
+    this.changePuntuacion(publicacion, true);
+
   }
-  
-  disminuir(publicacion:Publicacion){
-    this.changePuntuacion(publicacion,false);
+
+  disminuir(publicacion: Publicacion) {
+    this.changePuntuacion(publicacion, false);
   }
-  
-  changePuntuacion(publicacion:Publicacion,aumento:Boolean){
-    
+
+  changePuntuacion(publicacion: Publicacion, aumento: Boolean) {
+
     var cadena = publicacion.puntuacion;
-    var puntuacion :number = +cadena;
-    
-    puntuacion = aumento? ++puntuacion:--puntuacion;
-    
-    
-    publicacion.puntuacion = ""+puntuacion;
+    var puntuacion: number = +cadena;
+
+    puntuacion = aumento ? ++puntuacion : --puntuacion;
+
+
+    publicacion.puntuacion = "" + puntuacion;
     this.shareService.aumentar.emit(publicacion);
-    
+
   }
-  update(publicacion:Publicacion){
+  update(publicacion: Publicacion) {
     this.comentarioservice.deleteByIdPublicacion(publicacion.id)
-    .subscribe(()=>{
-      console.log("elimando comentarios ...",publicacion.id)
-      this.service.delete(publicacion).subscribe(()=>{
-      
-        this.shareService.message.emit("Publicacion eliminada correctamente");
-      })
-    });
-    
+      .subscribe(() => {
+        //console.log("elimando comentarios ...",publicacion.id)
+        this.service.delete(publicacion).subscribe(() => {
+
+          this.shareService.message.emit("Publicacion eliminada correctamente");
+        })
+      });
+
   }
 }

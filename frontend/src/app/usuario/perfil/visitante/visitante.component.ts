@@ -10,16 +10,16 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 })
 export class VisitanteComponent implements OnInit {
 
-  usuario:Usuario;
-  constructor(private userService: UsuarioService, private share : SharehtmlService) { this.usuario = new Usuario(); }
+  usuario: Usuario;
+  constructor(private userService: UsuarioService, private share: SharehtmlService) { this.usuario = new Usuario(); }
 
   ngOnInit(): void {
-    this.share.username.subscribe(x=>{
+    this.share.username.subscribe(x => {
       console.log(x)
       this.userService.getUsuarioById(x).
-          subscribe(user => {
-            this.usuario =  user;
-          });
+        subscribe(user => {
+          this.usuario = user;
+        });
     });
   }
 
