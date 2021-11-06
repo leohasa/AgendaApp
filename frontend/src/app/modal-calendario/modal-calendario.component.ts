@@ -10,6 +10,8 @@ import { CategoriaService } from '../service/categoria.service';
 import { ProyectoService } from '../service/proyecto.service';
 import { RecordatorioService } from '../service/recordatorio.service';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
+import { NotificacionService } from '../service/notificacion.service';
+import { Notificacion } from '../model/notificacion';
 
 @Component({
     selector: 'app-modal-calendario',
@@ -17,11 +19,15 @@ import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
     styleUrls: ['./modal-calendario.component.css'],
 })
 export class ModalCalendarioComponent implements OnInit {
+
     actividad: Actividad;
     recordatorio: Recordatorio;
     categorias: Array<Categoria>;
     proyectos: Array<Proyecto>;
+    notificacion:Notificacion;
     date: Date;
+    @Output() sendTrue = new EventEmitter<Boolean>();
+
 	@Input() set setDate(date: Date) {
 		this.date = date;
         this.actividad = new Actividad();
@@ -32,17 +38,16 @@ export class ModalCalendarioComponent implements OnInit {
 		this.ngOnInit();
 	};
 
-	@Output() sendTrue = new EventEmitter<Boolean>();
-
     constructor(
-        private recordatorioService: RecordatorioService,
-        private actividadService: ActividadService,
-        private categoriaService: CategoriaService,
-        private proyectoService: ProyectoService
+        private recordatorioService:RecordatorioService,
+        private actividadService:ActividadService,
+        private categoriaService:CategoriaService,
+        private proyectoService:ProyectoService,
+        private notificacionService:NotificacionService
     ) {
         this.actividad = new Actividad();
-        this.actividad.proyecto;
         this.recordatorio = new Recordatorio();
+        this.notificacion = new Notificacion();
         this.categorias = new Array();
         this.proyectos = new Array();
         this.date = new Date();
@@ -86,6 +91,7 @@ export class ModalCalendarioComponent implements OnInit {
 		});
     }
 
+
     public createActivity(): void {
         let fechaFin: HTMLInputElement =
             document.querySelector('#fechaFinActividad') ??
@@ -97,12 +103,23 @@ export class ModalCalendarioComponent implements OnInit {
 		});
     }
 
+    private copyNotificacion():void{
+        this.notificacion.titulo = this.recordatorio.titulo;
+        this.notificacion.descripcion = this.recordatorio.descripcion;
+        this.notificacion.fechaHora = this.recordatorio.fecha;
+        this.notificacion.usuario.username = this.recordatorio.usuario.username;
+    }
+
     public createReminder(): void {
         this.recordatorio.usuario.username = localStorage.getItem('user') ?? '';
         this.recordatorioService
             .create(this.recordatorio)
             .subscribe((data) => {
 				this.sendTrue.emit(true);
+                this.copyNotificacion();
+                this.notificacionService.create(this.notificacion).subscribe(data => {
+                this.notificacionService.updateNotificaciones(true);
+                });
 			});
     }
 }

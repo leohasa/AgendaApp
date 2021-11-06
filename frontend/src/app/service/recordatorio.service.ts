@@ -14,14 +14,18 @@ export class RecordatorioService {
         return this.http.post(`${this.url}/add`, recordatorio);
     }
 
-    getRecordatorios(idUsuario: string) {
-        return this.http.post<Array<Recordatorio>>(
-            `${this.url}/get`,
-            idUsuario
-        );
-    }
+  getRecordatorios(idUsuario:string){
+    return this.http.post<Array<Recordatorio>>(`${this.url}/get`, idUsuario);
+  }
 
-    delete(idRecordatorio: number) {
-        return this.http.post(`${this.url}/delete`, idRecordatorio);
-    }
+  /*
+  getRecordatoriosPorFecha(idUsuario:string){
+    return this.http.post<Array<Recordatorio>>(`${this.url}/getPorFecha`, idUsuario);
+  }
+  */
+
+  delete(idRecordatorio:number) {
+    return this.http.post(`${this.url}/delete`,idRecordatorio);
+  }
+  
 }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component';
@@ -37,16 +36,14 @@ import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { ForoService } from './service/foro.service';
 import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
-
 import { PerfilComponent } from './usuario/perfil/perfil.component';
-
-
 import { ModalCalendarioComponent } from './modal-calendario/modal-calendario.component';
 import { ListRecordatorioComponent } from './recordatorio/list-recordatorio/list-recordatorio.component';
 import { ManagerRecordatorioRoutesComponent } from './recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
 import { DataService } from './service/data.service';
 import { ComentarioComponent } from './comentario/comentario.component';
-
+import { RecordatorioService } from './service/recordatorio.service';
+import { NotificacionService } from './service/notificacion.service';
 
 @NgModule({
     declarations: [
@@ -97,7 +94,9 @@ import { ComentarioComponent } from './comentario/comentario.component';
         ActividadService,
         AccessGuard,
         ForoService,
-        DataService
+        DataService,
+        RecordatorioService,
+        NotificacionService
     ],
     bootstrap: [AppComponent]
 })

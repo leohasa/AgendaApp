@@ -7,6 +7,8 @@ import com.g4ts.agendaapp.repository.RecordatorioRepository;
 import com.g4ts.agendaapp.service.IRecordatorioService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,5 +46,10 @@ public class RecordatorioServiceJpa implements IRecordatorioService {
     @Override
     public List<Recordatorio> findAllByUsuario(Usuario usuario) {
         return this.recordatorioRepository.findAllByUsuario(usuario);
+    }
+
+    @Override
+    public List<Recordatorio> findAllByUsuarioYFecha(Usuario usuario, LocalDateTime inicio, LocalDateTime fin) {
+        return this.recordatorioRepository.findAllByUsuarioAndFechaBetween(usuario,inicio,fin);
     }
 }

@@ -25,6 +25,28 @@
                     <a class="nav-link" routerLink="pluginUser/list">Plugins</a>
                 </li>
             </ul>
+            <div class="dropdown" style="margin-right: 25px;">
+                <button (click)="updateNotificaciones()" class="btn btn-secondary btn-lg " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-bell"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{notificaciones.length}}
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                </button>
+                <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1" style="width: 700%; height: 900%;">
+                    <li><h6 class="dropdown-header">Notificaciones</h6></li>
+                    <li>
+                        <div *ngFor="let not of notificaciones" class="card w-100">
+                            <div class="card-body">
+                              <h5 class="card-title">{{not.titulo}}</h5>
+                              <h6 class="card-title text-primary">{{not.fechaHora}}</h6>
+                              <p class="card-text">{{not.descripcion}}.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                
+            </div>
             <form class="d-flex me-4">
                 <input class="form-control me-2" type="text" placeholder="...   ">
                 <button class="btn btn-primary" type="button">Buscar</button>

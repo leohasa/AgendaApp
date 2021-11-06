@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Notificacion } from './model/notificacion';
+import { Recordatorio } from './model/recordatorio';
 import { Rol } from './model/rol';
 import { DataService } from './service/data.service';
+import { NotificacionService } from './service/notificacion.service';
+import { RecordatorioService } from './service/recordatorio.service';
 import { UsuarioService } from './service/usuario.service';
 
 @Component({
@@ -18,15 +22,23 @@ export class AppComponent implements OnInit {
     isAdmin: boolean;
     isEditor: boolean;
     thereRequest: boolean;
+    notificaciones: Array<Notificacion>;
 
 
-    constructor(private router: Router, private service: UsuarioService, private dataService: DataService) {
+    constructor(
+        private router: Router, 
+        private service: UsuarioService, 
+        private dataService: DataService,
+        private recordatorioService:RecordatorioService,
+        private notificacionService:NotificacionService
+        ) {
         this.username = localStorage.getItem('user') ?? '';
         this.roles = new Array();
         this.isUser = true;
         this.isAdmin = true;
         this.isEditor = true;
         this.thereRequest = false;
+        this.notificaciones = new Array();
     }
 
     ngOnInit(): void {
@@ -45,6 +57,7 @@ export class AppComponent implements OnInit {
                 });
 
         }
+        this.observarNotificaciones();
     }
 
     private cargarRoles(): void {
@@ -81,5 +94,19 @@ export class AppComponent implements OnInit {
         });
 
         return flag;
+    }
+
+    updateNotificaciones():void{
+        let user = localStorage.getItem('user') ?? '';
+        this.notificacionService.getNotificacionesPorFecha(user).subscribe(data=>{
+            this.notificaciones = data;
+        });
+    }
+
+    observarNotificaciones():void{
+        this.updateNotificaciones();
+        this.notificacionService.getUpdateNotificaciones().subscribe(data=>{
+            this.updateNotificaciones();
+        });
     }
 }

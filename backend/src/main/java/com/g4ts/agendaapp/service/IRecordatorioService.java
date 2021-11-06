@@ -4,6 +4,8 @@ import com.g4ts.agendaapp.model.Proyecto;
 import com.g4ts.agendaapp.model.Recordatorio;
 import com.g4ts.agendaapp.model.Usuario;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface IRecordatorioService {
@@ -13,4 +15,5 @@ public interface IRecordatorioService {
     void deleteById(Integer id);
 
     List<Recordatorio> findAllByUsuario(Usuario usuario);
+    List<Recordatorio> findAllByUsuarioYFecha(Usuario usuario, LocalDateTime inicio, LocalDateTime fin);
 }

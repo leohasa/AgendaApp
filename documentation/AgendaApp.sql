@@ -283,6 +283,25 @@ CREATE TABLE SolicitudRolEditor (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table Notificacion
+-- -----------------------------------------------------
+CREATE TABLE Notificacion (
+  id INT NOT NULL AUTO_INCREMENT,
+  titulo VARCHAR(45) NOT NULL,
+  descripcion VARCHAR(200) NOT NULL,
+  fechaHora TIMESTAMP NULL,
+  idUsuario VARCHAR(45),
+  PRIMARY KEY (id),
+  INDEX fk_Notificacion_Usuario_idx (idUsuario ASC) VISIBLE,
+  CONSTRAINT fk_Notificacion_Usuario
+    FOREIGN KEY (idUsuario)
+    REFERENCES Usuario (username)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
+
+
 INSERT INTO `Usuario` VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
 INSERT INTO `Usuario` VALUES ('user','123','Admin','1998-09-04','GT','Student',NULL);
 INSERT INTO `Usuario` VALUES ('editor','123','Admin','1998-09-04','GT','Student',NULL);
