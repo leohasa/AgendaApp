@@ -1,30 +1,52 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <a routerLink="perfil" class="navbar-brand">
+        <a routerLink="homepage" class="navbar-brand">
             <i class="bx bxs-calendar"></i>
             AgendaApp
         </a>
         <div *ngIf="localStorage.getItem('user')" class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li *ngIf="isAdmin" class="nav-item">
-                    <a class="nav-link" routerLink="user/solicitudes">Solicitudes de roles</a>
+                    <a class="nav-link" routerLink="admin/solicitudes">Solicitudes de roles</a>
                 </li>
                 <li *ngIf="isUser" class="nav-item">
                     <a class="nav-link" routerLink="proyecto/list">Proyectos</a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="isUser" class="nav-item">
                     <a class="nav-link" routerLink="recordatorio/list">Recordatorios</a>
                 </li>
                 <li *ngIf="isUser" class="nav-item">
                     <a class="nav-link" routerLink="categoria/list">Categorias</a>
                 </li>
                 <li *ngIf="isEditor" class="nav-item">
-                    <a class="nav-link" routerLink="plugin/list">Plugins</a>
+                    <a class="nav-link" routerLink="plugin/list">Gestion de plugins</a>
                 </li>
                 <li *ngIf="isUser" class="nav-item">
-                    <a class="nav-link" routerLink="pluginUser/list">Plugins</a>
+                    <a class="nav-link" routerLink="pluginUser/list">Mis plugins</a>
                 </li>
             </ul>
+            <div class="dropdown" style="margin-right: 25px;">
+                <button (click)="updateNotificaciones()" class="btn btn-secondary btn-lg " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-bell"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{notificaciones.length}}
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                </button>
+                <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1" style="width: 700%; height: 900%;">
+                    <li><h6 class="dropdown-header">Notificaciones</h6></li>
+                    <li>
+                        <div *ngFor="let not of notificaciones" class="card w-100">
+                            <div class="card-body">
+                              <h5 class="card-title">{{not.titulo}}</h5>
+                              <h6 class="card-title text-primary">{{not.fechaHora}}</h6>
+                              <p class="card-text">{{not.descripcion}}.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                
+            </div>
             <form class="d-flex me-4">
                 <input class="form-control me-2" type="text" placeholder="...   ">
                 <button class="btn btn-primary" type="button">Buscar</button>
@@ -36,7 +58,7 @@
                             {{'@'+localStorage.getItem('user')}}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" routerLink (click)="editar()">Mi perfil</a></li>
+                            <li *ngIf="isUser"><a class="dropdown-item" routerLink (click)="editar()">Mi perfil</a></li>
                             <li *ngIf="isUser && !isEditor && !isAdmin && !thereRequest" ><a class="dropdown-item" routerLink (click)="solicitar()">Solicitar ser editor</a></li>
                             <li><a class="dropdown-item" routerLink (click)="logOut()">Cerrar sesion</a></li>
                         </ul>

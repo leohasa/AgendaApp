@@ -6,6 +6,9 @@ import com.g4ts.agendaapp.model.Usuario;
 import com.g4ts.agendaapp.service.IRecordatorioService;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,6 +31,11 @@ public class RecordatorioController {
     @PostMapping("/get")
     public List<Recordatorio> get(@RequestBody String idUsuario) {
         return this.iRecordatorioService.findAllByUsuario(Usuario.builder().username(idUsuario).build());
+    }
+
+    @PostMapping("/getPorFecha")
+    public List<Recordatorio> getPorFecha(@RequestBody String idUsuario) {
+        return this.iRecordatorioService.findAllByUsuarioYFecha(Usuario.builder().username(idUsuario).build(),LocalDateTime.of(LocalDate.now(), LocalTime.MIN),LocalDateTime.of(LocalDate.now(), LocalTime.MAX));
     }
 
     @PostMapping("/delete")

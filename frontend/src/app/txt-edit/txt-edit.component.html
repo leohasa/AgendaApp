@@ -17,14 +17,15 @@
         ></ngx-editor>
       </div>
       <br>
-      
-      <button type="button" (click)="sendData()" class="btn btn-primary">Publicar</button>
-      
-      
-      
-      
+
+      <button *ngIf="isUser" type="button" (click)="sendData()" class="btn btn-primary">Publicar</button>
+      <button *ngIf="isEditor" type="button" (click)="addPost()" class="btn btn-primary">Agregar post</button>
+
+
+
+
       <div class="container">
 
-        
+
     </div>
     <!--/form-->

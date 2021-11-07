@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Notificacion } from './model/notificacion';
 import { Rol } from './model/rol';
 import { DataService } from './service/data.service';
+import { NotificacionService } from './service/notificacion.service';
+import { SolicitudService } from './service/solicitud.service';
 import { UsuarioService } from './service/usuario.service';
 
 @Component({
@@ -11,55 +14,77 @@ import { UsuarioService } from './service/usuario.service';
 })
 export class AppComponent implements OnInit {
 
-    username: String;
+    username: string;
     localStorage = localStorage;
     roles: Rol[];
     isUser: boolean;
     isAdmin: boolean;
     isEditor: boolean;
     thereRequest: boolean;
+    notificaciones: Array<Notificacion>;
 
 
-    constructor(private router: Router, private service: UsuarioService, private dataService: DataService) {
-        this.username = localStorage.getItem('user') ?? '';
+    constructor(
+        private router: Router,
+        private userService: UsuarioService,
+        private dataService: DataService,
+        private solicitudService: SolicitudService,
+        private notificacionService: NotificacionService
+    ) {
         this.roles = new Array();
+        this.username = '';
         this.isUser = true;
         this.isAdmin = true;
         this.isEditor = true;
         this.thereRequest = false;
+        this.notificaciones = new Array();
     }
 
     ngOnInit(): void {
         if (!localStorage.getItem('user')) {
             this.router.navigate(['/login']);
         } else {
-
-            this.router.navigate(['perfil']);
-
-            
-            this.cargarRoles();
-
-            this.dataService.getData()
-                .subscribe(data => {
-                    this.thereRequest = data;
-                });
-
+            this.username = localStorage.getItem('user') ?? '';
+            // this.cargarRoles();
+            this.router.navigate(['/homepage']);
         }
+        this.suscribeDataService();
     }
 
     private cargarRoles(): void {
-        this.service.getRols(this.username)
+        this.userService.getRols(this.username)
             .subscribe(data => {
                 this.roles = data;
-                this.isUser = this.hasRol('USUARIO');
-                this.isAdmin = this.hasRol('ADMINISTRADOR');
-                this.isEditor = this.hasRol('EDITOR');
+                this.verificarRoles();
             });
+    }
+
+    private suscribeDataService(): void {
+        this.dataService.getData()
+            .subscribe(data => {
+                if (data instanceof Array) {
+                    this.roles = data;
+                    this.verificarRoles();
+                }
+
+                this.username = localStorage.getItem('user') ?? '';
+                this.solicitudService.existsByUser(this.username)
+                    .subscribe(data => {
+                        this.thereRequest = data;
+                    });
+                this.observarNotificaciones();
+            });
+    }
+
+    private verificarRoles(): void {
+        this.isUser = this.userService.hasRol('USUARIO', this.roles);
+        this.isAdmin = this.userService.hasRol('ADMINISTRADOR', this.roles);
+        this.isEditor = this.userService.hasRol('EDITOR', this.roles);
     }
 
     editar() {
         localStorage.setItem('username', this.username.toString());
-        this.router.navigate(['/user/edit']);
+        this.router.navigate(['/user/perfil']);
     }
 
     solicitar() {
@@ -71,15 +96,17 @@ export class AppComponent implements OnInit {
         this.router.navigate(['/login']);
     }
 
-    hasRol(rol: String): boolean {
-        let flag: boolean = false;
-
-        this.roles.forEach(r => {
-            if (r.tipo == rol) {
-                flag = true;
-            }
+    updateNotificaciones(): void {
+        let user = localStorage.getItem('user') ?? '';
+        this.notificacionService.getNotificacionesPorFecha(user).subscribe(data => {
+            this.notificaciones = data;
         });
+    }
 
-        return flag;
+    observarNotificaciones(): void {
+        this.updateNotificaciones();
+        this.notificacionService.getUpdateNotificaciones().subscribe(data => {
+            this.updateNotificaciones();
+        });
     }
 }

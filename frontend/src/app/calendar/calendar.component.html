@@ -54,7 +54,7 @@
 	</div>
 </div>
 
-<div class="modal" tabindex="-1" id="modal-info">
+<div class="modal fade" tabindex="-1" id="modal-info">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 		<div class="modal-header">
@@ -70,8 +70,6 @@
 	</div>
 	</div>
 </div>
-<app-modal-calendario></app-modal-calendario>
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalActividad">
-	Agregar evento
-</button>
+<app-modal-calendario [setDate]="outputDate" (sendTrue)="updateCalendar($event)"></app-modal-calendario>
+

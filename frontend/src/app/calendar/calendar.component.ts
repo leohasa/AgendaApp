@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActividadService } from '../service/actividad.service';
 import { Actividad } from 'src/app/model/actividad';
+import { RecordatorioService } from '../service/recordatorio.service';
+import { Recordatorio } from '../model/recordatorio';
 
 declare var Moon: any;
 declare var bootstrap: any;
@@ -12,7 +14,9 @@ declare var bootstrap: any;
 })
 export class CalendarComponent implements OnInit {
 
-	activities: ({ date: Date, activity: Actividad })[];
+	outputDate: Date;
+	activities: ({ start: Date, end: Date, activity: Actividad })[];
+	reminders: { start: Date, reminder: Recordatorio }[];
 	moon: any;
 	label: string;
 	year: number;
@@ -50,24 +54,35 @@ export class CalendarComponent implements OnInit {
 	day: string = "";
 	day_number: number;
 
-	constructor(private service: ActividadService) {
+	constructor(private service: ActividadService, private recordatorioService: RecordatorioService) {
 		this.year = new Date().getFullYear();
 		this.month = new Date().getMonth();
 		this.label = `${this.months[this.month]} ${this.year}`;
 		this.activities = [];
+		this.reminders = [];
 		this.day_number = 1;
+		this.outputDate = new Date();
 	}
 
 	ngOnInit(): void {
 		this.moon = new Moon(document.querySelector("#ex1"));
-		this.service.getAll()
-		.subscribe(data => {
-			this.activities = data.map(a => {
-				const date = new Date(Date.parse(a.fechaInicio) + 21600000); /* 21600000 = 3600 * 6 * 1000 */
-				return { date: date, activity: a };
+		this.service.getByUser(localStorage.getItem('user') ?? '')
+			.subscribe(data => {
+				this.activities = data.map(a => {
+					const start = new Date(Date.parse(a.fechaInicio) + 21600000); /* 21600000 = 3600 * 6 * 1000 */
+					const end = new Date(Date.parse(a.fechaFin) + 108000000); /* 21600000 + 1day */
+					return { start: start, end: end, activity: a };
+				});
+
+				this.recordatorioService.getRecordatorios(localStorage.getItem('user') ?? '')
+					.subscribe(data => {
+						this.reminders = data.map(r => {
+							const start = new Date(Date.parse(r.fecha));
+							return { start: start, reminder: r };
+						})
+						this.switchMonth(undefined, new Date().getMonth(), new Date().getFullYear());
+					})
 			});
-			this.switchMonth(undefined, new Date().getMonth(), new Date().getFullYear());
-		});
 	}
 
 	switchMonth(next:boolean | undefined, month:number | undefined, year:number | undefined) {
@@ -78,7 +93,12 @@ export class CalendarComponent implements OnInit {
 
 	createCal(year:number, month:number) {
 		/* actividades del mes */
-		const activities1 = this.activities.filter(a => a.date.getFullYear() === year && a.date.getMonth() === month);
+		const tmp = new Date();
+		tmp.setFullYear(year);
+		tmp.setMonth(month);
+		tmp.setHours(0);
+		tmp.setMinutes(0);
+		tmp.setSeconds(0);
 
 		this.label = `${this.months[month]} ${year}`;
 		let day = 1;
@@ -118,11 +138,47 @@ export class CalendarComponent implements OnInit {
 					td.innerHTML = '';
 					if(i < calendar.length) {
 						if(calendar[i][j] !== undefined) {
-							td.innerHTML = `<span class="badge bg-light text-dark fs-6">${calendar[i][j]}</span>`;
-							this.renderActivities(td, calendar[i][j], activities1);
+							tmp.setDate(calendar[i][j]);
+							const activities1 = this.activities.filter(a => tmp >= a.start && tmp <= a.end);
+							const reminders1 = this.reminders.filter(r => r.start.getFullYear() === year && r.start.getMonth() === month && r.start.getDate() === calendar[i][j]);
+							//console.log(tmp, reminders1);
+
 							if(year === today.getFullYear() && month === today.getMonth() && calendar[i][j] === today.getDate()) {
-								td.innerHTML = `<span class="badge bg-primary fs-6">${calendar[i][j]}</span>`;
-								this.renderActivities(td, calendar[i][j], activities1);
+								const span = document.createElement("span");
+								span.classList.add("badge");
+								span.classList.add("bg-primary");
+								span.classList.add("fs-6");
+								span.innerHTML = `${calendar[i][j]}`;
+								span.setAttribute("data-day", `${calendar[i][j]}`);
+								span.setAttribute("data-month", `${month}`);
+								span.setAttribute("data-year", `${year}`);
+								span.style.cursor = "pointer";
+
+								span.onclick = () => this.showModalActivity(span);
+
+								td.appendChild(span);
+								if(activities1.length > 0 || reminders1.length > 0) {
+									this.renderActivities(td, activities1, reminders1, tmp);
+								}
+							} else {
+								// data-bs-toggle="modal" data-bs-target="#modalActividad"
+								const span = document.createElement("span");
+								span.classList.add("badge");
+								span.classList.add("bg-light");
+								span.classList.add("text-dark");
+								span.classList.add("fs-6");
+								span.innerHTML = `${calendar[i][j]}`;
+								span.setAttribute("data-day", `${calendar[i][j]}`);
+								span.setAttribute("data-month", `${month}`);
+								span.setAttribute("data-year", `${year}`);
+								span.style.cursor = "pointer";
+
+								span.onclick = () => this.showModalActivity(span);
+
+								td.appendChild(span);
+								if(activities1.length > 0 || reminders1.length > 0) {
+									this.renderActivities(td, activities1, reminders1, tmp);
+								}
 							}
 						}
 					}
@@ -132,32 +188,70 @@ export class CalendarComponent implements OnInit {
 	}
 
 	/* renderizar actividades aqui */
-	renderActivities(td: HTMLTableCellElement, date: number, activities: { date: Date, activity: Actividad }[]) {
-		const tmp = activities.filter(a => a?.date.getDate() === date);
-		if(tmp.length > 0) {
-			// console.log(date, tmp);
-			const div = document.createElement("div");
-			td.appendChild(div);
-			for (let i = 0; i < tmp.length && i < 3; i++) {
-				if(i === 2) {
-					const span = document.createElement("span");
-					span.classList.add('badge');
-					span.classList.add('bg-light');
-					span.classList.add("text-dark");
-					span.style.cursor = "pointer";
-					span.textContent = "Ver mas...";
-					span.onclick = () => this.showModal(tmp[0].date);
-					div.appendChild(span);
+	renderActivities(td: HTMLTableCellElement, activities: { start: Date, end: Date, activity: Actividad }[], reminders: { start: Date, reminder: Recordatorio }[], current: Date) {
+		let count = 0;
+		const div = document.createElement("div");
+		td.appendChild(div);
 
-				} else {
-					const span = `<span class="${this.getClass(i)}">${this.getTittle(`${tmp[i]?.activity.titulo}`)}</span><br>`;
-					div.innerHTML += span;
-				}
+		for(count = 0; count < reminders.length && count < 3; count++) {
+			if(count === 2) {
+				/* renderizar ver mas y return */
+				const span = document.createElement("span");
+				span.classList.add('badge');
+				span.classList.add('bg-light');
+				span.classList.add("text-dark");
+				span.style.cursor = "pointer";
+				span.textContent = "Ver mas...";
+				span.setAttribute("data-day", current.getDate().toString());
+				span.setAttribute("data-month", current.getMonth().toString());
+				span.setAttribute("data-year", current.getFullYear().toString());
+				span.onclick = () => this.showModal(span);
+				div.appendChild(span);
+				return;
+			} else {
+				/* renderizar actividades aqui */
+				const span = document.createElement('span');
+				this.getClass(count).forEach(s => span.classList.add(s));
+				span.textContent = reminders[count].reminder.titulo;
+				span.setAttribute("data-id", reminders[count].reminder.id.toString());
+				span.setAttribute("data-kind", "reminder");
+				div.appendChild(span);
+				div.appendChild(document.createElement("br"));
 			}
+		}
+
+		// count = count === 0 ? count : count - 1;
+		for (let i = 0; i < activities.length && count < 3; i++) {
+			if(count === 2) {
+				const span = document.createElement("span");
+				span.classList.add('badge');
+				span.classList.add('bg-light');
+				span.classList.add("text-dark");
+				span.style.cursor = "pointer";
+				span.textContent = "Ver mas...";
+				span.setAttribute("data-day", current.getDate().toString());
+				span.setAttribute("data-month", current.getMonth().toString());
+				span.setAttribute("data-year", current.getFullYear().toString());
+				span.onclick = () => this.showModal(span);
+				div.appendChild(span);
+			} else {
+				const span = document.createElement('span');
+				this.getClass(i).forEach(s => span.classList.add(s));
+				span.textContent = activities[i].activity.titulo;
+				span.setAttribute("data-id", activities[i].activity.id);
+				span.setAttribute("data-kind", "activity");
+				div.appendChild(span);
+				div.appendChild(document.createElement("br"));
+			}
+			count++;
 		}
 	}
 
-	showModal(date: Date) {
+	showModal(span: HTMLElement) {
+		const date = new Date();
+		date.setDate(Number(span.dataset.day));
+		date.setMonth(Number(span.dataset.month));
+		date.setFullYear(Number(span.dataset.year));
 		const modal = new bootstrap.Modal(document.querySelector("#modal-info"), { focus: true });
 		const body = document.querySelector("#modal-body");
 
@@ -165,18 +259,38 @@ export class CalendarComponent implements OnInit {
 		if(body) {
 			body.innerHTML = '';
 			this.activities.
-				filter(a => a.date.toDateString() === date.toDateString())
+				filter(a => date >= a.start && date <= a.end)
 				.forEach((a, index) => {
-					body.innerHTML += `<span class="${this.getClass(index)} fs-6 my-1">${a.activity.titulo}</span><br>`;
+					const span = document.createElement("span");
+					this.getClass(index).forEach(s => span.classList.add(s));
+					span.classList.add("fs-6");
+					span.classList.add("my-1");
+					span.textContent = a.activity.titulo;
+					span.setAttribute("data-id", a.activity.id);
+					span.setAttribute("data-kind", "activity");
+					body.appendChild(span);
+					body.appendChild(document.createElement("br"));
+					// body.innerHTML += `<span class="${this.getClass(index)} fs-6 my-1">${a.activity.titulo}</span><br>`;
+				});
+
+			this.reminders
+				.filter(r => r.start.getFullYear() === date.getFullYear() && r.start.getMonth() === date.getMonth() && r.start.getDate() === date.getDate())
+				.forEach((r, index) => {
+					const span = document.createElement("span");
+					this.getClass(index).forEach(s => span.classList.add(s));
+					span.classList.add("fs-6");
+					span.classList.add("my-1");
+					span.textContent = r.reminder.titulo;
+					span.setAttribute("data-id", r.reminder.id.toString());
+					span.setAttribute("data-kind", "reminder");
+					body.appendChild(span);
+					body.appendChild(document.createElement("br"));
 				});
 		}
 
 		this.day_number = date.getDate();
 		this.day = this.days[date.getDay()];
-
-		setTimeout(() => {
-			modal.show();
-		}, 200);
+		modal.show();
 	}
 
 	getTittle(title: string) {
@@ -187,7 +301,36 @@ export class CalendarComponent implements OnInit {
 		}
 	}
 
-	getClass(i: number): string {
-		return this.classes[i % this.classes.length];
+	getClass(i: number): string[] {
+		return this.classes[i % this.classes.length].split(" ");
+	}
+
+	showModalActivity(span: HTMLElement) {
+		this.outputDate = new Date(Number(span.dataset.year), Number(span.dataset.month), Number(span.dataset.day));
+		const modal = new bootstrap.Modal(document.querySelector('#modalActividad'), { focus: true });
+		setTimeout(() => {
+			modal.show();
+		}, 200);
+
+	}
+
+	updateCalendar(value: Boolean) {
+		this.service.getByUser(localStorage.getItem('user') ?? '')
+			.subscribe(data => {
+				this.activities = data.map(a => {
+					const start = new Date(Date.parse(a.fechaInicio) + 21600000); /* 21600000 = 3600 * 6 * 1000 */
+					const end = new Date(Date.parse(a.fechaFin) + 108000000); /* 21600000 + 1day */
+					return { start: start, end: end, activity: a };
+				});
+
+				this.recordatorioService.getRecordatorios(localStorage.getItem('user') ?? '')
+					.subscribe(data => {
+						this.reminders = data.map(r => {
+							const start = new Date(Date.parse(r.fecha));
+							return { start: start, reminder: r };
+						})
+						this.switchMonth(undefined, this.month, this.year);
+					})
+			});
 	}
 }

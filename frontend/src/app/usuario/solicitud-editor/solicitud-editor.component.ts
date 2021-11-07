@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Solicitud } from 'src/app/model/solicitud';
 import { DataService } from 'src/app/service/data.service';
-import { UsuarioService } from 'src/app/service/usuario.service';
+import { SolicitudService } from 'src/app/service/solicitud.service';
 
 @Component({
     selector: 'app-solicitud-editor',
@@ -14,7 +14,7 @@ export class SolicitudEditorComponent implements OnInit {
     solicitud: Solicitud;
     textInfo: String = "";
 
-    constructor(private router: Router, private service: UsuarioService, private dataService: DataService) {
+    constructor(private router: Router, private service: SolicitudService) {
         this.solicitud = new Solicitud();
     }
 
@@ -26,7 +26,6 @@ export class SolicitudEditorComponent implements OnInit {
         this.solicitud.usuario.username = localStorage.getItem('user') ?? '';
         this.service.addSolicitud(this.solicitud)
             .subscribe(x => {
-                this.dataService.updateData(true);
                 this.showInfo('Solicitud enviada al administrador');
             });
     }
@@ -43,7 +42,7 @@ export class SolicitudEditorComponent implements OnInit {
     }
 
     backList() {
-        this.router.navigate(['calendar-mes']);
+        this.router.navigate(['/homepage']);
     }
 
 }

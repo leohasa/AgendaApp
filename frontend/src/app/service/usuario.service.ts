@@ -41,16 +41,16 @@ export class UsuarioService {
         return this.http.get<Rol[]>(`${this.url}/roles/${username}`);
     }
 
-    getSolicitudes() {
-        return this.http.get<Solicitud[]>(`${this.url}/solicitudes`);
-    }
+    hasRol(rol: String, roles: Rol[]): boolean {
+        let flag: boolean = false;
 
-    addSolicitud(solicitud: Solicitud) {
-        return this.http.post<Solicitud>(`${this.url}/addSolicitud`, solicitud);
-    }
+        roles.forEach(r => {
+            if (r.tipo == rol) {
+                flag = true;
+            }
+        });
 
-    newEditor(id: String) {
-        return this.http.get<Solicitud>(`${this.url}/newEditor/${id}`);
+        return flag;
     }
     
     getUserMatch(match : string){
