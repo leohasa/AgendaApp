@@ -26,14 +26,11 @@ public class PublicacionController {
 
     @PostMapping("/add")
     public void save(@RequestBody Publicacion publicacion){
-        System.out.println("/add "+publicacion);
-        System.out.println("Publicacion desde sprint "+ publicacion.getContenido());
         this.publicacionService.save(publicacion);
 
     }
     @PutMapping("/update")
     public void update(@RequestBody Publicacion publicacion){
-        System.out.println("actualizando server publicacion");
         this.publicacionService.save(publicacion);
     }
 }

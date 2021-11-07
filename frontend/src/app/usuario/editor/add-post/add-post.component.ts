@@ -13,20 +13,30 @@ export class AddPostComponent implements OnInit {
 
     textInfo: string = "";
 
-    constructor(private router: Router, private service: PostService, private dataPost: DataPostService) { }
+    constructor(private router: Router, private postService: PostService, private dataPost: DataPostService) {}
 
     ngOnInit(): void {
         this.eventModal();
-        this.suscribePost();
+        // this.suscribePost();
     }
 
     suscribePost() {
         this.dataPost.getData()
             .subscribe(data => {
-                this.service.create(data)
+                console.log(data);
+                console.log(`Recibiendo post: ${data}`);
+                this.postService.create(data)
                     .subscribe(data => {
                         this.showInfo('Post agregado con al plugin');
+                        console.log('Servicio completado');
                     });
+            });
+    }
+
+    addPost(post: Post) {
+        this.postService.create(post)
+            .subscribe(data => {
+                this.showInfo('Post agregado al plugin');
             });
     }
 

@@ -15,7 +15,7 @@
                     <h3>Agregar post</h3>
                 </div>
                 <div class="card-body">
-                    <app-txt-edit></app-txt-edit>
+                    <app-txt-edit (postEmitter)="addPost($event)"></app-txt-edit>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { Editor, Toolbar } from 'ngx-editor';
 import { Post } from '../model/post';
 import { Publicacion } from '../model/publicacion';
@@ -13,7 +13,7 @@ import { UsuarioService } from '../service/usuario.service';
     templateUrl: './txt-edit.component.html',
     styleUrls: ['./txt-edit.component.css']
 })
-export class TxtEditComponent implements OnInit {
+export class TxtEditComponent implements OnInit, OnChanges {
 
 
 
@@ -33,12 +33,14 @@ export class TxtEditComponent implements OnInit {
     html: string = '';
     titulo: string = '';
 
+    @Output()
+    postEmitter = new EventEmitter<Post>();
+
+    @Input()
     post: Post;
     roles: Rol[];
     isUser: boolean;
     isEditor: boolean;
-
-
 
     constructor(
         private serviceShare: SharehtmlService,
@@ -55,7 +57,7 @@ export class TxtEditComponent implements OnInit {
         this.entrante = new Publicacion();
         this.editor = new Editor();
         this.html = '';
-        this.titulo = '';
+        this.titulo = this.post.titulo;
 
         this.editor.commands
             .focus()
@@ -65,10 +67,16 @@ export class TxtEditComponent implements OnInit {
 
         this.cargarRoles();
     }
+
+    ngOnChanges() {
+        this.html = this.post.contenido;
+    }
+
     onKey(event: any): void {
         const inputValue = event.target.value;
         this.titulo = inputValue;
     }
+
     sendData() {
 
         this.entrante.usuario.username = localStorage.getItem("username") ?? "";
@@ -86,11 +94,13 @@ export class TxtEditComponent implements OnInit {
     }
 
     addPost(): void {
-        this.post.titulo = this.titulo;
+        let title: HTMLInputElement = document.querySelector('#title_') ?? new HTMLInputElement();
+        this.post.titulo = title.value;
         this.post.contenido = this.html;
         this.post.plugin.id = localStorage.getItem('idPlugin') ??  '';
         this.post.usuario.username = localStorage.getItem('user') ?? '';
-        this.dataPost.updateData(this.post);
+        // this.dataPost.updateData(this.post);
+        this.postEmitter.emit(this.post);
     }
 
     private cargarRoles(): void {

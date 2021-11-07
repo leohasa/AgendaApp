@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { AsyncSubject, Observable, Subject } from 'rxjs';
 import { Post } from '../model/post';
 
 @Injectable({
@@ -9,7 +9,7 @@ export class DataPostService {
 
     private data = new Subject<Post>();
 
-    getData(): Observable<Post> {
+    getData(): Subject<Post> {
         return this.data;
     }
 
