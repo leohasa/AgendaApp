@@ -52,6 +52,7 @@ import { ComentarioComponent } from './comentario/comentario.component';
 import { RecordatorioService } from './service/recordatorio.service';
 import { NotificacionService } from './service/notificacion.service';
 import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
+import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.component';
 
 @NgModule({
     declarations: [
@@ -90,7 +91,8 @@ import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-hom
         EditPluginComponent,
         EditPostComponent,
         ComentarioComponent,
-        ManagerHomepageComponent
+        ManagerHomepageComponent,
+        VistaPostComponent
     ],
     imports: [
         BrowserModule,

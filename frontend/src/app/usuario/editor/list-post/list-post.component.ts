@@ -43,6 +43,11 @@ export class ListPostComponent implements OnInit {
         });
     }
 
+    verPost(post: Post) {
+        localStorage.setItem('idPost', post.id.toString());
+        this.router.navigate(['/post/view']);
+    }
+
     private showInfo(info:string){
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();

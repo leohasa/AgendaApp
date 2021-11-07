@@ -33,6 +33,7 @@ import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
 import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
+import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.component';
 
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
@@ -67,7 +68,8 @@ const routes: Routes = [
         children: [
             {path: 'list', component: ListPostComponent},
             {path: 'add', component: AddPostComponent},
-            {path: 'edit', component: EditPostComponent}
+            {path: 'edit', component: EditPostComponent},
+            {path: 'view', component: VistaPostComponent}
         ]
     },
     {path: 'proyecto', component:ManagerProjectRoutesComponent,
