@@ -1,0 +1,60 @@
+<div class="modal fade" id="activity-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="badge bg-danger ms-auto fs-4">Actividad</span>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<ul>
+					<li>
+						<div class="row">
+							<div class="col">
+								<h3>{{activity?.titulo}}</h3>
+							</div>
+						</div>
+					</li>
+					<li *ngIf="activity?.descripcion">
+						<div class="row">
+							<div class="col">
+								<p class="fs-6">Descripci&oacute;n: {{activity?.descripcion}}</p>
+							</div>
+						</div>
+					</li>
+					<li *ngIf="activity?.categoria?.nombre !== 'Sin Categoria'">
+						<div class="row">
+							<div class="col">
+								<p class="fs-6">Categoria: {{activity?.categoria?.nombre}}</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="row">
+							<div class="col">
+								<p class="fs-5">Fecha de inicio: {{activity?.fechaInicio}}</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="row">
+							<div class="col">
+								<p class="fs-5">Fecha de finalizaci&oacute;n: {{activity?.fechaFin}}</p>
+							</div>
+						</div>
+					</li>
+					<li *ngIf="activity?.proyecto?.nombre !== 'Sin Proyecto'">
+						<div class="row">
+							<div class="col">
+								<p class="fs-5">Proyecto: {{activity?.proyecto?.nombre}}</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+

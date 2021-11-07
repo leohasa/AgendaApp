@@ -54,8 +54,8 @@
 	</div>
 </div>
 
-<div class="modal fade" tabindex="-1" id="modal-info">
-	<div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" tabindex="-2" id="modal-info">
+	<div class="modal-dialog">
 		<div class="modal-content">
 		<div class="modal-header">
 			<div class="ms-auto">
@@ -72,4 +72,5 @@
 </div>
 
 <app-modal-calendario [setDate]="outputDate" (sendTrue)="updateCalendar($event)"></app-modal-calendario>
-
+<app-reminder-modal [setId]="reminder"></app-reminder-modal>
+<app-activity-modal [setId]="activity"></app-activity-modal>

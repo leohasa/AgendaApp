@@ -52,6 +52,8 @@ import { ComentarioComponent } from './comentario/comentario.component';
 import { RecordatorioService } from './service/recordatorio.service';
 import { NotificacionService } from './service/notificacion.service';
 import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
+import { ReminderModalComponent } from './reminder-modal/reminder-modal.component';
+import { ActivityModalComponent } from './activity-modal/activity-modal.component';
 
 @NgModule({
     declarations: [
@@ -90,7 +92,9 @@ import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-hom
         EditPluginComponent,
         EditPostComponent,
         ComentarioComponent,
-        ManagerHomepageComponent
+        ManagerHomepageComponent,
+        ReminderModalComponent,
+        ActivityModalComponent
     ],
     imports: [
         BrowserModule,

@@ -14,6 +14,8 @@ declare var bootstrap: any;
 })
 export class CalendarComponent implements OnInit {
 
+	reminder: number;
+	activity: string;
 	outputDate: Date;
 	activities: ({ start: Date, end: Date, activity: Actividad })[];
 	reminders: { start: Date, reminder: Recordatorio }[];
@@ -63,6 +65,8 @@ export class CalendarComponent implements OnInit {
 		this.reminders = [];
 		this.day_number = 1;
 		this.outputDate = new Date();
+		this.reminder = 0;
+		this.activity = '0';
 	}
 
 	ngOnInit(): void {
@@ -220,6 +224,10 @@ export class CalendarComponent implements OnInit {
 				span.textContent = reminders[count].reminder.titulo;
 				span.setAttribute("data-id", reminders[count].reminder.id.toString());
 				span.setAttribute("data-kind", "reminder");
+				span.style.cursor = "pointer";
+
+				/* mostrar modal recordatorio */
+				span.onclick = () => this.showReminderModal(span);
 				div.appendChild(span);
 				div.appendChild(document.createElement("br"));
 			}
@@ -245,6 +253,10 @@ export class CalendarComponent implements OnInit {
 				span.textContent = activities[i].activity.titulo;
 				span.setAttribute("data-id", activities[i].activity.id);
 				span.setAttribute("data-kind", "activity");
+				span.style.cursor = "pointer";
+
+				/* mostrar modal actividad */
+				span.onclick = () => this.showActivityModal(span);
 				div.appendChild(span);
 				div.appendChild(document.createElement("br"));
 			}
@@ -274,6 +286,9 @@ export class CalendarComponent implements OnInit {
 					span.textContent = a.activity.titulo;
 					span.setAttribute("data-id", a.activity.id);
 					span.setAttribute("data-kind", "activity");
+					span.style.cursor = "pointer";
+					span.onclick = () => this.showActivityModal(span);
+
 					body.appendChild(span);
 					body.appendChild(document.createElement("br"));
 					i = index;
@@ -293,6 +308,10 @@ export class CalendarComponent implements OnInit {
 					span.textContent = r.reminder.titulo;
 					span.setAttribute("data-id", r.reminder.id.toString());
 					span.setAttribute("data-kind", "reminder");
+					span.style.cursor = "pointer";
+
+					/* mostrar modal de recordatorio */
+					span.onclick = () => this.showReminderModal(span);
 					body.appendChild(span);
 					body.appendChild(document.createElement("br"));
 				});
@@ -342,5 +361,21 @@ export class CalendarComponent implements OnInit {
 						this.switchMonth(undefined, this.month, this.year);
 					})
 			});
+	}
+
+	showReminderModal(span: HTMLElement) {
+		this.reminder = Number(span.dataset.id ?? 0);
+		if(this.reminder) {
+			const modal = new bootstrap.Modal(document.querySelector("#reminder-modal"), { focus: true });
+			modal.show();
+		}
+	}
+
+	showActivityModal(span: HTMLElement) {
+		this.activity = span.dataset.id ?? '';
+		if(this.activity) {
+			const modal = new bootstrap.Modal(document.querySelector("#activity-modal"), { focus: true });
+			modal.show();
+		}
 	}
 }
