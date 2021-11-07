@@ -36,13 +36,10 @@ export class FindContactComponent implements OnInit {
       this.usrService.getUserMatch(inputValue).subscribe(x => {
         this.lstUsuarios = x;
       })
-    } else {
-
-    }
+    } 
 
   }
   showPerfil(u: string) {
-    this.share.username.emit(u);
-    this.router.navigate(['/perfil-view']);
+    this.router.navigate(['/perfil-view/'+u+".php"]);
   }
 }

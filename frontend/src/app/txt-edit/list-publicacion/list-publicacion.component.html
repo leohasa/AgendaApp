@@ -10,15 +10,12 @@
         <div class="card-body">
 
             <h5 class="card-title" [innerHtml]="u.titulo"></h5>
-            <p class="card-text" [innerHtml]="u.contenido"></p>
+            <p class="card-text " [innerHtml]="u.contenido"></p>
 
             
         </div>
-        <div class="card-footer text-muted">
-            <a (click)="aumentar(u)" class=" btn "><i class="fas fa-triangle" width="1" height="1"></i></a>
-            <a (click)="disminuir(u)" class="btn btn-light"><i class="fas fa-triangle fa-rotate-180" ></i></a>
-
-            <p>{{u.puntuacion}}</p>
+        <div class="card-footer text-muted ">
+            <app-puntuacion [publicacion]="u"></app-puntuacion>
             <app-comentario [commentarioPublicacion]="u.id"></app-comentario>
 
         </div>

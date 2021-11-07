@@ -1,3 +1,77 @@
-<p>visitante works!{{usuario.nombre}}</p>
-<p>visitante works!{{usuario.username}}</p>
+<div class="row">
 
+<div class="col-6">
+<div class="row"></div>
+<br>
+    <div class="container">
+        <!-- Content here -->
+        <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input [(ngModel)]="usuario.username" type="text" class="form-control" name="username" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input [(ngModel)]="usuario.nombre" type="text" class="form-control" name="name" required
+                            #nombre="ngModel" readonly>
+                        <div [hidden]="!nombre.pristine" class="invalid-feedback">El nombre es requerido</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha">Fecha Nacimiento:</label>
+                        <input [(ngModel)]="usuario.fechaNacimiento" type="text" class="form-control" name="fecha"
+                            id="fecha" #fechaNacimiento="ngModel" readonly>
+                        <div [hidden]="!fechaNacimiento.pristine" class="invalid-feedback">La fecha de nacimiento es
+                            requerida</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nac">Nacionalidad:</label>
+                        <input [(ngModel)]="usuario.nacionalidad" type="text" class="form-control" name="nac" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="ocupacion">Ocupacion:</label>
+                        <input [(ngModel)]="usuario.ocupacion" type="text" class="form-control" name="ocupacion"
+                            readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc">Descripcion:</label>
+                        <textarea [(ngModel)]="usuario.descripcion" class="form-control" name="descripcion"
+                            readonly></textarea>
+                    </div>
+                    <div class="text-center mt-2">
+
+
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Richard_Stallman_at_Pittsburgh_University.jpg/1024px-Richard_Stallman_at_Pittsburgh_University.jpg"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+
+
+                        </div>
+                        <button type="button" class="btn btn-success" (click)="follow()">Me Interesa</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!--div class="col-md-6 px-0">
+            
+          <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
+          <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
+          <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+        </div-->
+        </div>
+
+
+    </div>
+</div>
+<div class="col-6 scroll"><br>
+    <app-list-publicacion></app-list-publicacion> 
+</div>
+
+</div>

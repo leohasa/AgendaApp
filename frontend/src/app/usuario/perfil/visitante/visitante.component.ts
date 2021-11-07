@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Usuario } from 'src/app/model/usuario';
 import { SharehtmlService } from 'src/app/service/sharehtml.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
@@ -11,16 +12,28 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class VisitanteComponent implements OnInit {
 
   usuario: Usuario;
-  constructor(private userService: UsuarioService, private share: SharehtmlService) { this.usuario = new Usuario(); }
+  username: String='';
+  
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private userService: UsuarioService,
+    private share: SharehtmlService
+  ) {
+
+    
+  }
 
   ngOnInit(): void {
-    this.share.username.subscribe(x => {
-      console.log(x)
-      this.userService.getUsuarioById(x).
-        subscribe(user => {
-          this.usuario = user;
-        });
-    });
+    this.username = this.route.snapshot.paramMap.get('username')??'';
+    this.username = this.username.replace(".php","");
+    this.userService.getUsuarioById(this.username)
+      .subscribe(x=>{
+          this.usuario = x;
+      });
+  }
+  follow(){
+    console.log("LocalStorage ",localStorage.getItem('user'));
+    console.log("perfil acutal",this.username)
   }
 
 }

@@ -26,7 +26,7 @@ CREATE TABLE Contacto (
   item VARCHAR(45) NOT NULL,
   valor VARCHAR(60) NOT NULL,
   PRIMARY KEY (id),
-  INDEX FK_CONTACTO_TO_USER_idx (idUsuario ASC) VISIBLE,
+  INDEX FK_CONTACTO_TO_USER_idx (idUsuario ASC) ,
   CONSTRAINT FK_CONTACTO_TO_USER
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
@@ -43,7 +43,7 @@ CREATE TABLE Rol (
   tipo ENUM('ADMINISTRADOR', 'USUARIO', 'EDITOR') NOT NULL,
   idUsuario VARCHAR(45) NOT NULL,
   PRIMARY KEY (id),
-  INDEX FK_ASIGNAR_ROL_TO_USER_idx (idUsuario ASC) VISIBLE,
+  INDEX FK_ASIGNAR_ROL_TO_USER_idx (idUsuario ASC) ,
   CONSTRAINT FK_ASIGNAR_ROL_TO_USER
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
@@ -65,7 +65,7 @@ CREATE TABLE Proyecto (
   visibilidad TINYINT NOT NULL DEFAULT 1,
   idUsuario VARCHAR(45) NOT NULL,
   PRIMARY KEY (id),
-  INDEX fk_Proyecto_Usuario1_idx (idUsuario ASC) VISIBLE,
+  INDEX fk_Proyecto_Usuario1_idx (idUsuario ASC) ,
   CONSTRAINT fk_Proyecto_Usuario1
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
@@ -82,7 +82,7 @@ CREATE TABLE Categoria (
   nombre VARCHAR(45) NOT NULL,
   idUsuario VARCHAR(45) NOT NULL,
   PRIMARY KEY (id),
-  INDEX fk_Categoria_Usuario1_idx (idUsuario ASC) VISIBLE,
+  INDEX fk_Categoria_Usuario1_idx (idUsuario ASC) ,
   CONSTRAINT fk_Categoria_Usuario1
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
@@ -104,10 +104,10 @@ CREATE TABLE Actividad (
   estado TINYINT NOT NULL,
   idCategoria INT NOT NULL,
   idUsuario VARCHAR(45) NOT NULL,
-  INDEX fk_RegistroActividad_Proyecto1_idx (idProyecto ASC) VISIBLE,
+  INDEX fk_RegistroActividad_Proyecto1_idx (idProyecto ASC) ,
   PRIMARY KEY (id),
-  INDEX fk_Actividad_Categoria1_idx (idCategoria ASC) VISIBLE,
-  INDEX fk_Actividad_Usuario1_idx (idUsuario ASC) VISIBLE,
+  INDEX fk_Actividad_Categoria1_idx (idCategoria ASC) ,
+  INDEX fk_Actividad_Usuario1_idx (idUsuario ASC) ,
   CONSTRAINT fk_RegistroActividad_Proyecto1
     FOREIGN KEY (idProyecto)
     REFERENCES Proyecto (id)
@@ -137,7 +137,7 @@ CREATE TABLE Recordatorio (
   fecha TIMESTAMP NULL,
   idUsuario VARCHAR(45),
   PRIMARY KEY (id),
-  INDEX fk_Recordatorio_Usuario_idx (idUsuario ASC) VISIBLE,
+  INDEX fk_Recordatorio_Usuario_idx (idUsuario ASC) ,
   CONSTRAINT fk_Recordatorio_Usuario
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
@@ -165,7 +165,7 @@ CREATE TABLE Post (
   contenido LONGBLOB NOT NULL,
   fecha TIMESTAMP NOT NULL,
   PRIMARY KEY (id),
-  INDEX fk_Post_Plugin2_idx (idPlugin ASC) VISIBLE,
+  INDEX fk_Post_Plugin2_idx (idPlugin ASC) ,
   CONSTRAINT fk_Post_Plugin2
     FOREIGN KEY (idPlugin)
     REFERENCES Plugin (id)
@@ -182,8 +182,8 @@ CREATE TABLE PluginsUsuario (
   idUsuario VARCHAR(45) NOT NULL,
   idPlugin INT NOT NULL,
   PRIMARY KEY (id),
-  INDEX fk_PluginsUsuario_Usuario1_idx (idUsuario ASC) VISIBLE,
-  INDEX fk_PluginsUsuario_Plugin1_idx (idPlugin ASC) VISIBLE,
+  INDEX fk_PluginsUsuario_Usuario1_idx (idUsuario ASC) ,
+  INDEX fk_PluginsUsuario_Plugin1_idx (idPlugin ASC) ,
   CONSTRAINT fk_PluginsUsuario_Usuario1
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
@@ -208,7 +208,7 @@ CREATE TABLE Publicacion (
   fechaPublicacion TIMESTAMP NOT NULL,
   puntuacion INT NULL DEFAULT 0,
   PRIMARY KEY (id),
-  INDEX fk_Publicacion_Usuario1_idx (idUsuario ASC) VISIBLE,
+  INDEX fk_Publicacion_Usuario1_idx (idUsuario ASC) ,
   CONSTRAINT fk_Publicacion_Usuario1
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
@@ -225,8 +225,8 @@ CREATE TABLE Seguidores (
   idUsuario VARCHAR(45) NOT NULL,
   idSeguidor VARCHAR(45) NOT NULL,
   PRIMARY KEY (id),
-  INDEX fk_Seguidores_Usuario1_idx (idUsuario ASC) VISIBLE,
-  INDEX fk_Seguidores_Usuario2_idx (idSeguidor ASC) VISIBLE,
+  INDEX fk_Seguidores_Usuario1_idx (idUsuario ASC) ,
+  INDEX fk_Seguidores_Usuario2_idx (idSeguidor ASC) ,
   CONSTRAINT fk_Seguidores_Usuario1
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
@@ -250,8 +250,8 @@ CREATE TABLE Comentario (
   fecha TIMESTAMP NOT NULL,
   contenido VARCHAR(250) NOT NULL,
   PRIMARY KEY (id),
-  INDEX fk_Comentario_Publicacion1_idx (idPublicacion ASC) VISIBLE,
-  INDEX fk_Comentario_Usuario1_idx (idUsuario ASC) VISIBLE,
+  INDEX fk_Comentario_Publicacion1_idx (idPublicacion ASC) ,
+  INDEX fk_Comentario_Usuario1_idx (idUsuario ASC) ,
   CONSTRAINT fk_Comentario_Publicacion1
     FOREIGN KEY (idPublicacion)
     REFERENCES Publicacion (id)
@@ -274,7 +274,7 @@ CREATE TABLE SolicitudRolEditor (
   contenido TEXT NOT NULL,
   fecha TIMESTAMP NOT NULL,
   PRIMARY KEY (id),
-  INDEX fk_SolicitudRolEditor_Usuario1_idx (idUsuario ASC) VISIBLE,
+  INDEX fk_SolicitudRolEditor_Usuario1_idx (idUsuario ASC) ,
   CONSTRAINT fk_SolicitudRolEditor_Usuario1
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
@@ -282,11 +282,36 @@ CREATE TABLE SolicitudRolEditor (
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table Puntuacion
+-- -----------------------------------------------------
 
-INSERT INTO `Usuario` VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
-INSERT INTO `Usuario` VALUES ('user','123','Admin','1998-09-04','GT','Student',NULL);
-INSERT INTO `Usuario` VALUES ('editor','123','Admin','1998-09-04','GT','Student',NULL);
+CREATE TABLE  Puntuacion (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  punto INT(1) NOT NULL DEFAULT 1,
+  idPublicacion INT(11) NOT NULL,
+  idUsuario VARCHAR(45) NOT NULL,
+  PRIMARY KEY (id),
+  INDEX fk_Puntuacion_Usuario1_idx (idUsuario ASC) ,
+  INDEX fk_Puntuacion_Publicacion1_idx (idPublicacion ASC),
+  CONSTRAINT fk_Puntuacion_Usuario1
+    FOREIGN KEY (idUsuario)
+    REFERENCES Usuario (username)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT fk_Puntuacion_Publicacion1
+    FOREIGN KEY (idPublicacion)
+    REFERENCES Publicacion (id)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
-INSERT INTO `Rol` VALUES (1,'ADMINISTRADOR','admin');
-INSERT INTO `Rol` VALUES (2,'USUARIO','user');
-INSERT INTO `Rol` VALUES (3,'EDITOR','editor');
+
+
+INSERT INTO Usuario VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
+INSERT INTO Usuario VALUES ('user','123','Admin','1998-09-04','GT','Student',NULL);
+INSERT INTO Usuario VALUES ('editor','123','Admin','1998-09-04','GT','Student',NULL);
+
+INSERT INTO Rol VALUES (1,'ADMINISTRADOR','admin');
+INSERT INTO Rol VALUES (2,'USUARIO','user');
+INSERT INTO Rol VALUES (3,'EDITOR','editor');

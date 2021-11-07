@@ -86,7 +86,7 @@ const routes: Routes = [
     {path: 'register', component: AddUsuarioComponent},
     {path: 'login', component: LoginComponent},
     {path: 'perfil', component: PerfilComponent},
-    {path: 'perfil-view', component: VisitanteComponent }
+    {path: 'perfil-view/:username', component: VisitanteComponent }
 ];
 
 @NgModule({

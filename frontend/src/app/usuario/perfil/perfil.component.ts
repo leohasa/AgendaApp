@@ -1,6 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Publicacion } from 'src/app/model/publicacion';
 import { ForoService } from 'src/app/service/foro.service';
 import { SharehtmlService } from 'src/app/service/sharehtml.service';
@@ -18,7 +18,11 @@ export class PerfilComponent implements OnInit {
 
   message: string = "";
 
-  constructor(private router: Router, private service: ForoService, private shareService: SharehtmlService) { }
+  constructor(private router: Router,
+              
+              private service: ForoService,
+              private shareService: SharehtmlService
+              ) { }
 
   ngOnInit(): void {
     this.shareService.aumentar.subscribe(x => {

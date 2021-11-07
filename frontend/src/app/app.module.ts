@@ -47,6 +47,7 @@ import { ContactComponent } from './usuario/perfil/contact/contact.component';
 import { FindContactComponent } from './usuario/perfil/find-contact/find-contact.component';
 import { NgxPopperjsModule, NgxPopperjsDirective } from 'ngx-popperjs';
 import { VisitanteComponent } from './usuario/perfil/visitante/visitante.component';
+import { PuntuacionComponent } from './puntuacion/puntuacion.component';
 //import { NgxPopperjsDirective } from 'ngx-popperjs';
 
 
@@ -87,7 +88,8 @@ import { VisitanteComponent } from './usuario/perfil/visitante/visitante.compone
         ComentarioComponent,
         ContactComponent,
         FindContactComponent,
-        VisitanteComponent
+        VisitanteComponent,
+        PuntuacionComponent
     ],
     imports: [
         BrowserModule,
