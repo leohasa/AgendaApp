@@ -133,7 +133,7 @@ CREATE TABLE Recordatorio (
   id INT NOT NULL AUTO_INCREMENT,
   titulo VARCHAR(45) NOT NULL,
   descripcion VARCHAR(200) NOT NULL,
-  estado TINYINT NOT NULL,\
+  estado TINYINT NOT NULL,
   fecha TIMESTAMP NULL,
   idUsuario VARCHAR(45),
   PRIMARY KEY (id),
@@ -167,12 +167,8 @@ CREATE TABLE Post (
   fecha TIMESTAMP NOT NULL,
   idEditor VARCHAR(45) NOT NULL,
   PRIMARY KEY (id),
-<<<<<<< HEAD
   INDEX fk_Post_Plugin2_idx (idPlugin ASC) ,
-=======
-  INDEX fk_Post_Plugin2_idx (idPlugin ASC) VISIBLE,
-  INDEX fk_Post_Usuario1_idx (idEditor ASC) VISIBLE,
->>>>>>> 21cdf46913047ef78e3e77eb1795dc82ae896cb8
+  INDEX fk_Post_Usuario1_idx (idEditor ASC) ,
   CONSTRAINT fk_Post_Plugin2
     FOREIGN KEY (idPlugin)
     REFERENCES Plugin (id)
@@ -295,7 +291,6 @@ CREATE TABLE SolicitudRolEditor (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
-<<<<<<< HEAD
 -- Table Puntuacion
 -- -----------------------------------------------------
 
@@ -319,18 +314,10 @@ CREATE TABLE  Puntuacion (
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;
 
-
-
-INSERT INTO Usuario VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
-INSERT INTO Usuario VALUES ('user','123','Admin','1998-09-04','GT','Student',NULL);
-INSERT INTO Usuario VALUES ('editor','123','Admin','1998-09-04','GT','Student',NULL);
-
-INSERT INTO Rol VALUES (1,'ADMINISTRADOR','admin');
-INSERT INTO Rol VALUES (2,'USUARIO','user');
-INSERT INTO Rol VALUES (3,'EDITOR','editor');
-=======
+-- -----------------------------------------------------
 -- Table Notificacion
 -- -----------------------------------------------------
+
 CREATE TABLE Notificacion (
   id INT NOT NULL AUTO_INCREMENT,
   titulo VARCHAR(45) NOT NULL,
@@ -338,7 +325,7 @@ CREATE TABLE Notificacion (
   fechaHora TIMESTAMP NULL,
   idUsuario VARCHAR(45),
   PRIMARY KEY (id),
-  INDEX fk_Notificacion_Usuario_idx (idUsuario ASC) VISIBLE,
+  INDEX fk_Notificacion_Usuario_idx (idUsuario ASC) ,
   CONSTRAINT fk_Notificacion_Usuario
     FOREIGN KEY (idUsuario)
     REFERENCES Usuario (username)
@@ -354,6 +341,15 @@ INSERT INTO Rol VALUES (1,'ADMINISTRADOR','admin');
 INSERT INTO Rol VALUES (2,'USUARIO','user');
 INSERT INTO Rol VALUES (3,'EDITOR','editor');
 
+
+INSERT INTO Usuario VALUES ('admin','123','Admin','1998-09-04','GT','Student',NULL);
+INSERT INTO Usuario VALUES ('user','123','Admin','1998-09-04','GT','Student',NULL);
+INSERT INTO Usuario VALUES ('editor','123','Admin','1998-09-04','GT','Student',NULL);
+
+INSERT INTO Rol VALUES (1,'ADMINISTRADOR','admin');
+INSERT INTO Rol VALUES (2,'USUARIO','user');
+INSERT INTO Rol VALUES (3,'EDITOR','editor');
+
 INSERT INTO Proyecto(nombre, descripcion, fechaInicio, fechaPrevistaFin, ubicacion, visibilidad, idUsuario) VALUES('Sin Proyecto', '', '2021-02-02', '2021-02-02', '', 0, 'user');
 INSERT INTO Categoria(nombre, idUsuario) VALUES('Sin Categoria', 'user');
->>>>>>> 21cdf46913047ef78e3e77eb1795dc82ae896cb8
+

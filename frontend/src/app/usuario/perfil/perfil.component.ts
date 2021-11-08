@@ -48,6 +48,7 @@ export class PerfilComponent implements OnInit {
           });
 
           this.shareService.update.emit(true);
+          
           this.service.getPublicaciones(localStorage.getItem("user") ?? "");
         });
 

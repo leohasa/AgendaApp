@@ -11,7 +11,8 @@ export class ForoService {
 
   url = 'http://localhost:3000/backend/foro';
 
-  getPublicaciones(username: string) {
+  getPublicaciones(username:String) {
+    
     return this.http.get<Publicacion[]>(`${this.url}/publicacion/${username}`);
   }
 

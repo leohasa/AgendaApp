@@ -26,7 +26,8 @@ public class PublicacionController {
     @GetMapping("/publicacion/{username}")
     public List<Publicacion> list(@PathVariable String username){
         Usuario usuario = Usuario.builder().username(username).build();
-         return this.publicacionService.findAll();
+         //return this.publicacionService.findAll();
+        return this.publicacionService.findByUsuarioOrderByFechaPublicacionDes(usuario);
     }
 
 

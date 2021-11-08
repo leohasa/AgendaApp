@@ -1,7 +1,8 @@
-import { Component, Directive, OnInit } from '@angular/core';
+import { Component, Directive, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComentarioComponent } from 'src/app/comentario/comentario.component';
 import { Publicacion } from 'src/app/model/publicacion';
+import { Usuario } from 'src/app/model/usuario';
 import { ComentarioServiceService } from 'src/app/service/comentario-service.service';
 import { ForoService } from 'src/app/service/foro.service';
 import { SharehtmlService } from 'src/app/service/sharehtml.service';
@@ -17,26 +18,36 @@ import { SharehtmlService } from 'src/app/service/sharehtml.service';
 export class ListPublicacionComponent implements OnInit {
 
   publicacion: Publicacion[];
+  @Input() username:String;
 
 
-  constructor(private service: ForoService, private comentarioservice: ComentarioServiceService, private router: Router, private shareService: SharehtmlService) { this.publicacion = []; }
+  constructor(private service: ForoService,
+              private comentarioservice: ComentarioServiceService,
+              private router: Router,
+              private shareService: SharehtmlService) 
+  { 
+              this.publicacion = [];
+              
+  }
 
 
 
   ngOnInit(): void {
     this.getPublicaciones();
 
-    this.shareService.update.subscribe(() => {
-      this.getPublicaciones();
+    this.shareService.update
+      .subscribe(() => {
+        this.getPublicaciones();
     });
   }
 
   getPublicaciones() {
-    var user = localStorage.getItem("user") ?? "";
-    this.service.getPublicaciones(user)
+    
+    this.username = this.username.replace('@local',localStorage.getItem("user")??"");
+    this.service.getPublicaciones(this.username)
       .subscribe(data => {
         this.publicacion = data;
-        this.publicacion = this.publicacion.reverse();
+        
       });
   }
   aumentar(publicacion: Publicacion) {

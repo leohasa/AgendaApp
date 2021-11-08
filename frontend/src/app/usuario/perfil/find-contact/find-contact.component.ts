@@ -14,7 +14,9 @@ export class FindContactComponent implements OnInit {
 
   //NgxPopperjsDirective.placement: NgxPopperjsPlacements
   lstUsuarios: string[];
-  constructor(private usrService: UsuarioService, private router: Router, private share: SharehtmlService) {
+  constructor(private usrService: UsuarioService,
+              private router: Router,
+              private share: SharehtmlService) {
 
 
     this.lstUsuarios = []

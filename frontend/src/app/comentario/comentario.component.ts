@@ -30,10 +30,10 @@ export class ComentarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.commentarioPublicacion = new Publicacion();
-    this.comentario.usuario.username = localStorage.getItem("username")??"";
+    
+    this.comentario.usuario.username = localStorage.getItem("user")??"";
     this.comentario.publicacion.id = this.commentarioPublicacion;    
-    //this.comentario.publicacion = this.commentarioPublicacion;
+    
   }
   onSave(): void {
     //console.log(" En Progreso ");

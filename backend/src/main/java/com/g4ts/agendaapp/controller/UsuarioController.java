@@ -26,6 +26,7 @@ public class UsuarioController {
     private IRolService rolService;
     private ICategoriaService categoriaService;
     private IProyectoService proyectoService;
+    private ISolicitudRolEditorService solicitudService;
 
     public UsuarioController(IUsuarioService usuarioService, IRolService rolService, ICategoriaService categoriaService, IProyectoService proyectoService, ISolicitudRolEditorService solicitudService) {
         this.usuarioService = usuarioService;
@@ -78,7 +79,6 @@ public class UsuarioController {
         Usuario usuario = Usuario.builder().username(username).build();
         return rolService.findAllByuser(usuario);
     }
-<<<<<<< HEAD
 
     @GetMapping("/solicitudes")
     public List<SolicitudRolEditor> getSolicitudes() {
@@ -102,6 +102,4 @@ public class UsuarioController {
         System.out.println("Consulta like "+username);
         return this.usuarioService.findSearchmatch(username );
     }
-=======
->>>>>>> 21cdf46913047ef78e3e77eb1795dc82ae896cb8
 }
