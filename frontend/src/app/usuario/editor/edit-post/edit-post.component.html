@@ -15,7 +15,7 @@
                     <h3>Editar post</h3>
                 </div>
                 <div class="card-body">
-                    <app-txt-edit (postEmitter)="addPost($event)" [post]="post"></app-txt-edit>
+                    <app-txt-edit (postEmitter)="addPost($event)" [post]="post" [isEditor]="isEditor"></app-txt-edit>
                 </div>
             </div>
         </div>

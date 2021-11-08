@@ -152,6 +152,7 @@ ENGINE = InnoDB;
 CREATE TABLE Plugin (
   id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(45) NOT NULL,
+  descripcion TEXT NOT NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB;
 
@@ -281,6 +282,7 @@ CREATE TABLE SolicitudRolEditor (
   idUsuario VARCHAR(45) NOT NULL,
   contenido TEXT NOT NULL,
   fecha TIMESTAMP NOT NULL,
+  estado TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (id),
   INDEX fk_SolicitudRolEditor_Usuario1_idx (idUsuario ASC) VISIBLE,
   CONSTRAINT fk_SolicitudRolEditor_Usuario1

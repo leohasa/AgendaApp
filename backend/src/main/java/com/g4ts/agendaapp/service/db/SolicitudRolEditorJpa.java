@@ -43,4 +43,9 @@ public class SolicitudRolEditorJpa implements ISolicitudRolEditorService {
     public Boolean existsByUsuario(Usuario usuario) {
         return solicitudRepository.existsByUsuario(usuario);
     }
+
+    @Override
+    public List<SolicitudRolEditor> findAllByEstado(Short estado) {
+        return solicitudRepository.findAllByEstado(estado);
+    }
 }

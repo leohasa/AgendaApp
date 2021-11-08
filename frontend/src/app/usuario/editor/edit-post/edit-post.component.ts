@@ -11,10 +11,12 @@ import { PostService } from 'src/app/service/post.service';
 export class EditPostComponent implements OnInit {
 
     post: Post;
+    isEditor: boolean;
     textInfo: string = "";
 
     constructor(private router: Router, private postService: PostService) {
         this.post = new Post();
+        this.isEditor = true;
     }
 
     ngOnInit(): void {

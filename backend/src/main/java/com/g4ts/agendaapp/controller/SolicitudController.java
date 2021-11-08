@@ -29,6 +29,11 @@ public class SolicitudController {
         return solicitudService.findAll();
     }
 
+    @GetMapping("/listByEstado/{estado}")
+    public List<SolicitudRolEditor> listByEstado(@PathVariable Short estado) {
+        return solicitudService.findAllByEstado(estado);
+    }
+
     @GetMapping("/get/{id}")
     public SolicitudRolEditor get(@PathVariable Integer id) {
         return solicitudService.findById(id);
@@ -37,6 +42,7 @@ public class SolicitudController {
     @PostMapping("/addSolicitud")
     public void addSolicitud(@RequestBody SolicitudRolEditor solicitud) {
         solicitud.setFecha(LocalDate.now());
+        solicitud.setEstado(Short.parseShort("1"));
         solicitudService.save(solicitud);
     }
 
@@ -44,6 +50,13 @@ public class SolicitudController {
     public void aceptarSolicitudRol(@PathVariable Integer id) {
         SolicitudRolEditor solicitud = solicitudService.findById(id);
         rolService.save(Rol.builder().tipo("EDITOR").usuario(solicitud.getUsuario()).build());
+
+        solicitud.setEstado(Short.parseShort("0"));
+        solicitudService.save(solicitud);
+    }
+
+    @GetMapping("/rechazar/{id}")
+    public void rechazar(@PathVariable Integer id) {
         solicitudService.deleteById(id);
     }
 

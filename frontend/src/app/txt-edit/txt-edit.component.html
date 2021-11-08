@@ -19,8 +19,10 @@
 </div>
 <br>
 
-<button *ngIf="isUser" type="button" (click)="sendData()" class="btn btn-primary">Publicar</button>
-<button *ngIf="isEditor && !isUser" type="button" (click)="addPost()" class="btn btn-primary">Guardar post</button>
+<button *ngIf="!isEditor" type="button" (click)="sendData()" class="btn btn-primary">Publicar</button>
+<div *ngIf="isEditor" class="d-grid gap-2 col-6 mx-auto">
+    <button type="button" (click)="addPost()" class="btn btn-primary">Guardar post</button>
+</div>
 
 
 

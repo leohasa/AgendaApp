@@ -13,4 +13,5 @@ public interface ISolicitudRolEditorService {
     void deleteById(Integer id);
 
     Boolean existsByUsuario(Usuario usuario);
+    List<SolicitudRolEditor> findAllByEstado(Short estado);
 }

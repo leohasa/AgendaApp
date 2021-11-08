@@ -5,7 +5,6 @@ import { Publicacion } from '../model/publicacion';
 import { Rol } from '../model/rol';
 import { DataPostService } from '../service/data-post.service';
 import { SharehtmlService } from '../service/sharehtml.service';
-import { UsuarioService } from '../service/usuario.service';
 
 
 @Component({
@@ -39,18 +38,16 @@ export class TxtEditComponent implements OnInit, OnChanges {
     @Input()
     post: Post;
     roles: Rol[];
-    isUser: boolean;
+    @Input()
     isEditor: boolean;
 
     constructor(
         private serviceShare: SharehtmlService,
-        private userService: UsuarioService,
         private dataPost: DataPostService) {
 
         this.post = new Post();
         this.roles = new Array();
         this.isEditor = false;
-        this.isUser = false;
     }
 
     ngOnInit(): void {
@@ -64,8 +61,6 @@ export class TxtEditComponent implements OnInit, OnChanges {
             .scrollIntoView()
             .toggleBold()
             .exec();
-
-        this.cargarRoles();
     }
 
     ngOnChanges() {
@@ -101,15 +96,5 @@ export class TxtEditComponent implements OnInit, OnChanges {
         this.post.usuario.username = localStorage.getItem('user') ?? '';
         // this.dataPost.updateData(this.post);
         this.postEmitter.emit(this.post);
-    }
-
-    private cargarRoles(): void {
-        let username: string = localStorage.getItem('user') ?? '';
-        this.userService.getRols(username)
-            .subscribe(data => {
-                this.roles = data;
-                this.isEditor = this.userService.hasRol('EDITOR', this.roles);
-                this.isUser = this.userService.hasRol('USUARIO', this.roles);
-            });
     }
 }

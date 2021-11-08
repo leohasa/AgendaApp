@@ -12,8 +12,11 @@ import { PostService } from 'src/app/service/post.service';
 export class AddPostComponent implements OnInit {
 
     textInfo: string = "";
+    isEditor: boolean;
 
-    constructor(private router: Router, private postService: PostService, private dataPost: DataPostService) {}
+    constructor(private router: Router, private postService: PostService, private dataPost: DataPostService) {
+        this.isEditor = true;
+    }
 
     ngOnInit(): void {
         this.eventModal();

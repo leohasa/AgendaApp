@@ -33,14 +33,33 @@
                                     <button (click)="delete(p)" class="btn btn-danger">
                                         <i class="fas fa-trash-alt"></i> Eliminar
                                     </button>&nbsp;
+                                    <button (click)="verDesc(p)" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <i class="fas fa-eye"></i> Ver descripcion
+                                    </button>&nbsp;
                                     <button (click)="verPosts(p)" class="btn btn-info">
-                                        <i class="fas fa-eye"></i> Ver posts
+                                        <i class="fas fa-list"></i> Ver posts
                                     </button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Descripcion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="contenido" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

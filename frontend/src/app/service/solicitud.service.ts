@@ -15,6 +15,10 @@ export class SolicitudService {
         return this.http.get<Solicitud[]>(`${this.url}/solicitudes`);
     }
 
+    listByEstado(estado: string) {
+        return this.http.get<Solicitud[]>(`${this.url}/listByEstado/${estado}`);
+    }
+
     getById(id: string) {
         return this.http.get<Solicitud>(`${this.url}/get/${id}`);
     }
@@ -25,6 +29,10 @@ export class SolicitudService {
 
     newEditor(id: String) {
         return this.http.get<Solicitud>(`${this.url}/newEditor/${id}`);
+    }
+
+    rechazar(id: String) {
+        return this.http.get<Solicitud>(`${this.url}/rechazar/${id}`);
     }
 
     existsByUser(username: string) {
