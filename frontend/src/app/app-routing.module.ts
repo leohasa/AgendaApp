@@ -34,6 +34,7 @@ import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
 import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
 import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.component';
+import { MisPluginsComponent } from './usuario/mis-plugins/mis-plugins.component';
 
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
@@ -43,7 +44,8 @@ const routes: Routes = [
             {path: 'edit', component: EditUsuarioComponent},
             {path: 'userlist', component: ListUsuarioComponent},
             {path: 'solicitud', component: SolicitudEditorComponent},
-            {path: 'perfil', component: PerfilComponent}
+            {path: 'perfil', component: PerfilComponent},
+            {path: 'misPllugins', component: MisPluginsComponent}
         ]
     },
     {path: 'admin', component: ManagerUserRoutesComponent,

@@ -22,7 +22,7 @@
                     <a class="nav-link" routerLink="plugin/list">Gestion de plugins</a>
                 </li>
                 <li *ngIf="isUser" class="nav-item">
-                    <a class="nav-link" routerLink="pluginUser/list">Mis plugins</a>
+                    <a class="nav-link" routerLink="user/misPllugins">Mis plugins</a>
                 </li>
             </ul>
             <div class="dropdown" style="margin-right: 25px;">
@@ -38,14 +38,14 @@
                     <li>
                         <div *ngFor="let not of notificaciones" class="card w-100">
                             <div class="card-body">
-                              <h5 class="card-title">{{not.titulo}}</h5>
-                              <h6 class="card-title text-primary">{{not.fechaHora}}</h6>
-                              <p class="card-text">{{not.descripcion}}.</p>
+                                <h5 class="card-title">{{not.titulo}}</h5>
+                                <h6 class="card-title text-primary">{{not.fechaHora}}</h6>
+                                <p class="card-text">{{not.descripcion}}.</p>
                             </div>
                         </div>
                     </li>
                 </ul>
-                
+
             </div>
             <form class="d-flex me-4">
                 <input class="form-control me-2" type="text" placeholder="...   ">

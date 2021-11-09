@@ -53,6 +53,8 @@ import { RecordatorioService } from './service/recordatorio.service';
 import { NotificacionService } from './service/notificacion.service';
 import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
 import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.component';
+import { MisPluginsComponent } from './usuario/mis-plugins/mis-plugins.component';
+import { PluginsUserService } from './service/plugins-user.service';
 
 @NgModule({
     declarations: [
@@ -92,7 +94,8 @@ import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.compo
         EditPostComponent,
         ComentarioComponent,
         ManagerHomepageComponent,
-        VistaPostComponent
+        VistaPostComponent,
+        MisPluginsComponent
     ],
     imports: [
         BrowserModule,
@@ -115,7 +118,8 @@ import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.compo
         SolicitudService,
         PluginService,
         PostService,
-        DataService
+        DataService,
+        PluginsUserService
     ],
     bootstrap: [AppComponent]
 })
