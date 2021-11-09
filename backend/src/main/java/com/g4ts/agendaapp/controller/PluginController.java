@@ -23,6 +23,11 @@ public class PluginController {
         return pluginService.findAll();
     }
 
+    @GetMapping("/unFollow/{username}")
+    public List<Plugin> unfollowList(@PathVariable String username) {
+        return pluginService.unfollowPlugin(username);
+    }
+
     @PostMapping("/add")
     public void save(@RequestBody Plugin plugin) {
         pluginService.save(plugin);

@@ -36,6 +36,7 @@ import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-hom
 import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.component';
 import { MisPluginsComponent } from './usuario/mis-plugins/mis-plugins.component';
 import { AllPostsPluginComponent } from './usuario/all-posts-plugin/all-posts-plugin.component';
+import { AllPluginsComponent } from './usuario/all-plugins/all-plugins.component';
 
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
@@ -47,7 +48,8 @@ const routes: Routes = [
             {path: 'solicitud', component: SolicitudEditorComponent},
             {path: 'perfil', component: PerfilComponent},
             {path: 'misPlugins', component: MisPluginsComponent},
-            {path: 'allPosts', component: AllPostsPluginComponent}
+            {path: 'allPosts', component: AllPostsPluginComponent},
+            {path: 'allPlugins', component: AllPluginsComponent}
         ]
     },
     {path: 'admin', component: ManagerUserRoutesComponent,

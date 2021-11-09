@@ -37,4 +37,9 @@ public class PluginServiceJpa implements IPluginService {
     public void deleteById(Integer id) {
         pluginRepository.deleteById(id);
     }
+
+    @Override
+    public List<Plugin> unfollowPlugin(String username) {
+        return pluginRepository.unfollowPost(username);
+    }
 }

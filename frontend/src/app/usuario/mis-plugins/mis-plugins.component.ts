@@ -26,7 +26,7 @@ export class MisPluginsComponent implements OnInit {
     }
 
     add() {
-        this.router.navigate(['']);
+        this.router.navigate(['user/allPlugins']);
     }
 
     delete(plugin: PluginsUsuario) {

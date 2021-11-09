@@ -56,6 +56,7 @@ import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.compo
 import { MisPluginsComponent } from './usuario/mis-plugins/mis-plugins.component';
 import { PluginsUserService } from './service/plugins-user.service';
 import { AllPostsPluginComponent } from './usuario/all-posts-plugin/all-posts-plugin.component';
+import { AllPluginsComponent } from './usuario/all-plugins/all-plugins.component';
 
 @NgModule({
     declarations: [
@@ -97,7 +98,8 @@ import { AllPostsPluginComponent } from './usuario/all-posts-plugin/all-posts-pl
         ManagerHomepageComponent,
         VistaPostComponent,
         MisPluginsComponent,
-        AllPostsPluginComponent
+        AllPostsPluginComponent,
+        AllPluginsComponent
     ],
     imports: [
         BrowserModule,

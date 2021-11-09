@@ -18,21 +18,14 @@
                 <li *ngIf="isUser" class="nav-item">
                     <a class="nav-link" routerLink="categoria/list">Categorias</a>
                 </li>
-                <li *ngIf="isEditor" class="nav-item">
-                    <a class="nav-link" routerLink="plugin/list">Gestion de plugins</a>
-                </li>
                 <li *ngIf="isUser" class="nav-item">
                     <a class="nav-link" routerLink="user/misPlugins">Mis plugins</a>
                 </li>
+                <li *ngIf="isEditor" class="nav-item">
+                    <a class="nav-link" routerLink="plugin/list">Gestion de plugins</a>
+                </li>
             </ul>
             <div class="dropdown" style="margin-right: 25px;">
-                <button (click)="updateNotificaciones()" class="btn btn-secondary btn-lg " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-bell"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {{notificaciones.length}}
-                        <span class="visually-hidden">unread messages</span>
-                    </span>
-                </button>
                 <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1" style="width: 700%; height: 900%;">
                     <li><h6 class="dropdown-header">Notificaciones</h6></li>
                     <li>

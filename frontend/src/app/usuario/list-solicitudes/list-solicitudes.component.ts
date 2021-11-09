@@ -23,8 +23,6 @@ export class ListSolicitudesComponent implements OnInit {
     ) {
         this.solicitudes = new Array();
         this.notificacion = new Notificacion();
-        this.notificacion.titulo = "Solicitud aceptada";
-        this.notificacion.descripcion = "Se ha aprobado su solicitud para ser un editor.";
     }
 
     ngOnInit(): void {
@@ -45,6 +43,8 @@ export class ListSolicitudesComponent implements OnInit {
                 this.solicitudes = this.solicitudes.filter(s => s != solicitud);
                 this.showInfo(`El usuario @${solicitud.usuario.username} ahora es un editor!`);
                 this.notificacion.usuario.username = solicitud.usuario.username;
+                this.notificacion.titulo = "Solicitud aceptada";
+                this.notificacion.descripcion = "Se ha aprobado su solicitud para ser un editor.";
                 this.notificacionServicio.create(this.notificacion).subscribe(data => { });
             });
     }
@@ -54,6 +54,10 @@ export class ListSolicitudesComponent implements OnInit {
             .subscribe(data => {
                 this.solicitudes = this.solicitudes.filter(s => s != solicitud);
                 this.showInfo(`Se rechazo la solicitud del usuario ${solicitud.usuario.username}`);
+                this.notificacion.usuario.username = solicitud.usuario.username;
+                this.notificacion.titulo = 'Solicitud rechazada';
+                this.notificacion.descripcion = 'La solicitud para convertirse en editor ha sido rechazada';
+                this.notificacionServicio.create(this.notificacion).subscribe(data => { });
             });
     }
 

@@ -1,13 +1,13 @@
 <div class="container-fluid  py-2 bg-secondary">
     <div class="row">
         <div class="col-3">
-            <a class="btn btn-primary btn-block" (click)="add()">
-                <i class="fas fa-plus"></i> Agregar plugin
+            <a class="btn btn-secondary" (click)="back()">
+                <i class="fas fa-arrow-alt-left"></i> Regregar a plugins
             </a>
         </div>
     </div>
 </div>
-<div class="container-fluid col-md-6">
+<div class="container-fluid col-md-4">
     <div class="row">
         <div class="col">
             <div class="card my-4">
@@ -27,17 +27,14 @@
                                 <td>{{i+1}}</td>
                                 <td>{{p.nombre}}</td>
                                 <td>
-                                    <button (click)="editar(p)" class="btn btn-warning">
-                                        <i class="fas fa-edit"></i> Editar
-                                    </button>&nbsp;
-                                    <button (click)="delete(p)" class="btn btn-danger">
-                                        <i class="fas fa-trash-alt"></i> Eliminar
-                                    </button>&nbsp;
                                     <button (click)="verDesc(p)" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <i class="fas fa-eye"></i> Ver descripcion
                                     </button>&nbsp;
                                     <button (click)="verPosts(p)" class="btn btn-info">
                                         <i class="fas fa-list"></i> Ver posts
+                                    </button>&nbsp;
+                                    <button (click)="seguir(p)" class="btn btn-warning">
+                                        <i class="fas fa-heart"></i> Seguir
                                     </button>
                                 </td>
                             </tr>
