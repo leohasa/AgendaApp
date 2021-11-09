@@ -109,4 +109,9 @@ export class AppComponent implements OnInit {
             this.updateNotificaciones();
         });
     }
+
+    eliminarNotificaciones():void{
+        this.notificacionService.deleteNotificaciones(this.username).subscribe();
+        this.updateNotificaciones();
+    }
 }

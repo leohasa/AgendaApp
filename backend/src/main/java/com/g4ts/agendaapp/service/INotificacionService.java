@@ -11,6 +11,7 @@ public interface INotificacionService {
     Notificacion findById(Integer id);
     void save(Notificacion notificacion);
     void deleteById(Integer id);
+    void deleteAllByUsuario(String usuario);
 
     List<Notificacion> findAllByUsuario(Usuario usuario);
     List<Notificacion> findAllByUsuarioYFechaHora(Usuario usuario, LocalDateTime inicio, LocalDateTime fin);

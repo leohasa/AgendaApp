@@ -20,6 +20,11 @@ public class NotificacionServiceJpa implements INotificacionService {
     }
 
     @Override
+    public void deleteAllByUsuario(String usuario) {
+        this.notificacionRepository.deleteAllByUsuario(usuario);
+    }
+
+    @Override
     public List<Notificacion> findAll() {
         return this.notificacionRepository.findAll();
     }

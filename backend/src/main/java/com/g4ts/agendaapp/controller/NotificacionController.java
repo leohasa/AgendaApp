@@ -42,4 +42,9 @@ public class NotificacionController {
         this.iNotificacionService.deleteById(idNotificacion);
     }
 
+    @PostMapping("/removeAll")
+    public void removeAll(@RequestBody String usuario) {
+        this.iNotificacionService.deleteAllByUsuario(usuario);
+    }
+
 }

@@ -35,17 +35,15 @@
                 </button>
                 <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1" style="width: 700%; height: 900%;">
                     <li><h6 class="dropdown-header">Notificaciones</h6></li>
-                    <li>
-                        <div *ngFor="let not of notificaciones" class="card w-100">
-                            <div class="card-body">
-                              <h5 class="card-title">{{not.titulo}}</h5>
-                              <h6 class="card-title text-primary">{{not.fechaHora}}</h6>
-                              <p class="card-text">{{not.descripcion}}.</p>
-                            </div>
+                    <div *ngFor="let not of notificaciones" class="card w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{not.titulo}}</h5>
+                            <h6 class="card-title text-primary">{{not.fechaHora}}</h6>
+                            <p class="card-text">{{not.descripcion}}.</p>
                         </div>
-                    </li>
+                    </div>
+                    <li><a (click)="eliminarNotificaciones()" class="dropdown-header" style="text-align: right;">Eliminar todas.</a></li>
                 </ul>
-                
             </div>
             <form class="d-flex me-4">
                 <input class="form-control me-2" type="text" placeholder="...   ">
