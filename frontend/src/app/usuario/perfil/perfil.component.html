@@ -8,7 +8,7 @@
                 <div class="col-2"></div>
                 <div class="col-10 ">
                     <div class="card">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Richard_Stallman_at_Pittsburgh_University.jpg/1024px-Richard_Stallman_at_Pittsburgh_University.jpg"
+                        <img src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png"
                             class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Mis Datos</h5>
@@ -21,7 +21,7 @@
         <div class="col-4">
 
             <!---Hijo -->
-            <app-txt-edit></app-txt-edit>
+            <app-txt-edit (pubEmitter)="addPub($event)" [isUser]="isUser"></app-txt-edit>
 
             <br>
 

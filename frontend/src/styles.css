@@ -7,3 +7,8 @@ select {
     --bs-text-opacity: 1 !important;
     color: rgba(255,255,255, 1) !important;
 }
+
+.container-responsive {
+    height:600px;
+    overflow-y:scroll;
+}

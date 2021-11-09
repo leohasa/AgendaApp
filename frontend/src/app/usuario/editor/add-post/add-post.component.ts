@@ -12,21 +12,20 @@ import { PostService } from 'src/app/service/post.service';
 export class AddPostComponent implements OnInit {
 
     textInfo: string = "";
+    isEditor: boolean;
 
-    constructor(private router: Router, private service: PostService, private dataPost: DataPostService) { }
+    constructor(private router: Router, private postService: PostService, private dataPost: DataPostService) {
+        this.isEditor = true;
+    }
 
     ngOnInit(): void {
         this.eventModal();
-        this.suscribePost();
     }
 
-    suscribePost() {
-        this.dataPost.getData()
+    addPost(post: Post) {
+        this.postService.create(post)
             .subscribe(data => {
-                this.service.create(data)
-                    .subscribe(data => {
-                        this.showInfo('Post agregado con al plugin');
-                    });
+                this.showInfo('Post agregado al plugin');
             });
     }
 

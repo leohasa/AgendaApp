@@ -4,7 +4,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Mi Comentario: </span>
         </div>
-        <input (keyup)="onKey($event)" type="text" class="form-control" placeholder="opinion" aria-label="Username"
+        <input (keyup)="onKey($event)" type="text" id="comment" class="form-control" placeholder="opinion" aria-label="Username"
             aria-describedby="basic-addon1" >
         <button type="submit" class="btn btn-success mt-2" [disabled]="!comentar.form.valid">Comentar</button>
     </div>
@@ -28,7 +28,7 @@
          <div class="card-body">
             <h5 class="card-title" ></h5>
             <p class="card-text" >{{u.contenido}} </p>
-            
+
         </div>
     </div>
 

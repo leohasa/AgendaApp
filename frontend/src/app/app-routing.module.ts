@@ -34,6 +34,10 @@ import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { VisitanteComponent } from './usuario/perfil/visitante/visitante.component';
 import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
 import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
+import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.component';
+import { MisPluginsComponent } from './usuario/mis-plugins/mis-plugins.component';
+import { AllPostsPluginComponent } from './usuario/all-posts-plugin/all-posts-plugin.component';
+import { AllPluginsComponent } from './usuario/all-plugins/all-plugins.component';
 
 
 const routes: Routes = [
@@ -44,7 +48,11 @@ const routes: Routes = [
             {path: 'edit', component: EditUsuarioComponent},
             {path: 'userlist', component: ListUsuarioComponent},
             {path: 'solicitud', component: SolicitudEditorComponent},
-            {path: 'perfil', component: PerfilComponent}
+            {path: 'perfil', component: PerfilComponent},
+            {path: 'misPlugins', component: MisPluginsComponent},
+            {path: 'allPosts', component: AllPostsPluginComponent},
+            {path: 'allPlugins', component: AllPluginsComponent},
+            {path: 'viewPost', component: VistaPostComponent}
         ]
     },
     {path: 'admin', component: ManagerUserRoutesComponent,
@@ -69,7 +77,8 @@ const routes: Routes = [
         children: [
             {path: 'list', component: ListPostComponent},
             {path: 'add', component: AddPostComponent},
-            {path: 'edit', component: EditPostComponent}
+            {path: 'edit', component: EditPostComponent},
+            {path: 'view', component: VistaPostComponent}
         ]
     },
     {path: 'proyecto', component:ManagerProjectRoutesComponent,

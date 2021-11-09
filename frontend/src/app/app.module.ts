@@ -61,7 +61,11 @@ import { NotificacionService } from './service/notificacion.service';
 import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
 import { ReminderModalComponent } from './reminder-modal/reminder-modal.component';
 import { ActivityModalComponent } from './activity-modal/activity-modal.component';
-
+import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.component';
+import { MisPluginsComponent } from './usuario/mis-plugins/mis-plugins.component';
+import { PluginsUserService } from './service/plugins-user.service';
+import { AllPostsPluginComponent } from './usuario/all-posts-plugin/all-posts-plugin.component';
+import { AllPluginsComponent } from './usuario/all-plugins/all-plugins.component';
 
 @NgModule({
     declarations: [
@@ -107,7 +111,11 @@ import { ActivityModalComponent } from './activity-modal/activity-modal.componen
         ManagerHomepageComponent,
         TxtEditComponent,
         ReminderModalComponent,
-        ActivityModalComponent
+        ActivityModalComponent,
+        VistaPostComponent,
+        MisPluginsComponent,
+        AllPostsPluginComponent,
+        AllPluginsComponent
     ],
     imports: [
         BrowserModule,
@@ -131,7 +139,8 @@ import { ActivityModalComponent } from './activity-modal/activity-modal.componen
         SolicitudService,
         PluginService,
         PostService,
-        DataService
+        DataService,
+        PluginsUserService
     ],
     bootstrap: [AppComponent]
 })

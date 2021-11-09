@@ -1,20 +1,14 @@
 <div *ngFor="let u of publicacion">
     <div class="card text-center">
-        <div class="btn-light align-self-end">
-            <a class="btn btn-outline-dark"><i class="fa fa-pencil float-right" aria-hidden="true"></i></a>
-            <a (click)="update(u)"   class="btn btn-outline-dark"><i class="fa fa-trash float-right" aria-hidden="true"></i></a>
-        </div>
         <div class="card-header" [innerHtml]="u.fechaPublicacion">
-            
+
         </div>
         <div class="card-body">
 
             <h5 class="card-title" [innerHtml]="u.titulo"></h5>
-            <p class="card-text " [innerHtml]="u.contenido"></p>
-
-            
+            <p class="card-text" [innerHtml]="u.contenido"></p>
         </div>
-        <div class="card-footer text-muted ">
+        <div class="card-footer text-muted">
             <app-puntuacion [publicacion]="u"></app-puntuacion>
             <app-comentario [commentarioPublicacion]="u.id"></app-comentario>
 

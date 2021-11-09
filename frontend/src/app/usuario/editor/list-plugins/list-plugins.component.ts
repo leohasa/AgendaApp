@@ -46,6 +46,11 @@ export class ListPluginsComponent implements OnInit {
         this.router.navigate(['/post/list']);
     }
 
+    verDesc(plugin: Plugin) {
+        let div: HTMLDivElement = document.querySelector('#contenido') ?? new HTMLDivElement;
+        div.innerHTML = plugin.descripcion;
+    }
+
     private showInfo(info:string){
         this.textInfo = info;
         document.getElementById("btnModalInfo")?.click();

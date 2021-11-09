@@ -31,6 +31,11 @@ public class PostController {
         Plugin plugin = Plugin.builder().id(id).build();
         return postService.findAllByUserAndPlugin(usuario, plugin);
     }
+    @GetMapping("/listByPlugin/{id}")
+    public List<Post> listByUser(@PathVariable Integer id) {
+        Plugin plugin = Plugin.builder().id(id).build();
+        return postService.findAllByPlugin(plugin);
+    }
 
     @PostMapping("/add")
     public void save(@RequestBody Post post) {

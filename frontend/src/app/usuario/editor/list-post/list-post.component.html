@@ -10,7 +10,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid col-md-5">
+<div class="container-fluid col-md-7">
     <div class="row">
         <div class="col">
             <div class="card my-4">
@@ -23,7 +23,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Titulo</th>
-                                <th>Fecha</th>
+                                <th>Fecha de publicaccion</th>
                                 <th></th>
                         </thead>
                         <tbody>
@@ -38,8 +38,8 @@
                                     <button (click)="delete(p)" class="btn btn-danger">
                                         <i class="fas fa-trash-alt"></i> Eliminar
                                     </button>&nbsp;
-                                    <button class="btn btn-info">
-                                        <i class="fas fa-eye"></i> Ver contenido
+                                    <button (click)="verPost(p)" class="btn btn-info">
+                                        <i class="fas fa-eye"></i> Ver como usuario
                                     </button>
                                 </td>
                             </tr>

@@ -21,4 +21,5 @@ public class SolicitudRolEditor {
     private Usuario usuario;
     private String contenido;
     private LocalDate fecha;
+    private Short estado;
 }

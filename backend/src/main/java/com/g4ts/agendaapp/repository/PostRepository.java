@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findAllByUsuarioAndPlugin(Usuario usuario, Plugin plugin);
+    List<Post> findAllByPlugin(Plugin plugin);
 }

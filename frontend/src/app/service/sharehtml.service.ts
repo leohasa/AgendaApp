@@ -14,5 +14,5 @@ export class SharehtmlService {
   @Output() aumentar : EventEmitter<Publicacion>  = new EventEmitter<Publicacion>();
   @Output() username : EventEmitter<string> = new EventEmitter<string>();
   constructor() { }
-  
+
 }

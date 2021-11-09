@@ -2,10 +2,9 @@
     <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
         aria-describedby="button-addon2" [popper]="myPopperContent" [popperShowOnStart]="true"
         (keyup)="searchMatch($event)" >
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
 
 </div>
-<popper-content class="btn " #myPopperContent>
+<popper-content class="btn-light " #myPopperContent>
     <div *ngFor="let u of lstUsuarios">
         <a (click)="showPerfil(u)" class="btn btn-outline-dark">{{u}}</a>
     </div>

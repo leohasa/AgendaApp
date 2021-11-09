@@ -44,4 +44,9 @@ public class PostServiceJpa implements IPostService {
     public List<Post> findAllByUserAndPlugin(Usuario usuario, Plugin plugin) {
         return postRepository.findAllByUsuarioAndPlugin(usuario, plugin);
     }
+
+    @Override
+    public List<Post> findAllByPlugin(Plugin plugin) {
+        return postRepository.findAllByPlugin(plugin);
+    }
 }

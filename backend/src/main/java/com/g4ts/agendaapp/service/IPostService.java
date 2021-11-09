@@ -13,4 +13,5 @@ public interface IPostService {
     void delteById(Integer id);
 
     List<Post> findAllByUserAndPlugin(Usuario usuario, Plugin plugin);
+    List<Post> findAllByPlugin(Plugin plugin);
 }

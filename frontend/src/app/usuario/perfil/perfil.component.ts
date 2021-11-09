@@ -13,45 +13,28 @@ import { SharehtmlService } from 'src/app/service/sharehtml.service';
 })
 export class PerfilComponent implements OnInit {
 
-  @Input() expression: string = '';
-  @Input() aumentar: Boolean = false;
+    isUser: boolean;
 
-  message: string = "";
+    constructor(private service: ForoService, private shareService: SharehtmlService) {
+        this.isUser = true;
+    }
 
-  constructor(private router: Router,
-              
-              private service: ForoService,
-              private shareService: SharehtmlService
-              ) { }
+    ngOnInit(): void {
+        this.shareService.aumentar.subscribe(x => {
+            this.service.editPublicacion(x)
+                .subscribe(() => {
+                    console.log("Actualizando puntuacion", x.puntuacion);
+                });
 
-  ngOnInit(): void {
-    this.shareService.aumentar.subscribe(x => {
-      console.log("Aumentar: ", x);
-      this.service.editPublicacion(x)
-        .subscribe(() => {
-          //console.log("Actualizar puntuacion en ffrontend",x)
-        });
+        })
+    }
 
-    })
+    addPub(pub: Publicacion) {
+        this.service.createPublicacion(pub)
+            .subscribe(data => {
+                this.shareService.update.emit(true);
+                this.service.getPublicaciones(localStorage.getItem("user") ?? "");
+            });
+    }
 
-    this.shareService.txtHead.emit("Informacion Basica");
-
-    this.shareService.data
-      .subscribe(valueTransfer => {
-
-        this.service.createPublicacion(valueTransfer).subscribe(x => {
-
-          this.shareService.message.subscribe((value) => {
-            this.expression = value;
-            this.shareService.expression.emit(this.expression);
-
-          });
-
-          this.shareService.update.emit(true);
-          
-          this.service.getPublicaciones(localStorage.getItem("user") ?? "");
-        });
-
-      });
-  }
 }

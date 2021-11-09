@@ -15,6 +15,10 @@ export class PluginService {
         return this.http.get<Plugin[]>(`${this.url}/list`);
     }
 
+    unFollowPlugin(username: string) {
+        return this.http.get<Plugin[]>(`${this.url}/unFollow/${username}`);
+    }
+
     create(plugin: Plugin) {
         return this.http.post<Plugin>(`${this.url}/add`, plugin);
     }

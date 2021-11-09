@@ -23,7 +23,13 @@
                                     required #name="ngModel">
                             </div>
                         </div>
-                        <div class="text-center">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="desc">Descripcion:</label>
+                                <textarea [(ngModel)]="plugin.descripcion" class="form-control" name="descripcion" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="text-center mt-2">
                             <button type="submit" class="btn btn-success mt-2"
                                 [disabled]="!pluginForm.form.valid">Actualizar plugin</button>
                         </div>

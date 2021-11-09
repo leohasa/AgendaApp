@@ -18,15 +18,15 @@
                 <li *ngIf="isUser" class="nav-item">
                     <a class="nav-link" routerLink="categoria/list">Categorias</a>
                 </li>
+                <li *ngIf="isUser" class="nav-item">
+                    <a class="nav-link" routerLink="user/misPlugins">Mis plugins</a>
+                </li>
                 <li *ngIf="isEditor" class="nav-item">
                     <a class="nav-link" routerLink="plugin/list">Gestion de plugins</a>
                 </li>
-                <li *ngIf="isUser" class="nav-item">
-                    <a class="nav-link" routerLink="pluginUser/list">Mis plugins</a>
-                </li>
             </ul>
-            <div class="dropdown" style="margin-right: 25px;">
-                <button (click)="updateNotificaciones()" class="btn btn-secondary btn-lg " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="dropdown dropstart" style="margin-right: 25px;">
+                <button (click)="updateNotificaciones()" class="btn btn-secondary btn " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-bell"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {{notificaciones.length}}
@@ -42,13 +42,9 @@
                             <p class="card-text">{{not.descripcion}}.</p>
                         </div>
                     </div>
-                    <li><a (click)="eliminarNotificaciones()" class="dropdown-header" style="text-align: right;" routerLink>Eliminar todas.</a></li>
+                    <li><a (click)="eliminarNotificaciones()" class="dropdown-header" style="text-align: right;" routerLink="homepage">Eliminar todas.</a></li>
                 </ul>
             </div>
-            <form class="d-flex me-4">
-                <input class="form-control me-2" type="text" placeholder="...   ">
-                <button class="btn btn-primary" type="button">Buscar</button>
-            </form>
             <ul class="navbar-nav">
                 <div class="dropdown dropstart">
                     <li class="nav-item">
