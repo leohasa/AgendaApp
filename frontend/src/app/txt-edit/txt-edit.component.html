@@ -3,8 +3,7 @@
 <div class="input-group input-group-lg">
     <span class="input-group-text" id="inputGroup-sizing-lg">Titulo</span>
     <input type="text" id="title_" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-lg" (keyup)="onKey($event)"
-        [(ngModel)]="post.titulo">
+        aria-describedby="inputGroup-sizing-lg" [(ngModel)]="post.titulo">
 </div>
 
 <br>
@@ -19,7 +18,9 @@
 </div>
 <br>
 
-<button *ngIf="!isEditor" type="button" (click)="sendData()" class="btn btn-primary">Publicar</button>
+<div *ngIf="isUser" class="d-grid gap-2 col-6 mx-auto">
+    <button type="button" (click)="addPub()" class="btn btn-primary">Publicar</button>
+</div>
 <div *ngIf="isEditor" class="d-grid gap-2 col-6 mx-auto">
     <button type="button" (click)="addPost()" class="btn btn-primary">Guardar post</button>
 </div>

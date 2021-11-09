@@ -13,26 +13,26 @@ import { SharehtmlService } from '../service/sharehtml.service';
 export class ComentarioComponent implements OnInit {
 
   @Input() commentarioPublicacion : string ;
-  
+
   expression = 'Comentario Registrado Con Exito';
 
   comentario: Comentario;
   comentarioList: Comentario[];
-  
+
   constructor(private router: Router, private service: ComentarioServiceService,private shareService : SharehtmlService) {
-    
-      
-    
+
+
+
     this.comentario = new Comentario();
-    
+
     this.comentarioList = [];
-    
+
   }
 
   ngOnInit(): void {
     //this.commentarioPublicacion = new Publicacion();
     this.comentario.usuario.username = localStorage.getItem("username")??"";
-    this.comentario.publicacion.id = this.commentarioPublicacion;    
+    this.comentario.publicacion.id = this.commentarioPublicacion;
     //this.comentario.publicacion = this.commentarioPublicacion;
   }
   onSave(): void {
@@ -41,30 +41,27 @@ export class ComentarioComponent implements OnInit {
   onKey(event: any): void {
     const inputValue = event.target.value;
     this.comentario.contenido = inputValue;
-    
+
 
   }
   onSubmit(): void {
-    
-    
+
+
     if(this.comentario.contenido === undefined){
       this.expression = 'Debe de escribir un comentario'
     }
-    
-    this.service.add(this.comentario).subscribe(()=>{
-      this.shareService.expression.emit(this.expression);
-    console.log("submit comentario ",this.comentario.contenido);
-    })
-    
+
+    this.service.add(this.comentario).subscribe(()=>{})
+
   }
   showComment() {
-    
+
       this.service.getPublicacionByPublicacionAndUser(this.commentarioPublicacion)
       .subscribe(x=>{
         this.comentarioList = x;
         });
-      
-                 
+
+
   }
 
 }

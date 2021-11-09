@@ -14,10 +14,6 @@ import { SharehtmlService } from '../service/sharehtml.service';
 })
 export class TxtEditComponent implements OnInit, OnChanges {
 
-
-
-    @Input() entrante: Publicacion = new Publicacion();
-    @Input() message: string = "";
     editor: Editor;
     toolbar: Toolbar = [
         ['bold', 'italic'],
@@ -30,31 +26,34 @@ export class TxtEditComponent implements OnInit, OnChanges {
         ['align_left', 'align_center', 'align_right', 'align_justify'],
     ];
     html: string = '';
-    titulo: string = '';
 
     @Output()
     postEmitter = new EventEmitter<Post>();
 
+    @Output()
+    pubEmitter = new EventEmitter<Publicacion>();
+
     @Input()
     post: Post;
-    roles: Rol[];
+
+    pub: Publicacion;
+
     @Input()
     isEditor: boolean;
 
-    constructor(
-        private serviceShare: SharehtmlService,
-        private dataPost: DataPostService) {
+    @Input()
+    isUser: boolean;
 
+    constructor() {
         this.post = new Post();
-        this.roles = new Array();
+        this.pub = new Publicacion();
         this.isEditor = false;
+        this.isUser = false;
     }
 
     ngOnInit(): void {
-        this.entrante = new Publicacion();
         this.editor = new Editor();
         this.html = '';
-        this.titulo = this.post.titulo;
 
         this.editor.commands
             .focus()
@@ -67,34 +66,22 @@ export class TxtEditComponent implements OnInit, OnChanges {
         this.html = this.post.contenido;
     }
 
-    onKey(event: any): void {
-        const inputValue = event.target.value;
-        this.titulo = inputValue;
-    }
-
-    sendData() {
-
-        this.entrante.usuario.username = localStorage.getItem("username") ?? "";
-        this.entrante.titulo = "<h1>" + this.titulo + "<\h1>";
-        this.entrante.contenido = this.html;
-
-        if (!(this.html === "" && this.titulo === "")) {
-            this.serviceShare.data.emit(this.entrante);
-            this.html = "";
-            this.message = "Publicacion procesada correctamente";
-        } else {
-            this.message = "Debe Ingresar el Titulo y contenido de la publicacion";
-        }
-        this.serviceShare.message.emit(this.message);
-    }
-
     addPost(): void {
         let title: HTMLInputElement = document.querySelector('#title_') ?? new HTMLInputElement();
         this.post.titulo = title.value;
         this.post.contenido = this.html;
         this.post.plugin.id = localStorage.getItem('idPlugin') ??  '';
         this.post.usuario.username = localStorage.getItem('user') ?? '';
-        // this.dataPost.updateData(this.post);
         this.postEmitter.emit(this.post);
+    }
+
+    addPub(): void {
+        let title: HTMLInputElement = document.querySelector('#title_') ?? new HTMLInputElement();
+        this.pub.titulo = '<h1>' + title.value + '</h1>';
+        this.pub.contenido = this.html;
+        this.pub.usuario.username = localStorage.getItem('user') ?? '';
+        this.pubEmitter.emit(this.pub);
+        title.value = '';
+        this.html = '';
     }
 }

@@ -20,20 +20,6 @@ export class AddPostComponent implements OnInit {
 
     ngOnInit(): void {
         this.eventModal();
-        // this.suscribePost();
-    }
-
-    suscribePost() {
-        this.dataPost.getData()
-            .subscribe(data => {
-                console.log(data);
-                console.log(`Recibiendo post: ${data}`);
-                this.postService.create(data)
-                    .subscribe(data => {
-                        this.showInfo('Post agregado con al plugin');
-                        console.log('Servicio completado');
-                    });
-            });
     }
 
     addPost(post: Post) {

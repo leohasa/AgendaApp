@@ -43,7 +43,7 @@ export class ListSolicitudesComponent implements OnInit {
         this.service.newEditor(solicitud.id)
             .subscribe(data => {
                 this.solicitudes = this.solicitudes.filter(s => s != solicitud);
-                this.showInfo(`El usuario ${solicitud.usuario.username} es un editor!`);
+                this.showInfo(`El usuario @${solicitud.usuario.username} ahora es un editor!`);
                 this.notificacion.usuario.username = solicitud.usuario.username;
                 this.notificacionServicio.create(this.notificacion).subscribe(data => { });
             });
