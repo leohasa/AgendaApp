@@ -59,6 +59,8 @@ import { PuntuacionComponent } from './puntuacion/puntuacion.component';
 import { RecordatorioService } from './service/recordatorio.service';
 import { NotificacionService } from './service/notificacion.service';
 import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
+import { ReminderModalComponent } from './reminder-modal/reminder-modal.component';
+import { ActivityModalComponent } from './activity-modal/activity-modal.component';
 
 
 @NgModule({
@@ -103,7 +105,9 @@ import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-hom
         EditPostComponent,
         ComentarioComponent,
         ManagerHomepageComponent,
-        TxtEditComponent
+        TxtEditComponent,
+        ReminderModalComponent,
+        ActivityModalComponent
     ],
     imports: [
         BrowserModule,
@@ -111,9 +115,7 @@ import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-hom
         FormsModule,
         HttpClientModule,
         NgxEditorModule,
-        NgxPopperjsModule,
-        
-        
+        NgxPopperjsModule
     ],
     providers:
     [

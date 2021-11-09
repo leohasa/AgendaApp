@@ -43,4 +43,8 @@ public class RecordatorioController {
         this.iRecordatorioService.deleteById(idRecordatorio);
     }
 
+    @GetMapping("/get/{id}")
+    public Recordatorio getById(@PathVariable Integer id) {
+        return this.iRecordatorioService.findById(id);
+    }
 }
