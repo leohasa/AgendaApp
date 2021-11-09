@@ -39,7 +39,7 @@ export class MisPluginsComponent implements OnInit {
 
     verPosts(pluginU: PluginsUsuario) {
         localStorage.setItem('idPlugin', pluginU.plugin.id.toString());
-        this.router.navigate(['/post/list']);
+        this.router.navigate(['/user/allPosts']);
     }
 
     verDesc(pluginU: PluginsUsuario) {

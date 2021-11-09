@@ -55,6 +55,7 @@ import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-hom
 import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.component';
 import { MisPluginsComponent } from './usuario/mis-plugins/mis-plugins.component';
 import { PluginsUserService } from './service/plugins-user.service';
+import { AllPostsPluginComponent } from './usuario/all-posts-plugin/all-posts-plugin.component';
 
 @NgModule({
     declarations: [
@@ -95,7 +96,8 @@ import { PluginsUserService } from './service/plugins-user.service';
         ComentarioComponent,
         ManagerHomepageComponent,
         VistaPostComponent,
-        MisPluginsComponent
+        MisPluginsComponent,
+        AllPostsPluginComponent
     ],
     imports: [
         BrowserModule,

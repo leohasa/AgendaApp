@@ -19,6 +19,10 @@ export class PostService {
         return this.http.get<Post[]>(`${this.url}/listByUserAndPlugin/${id}/${username}`);
     }
 
+    getAllByPlugin(id: string) {
+        return this.http.get<Post[]>(`${this.url}/listByPlugin/${id}`);
+    }
+
     create(post: Post) {
         return this.http.post<Post>(`${this.url}/add`, post);
     }

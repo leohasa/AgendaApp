@@ -35,6 +35,7 @@ import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publi
 import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
 import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.component';
 import { MisPluginsComponent } from './usuario/mis-plugins/mis-plugins.component';
+import { AllPostsPluginComponent } from './usuario/all-posts-plugin/all-posts-plugin.component';
 
 const routes: Routes = [
     {path: 'user', component: ManagerUserRoutesComponent,
@@ -45,7 +46,8 @@ const routes: Routes = [
             {path: 'userlist', component: ListUsuarioComponent},
             {path: 'solicitud', component: SolicitudEditorComponent},
             {path: 'perfil', component: PerfilComponent},
-            {path: 'misPllugins', component: MisPluginsComponent}
+            {path: 'misPlugins', component: MisPluginsComponent},
+            {path: 'allPosts', component: AllPostsPluginComponent}
         ]
     },
     {path: 'admin', component: ManagerUserRoutesComponent,
