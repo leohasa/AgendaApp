@@ -4,16 +4,8 @@ import { AppComponent } from './app.component';
 import { AddUsuarioComponent } from './usuario/add-usuario/add-usuario.component';
 import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.component';
 import { ListUsuarioComponent } from './usuario/list-usuario/list-usuario.component';
-import { AddActividadComponent } from './actividad/add-actividad/add-actividad.component';
-import { EditActividadComponent } from './actividad/edit-actividad/edit-actividad.component';
-import { ListActividadComponent } from './actividad/list-actividad/list-actividad.component';
-import { AddProyectoComponent } from './proyecto/add-proyecto/add-proyecto.component';
-import { EditProyectoComponent } from './proyecto/edit-proyecto/edit-proyecto.component';
-import { ListProyectoComponent } from './proyecto/list-proyecto/list-proyecto.component';
 import { LoginComponent } from './usuario/login/login.component';
 import { ManagerUserRoutesComponent } from './usuario/manager-user-routes/manager-user-routes.component';
-import { ManagerProjectRoutesComponent } from './proyecto/manager-project-routes/manager-project-routes.component';
-import { ManagerActividadRoutesComponent } from './actividad/manager-actividad-routes/manager-actividad-routes.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-editor.component';
 import { ListSolicitudesComponent } from './usuario/list-solicitudes/list-solicitudes.component';
@@ -48,6 +40,8 @@ import { AllPluginsComponent } from './usuario/all-plugins/all-plugins.component
 import { CoreModule } from './core.module';
 import { SharedModule } from './shared.module';
 import { CategoriaModule } from './categoria/categoria.module';
+import { ActividadModule } from './actividad/actividad.module';
+import { ProyectoModule } from './proyecto/proyecto.module';
 
 @NgModule({
     declarations: [
@@ -55,16 +49,8 @@ import { CategoriaModule } from './categoria/categoria.module';
         AddUsuarioComponent,
         EditUsuarioComponent,
         ListUsuarioComponent,
-        AddActividadComponent,
-        EditActividadComponent,
-        ListActividadComponent,
-        AddProyectoComponent,
-        EditProyectoComponent,
-        ListProyectoComponent,
         LoginComponent,
         ManagerUserRoutesComponent,
-        ManagerProjectRoutesComponent,
-        ManagerActividadRoutesComponent,
         CalendarComponent,
         SolicitudEditorComponent,
         ListPublicacionComponent,
@@ -100,7 +86,9 @@ import { CategoriaModule } from './categoria/categoria.module';
         NgxEditorModule,
         NgxPopperjsModule,
         SharedModule,
-        CategoriaModule
+        CategoriaModule,
+        ActividadModule,
+        ProyectoModule
     ],
     bootstrap: [AppComponent]
 })
