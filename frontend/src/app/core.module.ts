@@ -14,7 +14,7 @@ import {RecordatorioService} from './service/recordatorio.service';
 import { SeguidorService } from './service/seguidor.service';
 import {SolicitudService} from './service/solicitud.service';
 import {UsuarioService} from './service/usuario.service';
-import {AccessGuard} from './usuario/AccessGuard';
+import {AccessGuard} from './components/usuario/AccessGuard';
 
 @NgModule({
     declarations: [],

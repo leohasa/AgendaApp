@@ -1,6 +1,6 @@
 import { Component, Directive, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ComentarioComponent } from 'src/app/comentario/comentario.component';
+import { ComentarioComponent } from 'src/app/components/comentario/comentario.component';
 import { Publicacion } from 'src/app/model/publicacion';
 import { Usuario } from 'src/app/model/usuario';
 import { ComentarioServiceService } from 'src/app/service/comentario-service.service';
@@ -24,10 +24,10 @@ export class ListPublicacionComponent implements OnInit {
   constructor(private service: ForoService,
               private comentarioservice: ComentarioServiceService,
               private router: Router,
-              private shareService: SharehtmlService) 
-  { 
+              private shareService: SharehtmlService)
+  {
               this.publicacion = [];
-              
+
   }
 
 
@@ -42,12 +42,12 @@ export class ListPublicacionComponent implements OnInit {
   }
 
   getPublicaciones() {
-    
+
     this.username = this.username.replace('@local',localStorage.getItem("user")??"");
     this.service.getPublicaciones(this.username)
       .subscribe(data => {
         this.publicacion = data;
-        
+
       });
   }
   aumentar(publicacion: Publicacion) {

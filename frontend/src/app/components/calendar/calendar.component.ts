@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActividadService } from '../service/actividad.service';
+import { ActividadService } from '../../service/actividad.service';
 import { Actividad } from 'src/app/model/actividad';
-import { RecordatorioService } from '../service/recordatorio.service';
-import { Recordatorio } from '../model/recordatorio';
+import { RecordatorioService } from '../../service/recordatorio.service';
+import { Recordatorio } from '../../model/recordatorio';
 
 declare var Moon: any;
 declare var bootstrap: any;

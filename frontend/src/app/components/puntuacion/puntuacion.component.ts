@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Publicacion } from '../model/publicacion';
-import { Puntuacion } from '../model/puntuacion';
-import { PuntuacionService } from '../service/puntuacion.service';
-import { SharehtmlService } from '../service/sharehtml.service';
+import { Publicacion } from '../../model/publicacion';
+import { Puntuacion } from '../../model/puntuacion';
+import { PuntuacionService } from '../../service/puntuacion.service';
+import { SharehtmlService } from '../../service/sharehtml.service';
 
 @Component({
   selector: 'app-puntuacion',
@@ -30,36 +30,36 @@ export class PuntuacionComponent implements OnInit {
   changePuntuacion(publicacion: Publicacion, aumento: Boolean) {
 
     let username = localStorage.getItem("username") ?? "";
-    
+
 
     this.service.existPuntuacionByUserAndPublicacion(username, this.publicacionP.id)
       .subscribe(element => {
 
 
         if (element) {
-          
+
           this.service.getPuntuacionByUserAndPublicacion(username, this.publicacionP.id)
             .subscribe(puntos => {
               var puntRegister = +puntos.punto;
-              
+
               if( aumento){
                   if(puntRegister < 1){
-                    
+
                     puntRegister += 1;
                     puntos.punto = ""+puntRegister
                     this.confirmChange(puntos,publicacion,aumento);
-                    
+
                   }
               }else{
                 if(puntRegister > -1){
-                  
+
                   puntRegister -= 1;
                   puntos.punto = ""+puntRegister
                   this.confirmChange(puntos,publicacion,aumento);
-                  
+
                 }
               }
-    
+
             });
 
         } else {
@@ -88,7 +88,7 @@ export class PuntuacionComponent implements OnInit {
     this.shareService.aumentar.emit(publicacion);
   }
   confirmChange(puntuacion:Puntuacion, publicacion:Publicacion, aumento:Boolean){
-    
+
     this.service.edit(puntuacion)
     .subscribe(()=>{
       this.changeVisual(publicacion,aumento);

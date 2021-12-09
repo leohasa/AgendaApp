@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import flatpickr from 'flatpickr';
 import { Spanish } from 'flatpickr/dist/l10n/es';
-import { Actividad } from '../model/actividad';
-import { Categoria } from '../model/categoria';
-import { Proyecto } from '../model/proyecto';
-import { Recordatorio } from '../model/recordatorio';
-import { ActividadService } from '../service/actividad.service';
-import { CategoriaService } from '../service/categoria.service';
-import { ProyectoService } from '../service/proyecto.service';
-import { RecordatorioService } from '../service/recordatorio.service';
+import { Actividad } from '../../model/actividad';
+import { Categoria } from '../../model/categoria';
+import { Proyecto } from '../../model/proyecto';
+import { Recordatorio } from '../../model/recordatorio';
+import { ActividadService } from '../../service/actividad.service';
+import { CategoriaService } from '../../service/categoria.service';
+import { ProyectoService } from '../../service/proyecto.service';
+import { RecordatorioService } from '../../service/recordatorio.service';
 import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
-import { NotificacionService } from '../service/notificacion.service';
-import { Notificacion } from '../model/notificacion';
+import { NotificacionService } from '../../service/notificacion.service';
+import { Notificacion } from '../../model/notificacion';
 
 @Component({
     selector: 'app-modal-calendario',

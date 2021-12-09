@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Recordatorio } from '../model/recordatorio';
-import { RecordatorioService } from '../service/recordatorio.service';
+import { Recordatorio } from '../../model/recordatorio';
+import { RecordatorioService } from '../../service/recordatorio.service';
 
 @Component({
     selector: 'app-reminder-modal',

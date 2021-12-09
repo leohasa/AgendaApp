@@ -3,7 +3,7 @@ import { AddActividadComponent } from './add-actividad/add-actividad.component';
 import { EditActividadComponent } from './edit-actividad/edit-actividad.component';
 import { ListActividadComponent } from './list-actividad/list-actividad.component';
 import { ManagerActividadRoutesComponent } from './manager-actividad-routes/manager-actividad-routes.component';
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../../shared.module';
 
 
 

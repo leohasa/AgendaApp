@@ -2,8 +2,8 @@ import { Component, OnInit, Output,Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Comentario } from 'src/app/model/comentario';
 import { Publicacion } from 'src/app/model/publicacion';
-import { ComentarioServiceService } from '../service/comentario-service.service';
-import { SharehtmlService } from '../service/sharehtml.service';
+import { ComentarioServiceService } from '../../service/comentario-service.service';
+import { SharehtmlService } from '../../service/sharehtml.service';
 
 @Component({
   selector: 'app-comentario',

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Actividad } from '../model/actividad';
-import { ActividadService } from '../service/actividad.service';
+import { Actividad } from '../../model/actividad';
+import { ActividadService } from '../../service/actividad.service';
 
 @Component({
     selector: 'app-activity-modal',
