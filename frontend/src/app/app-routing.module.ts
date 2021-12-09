@@ -32,7 +32,6 @@ import { SolicitudEditorComponent } from './usuario/solicitud-editor/solicitud-e
 import { TxtEditComponent } from './txt-edit/txt-edit.component';
 import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { VisitanteComponent } from './usuario/perfil/visitante/visitante.component';
-import { ListPublicacionComponent } from './txt-edit/list-publicacion/list-publicacion.component';
 import { ManagerHomepageComponent } from './usuario/manager-homepage/manager-homepage.component';
 import { VistaPostComponent } from './usuario/editor/vista-post/vista-post.component';
 import { MisPluginsComponent } from './usuario/mis-plugins/mis-plugins.component';
