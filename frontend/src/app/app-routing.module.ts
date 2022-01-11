@@ -18,12 +18,12 @@ import { ManagerRecordatorioRoutesComponent } from './components/categoria/recor
 import { AccessGuard } from './components/usuario/AccessGuard';
 import { AddUsuarioComponent } from './components/usuario/add-usuario/add-usuario.component';
 import { EditUsuarioComponent } from './components/usuario/edit-usuario/edit-usuario.component';
-import { AddPluginComponent } from './components/usuario/editor/add-plugin/add-plugin.component';
-import { AddPostComponent } from './components/usuario/editor/add-post/add-post.component';
-import { EditPluginComponent } from './components/usuario/editor/edit-plugin/edit-plugin.component';
-import { EditPostComponent } from './components/usuario/editor/edit-post/edit-post.component';
-import { ListPluginsComponent } from './components/usuario/editor/list-plugins/list-plugins.component';
-import { ListPostComponent } from './components/usuario/editor/list-post/list-post.component';
+import { AddPluginComponent } from './components/usuario/editor/plugin/add-plugin/add-plugin.component';
+import { AddPostComponent } from './components/usuario/editor/post/add-post/add-post.component';
+import { EditPluginComponent } from './components/usuario/editor/plugin/edit-plugin/edit-plugin.component';
+import { EditPostComponent } from './components/usuario/editor/post/edit-post/edit-post.component';
+import { ListPluginsComponent } from './components/usuario/editor/plugin/list-plugins/list-plugins.component';
+import { ListPostComponent } from './components/usuario/editor/post/list-post/list-post.component';
 import { ListSolicitudesComponent } from './components/usuario/list-solicitudes/list-solicitudes.component';
 import { ListUsuarioComponent } from './components/usuario/list-usuario/list-usuario.component';
 import { LoginComponent } from './components/usuario/login/login.component';
@@ -113,13 +113,11 @@ const routes: Routes = [
             {path: 'list', component: ListRecordatorioComponent}
         ]
     },
-    {path:'homepage', component: ManagerHomepageComponent},
+    {path: 'homepage', component: ManagerHomepageComponent},
     {path: 'calendar-mes', component: CalendarComponent, data: {requiresLogin: true, requiredRol: 'USUARIO'}, canActivate: [AccessGuard]},
     {path: 'register', component: AddUsuarioComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'perfil', component: PerfilComponent},
-    {path: 'perfil-view/:username', component: VisitanteComponent },
-    {path: 'login', component: LoginComponent}
+    {path: 'perfil-view/:username', component: VisitanteComponent }
 ];
 
 @NgModule({

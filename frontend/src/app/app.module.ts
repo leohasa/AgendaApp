@@ -9,19 +9,11 @@ import { ManagerUserRoutesComponent } from './components/usuario/manager-user-ro
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { SolicitudEditorComponent } from './components/usuario/solicitud-editor/solicitud-editor.component';
 import { ListSolicitudesComponent } from './components/usuario/list-solicitudes/list-solicitudes.component';
-import { TxtEditComponent } from './components/txt-edit/txt-edit.component';
-import { NgxEditorModule } from 'ngx-editor';
 import { ListPublicacionComponent } from './components/txt-edit/list-publicacion/list-publicacion.component';
 import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { ModalCalendarioComponent } from './components/modal-calendario/modal-calendario.component';
 import { ListRecordatorioComponent } from './components/categoria/recordatorio/list-recordatorio/list-recordatorio.component';
 import { ManagerRecordatorioRoutesComponent } from './components/categoria/recordatorio/manager-recordatorio-routes/manager-recordatorio-routes.component';
-import { ListPluginsComponent } from './components/usuario/editor/list-plugins/list-plugins.component';
-import { ListPostComponent } from './components/usuario/editor/list-post/list-post.component';
-import { AddPostComponent } from './components/usuario/editor/add-post/add-post.component';
-import { AddPluginComponent } from './components/usuario/editor/add-plugin/add-plugin.component';
-import { EditPluginComponent } from './components/usuario/editor/edit-plugin/edit-plugin.component';
-import { EditPostComponent } from './components/usuario/editor/edit-post/edit-post.component';
 import { ComentarioComponent } from './components/comentario/comentario.component';
 
 import { ContactComponent } from './components/usuario/perfil/contact/contact.component';
@@ -33,62 +25,62 @@ import { PuntuacionComponent } from './components/puntuacion/puntuacion.componen
 import { ManagerHomepageComponent } from './components/usuario/manager-homepage/manager-homepage.component';
 import { ReminderModalComponent } from './components/reminder-modal/reminder-modal.component';
 import { ActivityModalComponent } from './components/activity-modal/activity-modal.component';
-import { VistaPostComponent } from './components/usuario/editor/vista-post/vista-post.component';
-import { MisPluginsComponent } from './components/usuario/mis-plugins/mis-plugins.component';
-import { AllPostsPluginComponent } from './components/usuario/all-posts-plugin/all-posts-plugin.component';
-import { AllPluginsComponent } from './components/usuario/all-plugins/all-plugins.component';
 import { CoreModule } from './core.module';
 import { SharedModule } from './shared.module';
 import { CategoriaModule } from './components/categoria/categoria.module';
 import { ActividadModule } from './components/actividad/actividad.module';
 import { ProyectoModule } from './components/proyecto/proyecto.module';
+import { PostModule } from './components/usuario/editor/post/post.module';
+import { PluginModule } from './components/usuario/editor/plugin/plugin.module';
+import { EditorModule } from './components/txt-edit/editor.module';
 
 @NgModule({
     declarations: [
         AppComponent,
+
+        //
         AddUsuarioComponent,
-        EditUsuarioComponent,
-        ListUsuarioComponent,
         LoginComponent,
+        ManagerHomepageComponent,
+
         ManagerUserRoutesComponent,
-        CalendarComponent,
-        SolicitudEditorComponent,
-        ListPublicacionComponent,
-        ListSolicitudesComponent,
-        PerfilComponent,
-        ModalCalendarioComponent,
+
+        //Recordatorio
         ListRecordatorioComponent,
         ManagerRecordatorioRoutesComponent,
+
+        //usuario
+        EditUsuarioComponent,
+        ListUsuarioComponent,
+        SolicitudEditorComponent,
+        ListSolicitudesComponent,
+
+        //Perfil
+        ListPublicacionComponent,
+        PerfilComponent,
         ComentarioComponent,
         ContactComponent,
         FindContactComponent,
         VisitanteComponent,
         PuntuacionComponent,
-        ListPluginsComponent,
-        ListPostComponent,
-        AddPostComponent,
-        AddPluginComponent,
-        EditPluginComponent,
-        EditPostComponent,
-        ComentarioComponent,
-        ManagerHomepageComponent,
-        TxtEditComponent,
+
+        //Calendar
         ReminderModalComponent,
         ActivityModalComponent,
-        VistaPostComponent,
-        MisPluginsComponent,
-        AllPostsPluginComponent,
-        AllPluginsComponent
+        ModalCalendarioComponent,
+        CalendarComponent
     ],
     imports: [
         BrowserModule,
         CoreModule,
-        NgxEditorModule,
         NgxPopperjsModule,
         SharedModule,
         CategoriaModule,
         ActividadModule,
-        ProyectoModule
+        ProyectoModule,
+        PostModule,
+        PluginModule,
+        EditorModule
     ],
     bootstrap: [AppComponent]
 })

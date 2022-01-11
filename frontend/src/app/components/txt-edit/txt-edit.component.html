@@ -7,16 +7,11 @@
 </div>
 
 <br>
-    <div class="NgxEditor__Wrapper">
-        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" style="color: black;"> </ngx-editor-menu>
-        <ngx-editor
-          [editor]="editor"
-          [(ngModel)]="html"
-          [disabled]="false"
-          [placeholder]="'Publicaciones...'"
-        ></ngx-editor>
-      </div>
-      <br>
+<div class="NgxEditor__Wrapper">
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" style="color: black;"></ngx-editor-menu>
+    <ngx-editor [editor]="editor" [(ngModel)]="html" [disabled]="false" [placeholder]="'Publicaciones...'"></ngx-editor>
+</div>
+<br>
 
 <div *ngIf="isUser" class="d-grid gap-2 col-6 mx-auto">
     <button type="button" (click)="addPub()" class="btn btn-primary">Publicar</button>

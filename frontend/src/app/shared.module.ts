@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './components/modal/modal.component';
 
-
-
 @NgModule({
     declarations: [
         ModalComponent

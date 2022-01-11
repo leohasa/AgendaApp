@@ -2,10 +2,6 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
 import { Editor, Toolbar } from 'ngx-editor';
 import { Post } from '../../model/post';
 import { Publicacion } from '../../model/publicacion';
-import { Rol } from '../../model/rol';
-import { DataPostService } from '../../service/data-post.service';
-import { SharehtmlService } from '../../service/sharehtml.service';
-
 
 @Component({
     selector: 'app-txt-edit',

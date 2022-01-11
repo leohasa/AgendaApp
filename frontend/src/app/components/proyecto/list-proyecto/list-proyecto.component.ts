@@ -21,7 +21,7 @@ export class ListProyectoComponent implements OnInit {
         let username: String = localStorage.getItem('user') ?? '';
         this.service.get(username)
         .subscribe(data => {
-            data = data.filter(cat => cat.id!='1');
+            data.shift();
             this.proyectos = data;
         });
     }
