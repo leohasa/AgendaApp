@@ -28,6 +28,6 @@ La aplicación cuenta con tres roles o tipos de usuarios:
 
 ## Desarrolladores
 - Aseal Hernández (https://github.com/L2AsHdz)
-- Willy Ardiano (https://github.com/WillyArdiano)
+- Willy Ardiano (https://github.com/willyrex9912)
 - Julio Ixcoy (https://github.com/Juli0F)
 - César Tzoc (https://github.com/cesar9401)
